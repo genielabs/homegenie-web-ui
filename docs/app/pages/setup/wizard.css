@@ -1,0 +1,13 @@
+. {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    background-color: #fafafa;
+    overflow-y: scroll;
+}
+.page {
+    width: 100vw;
+    height: 100vh;
+}

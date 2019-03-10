@@ -1,0 +1,15 @@
+h1 {
+  font-size: 120%;
+  font-weight: 500;
+  margin: 0;
+}
+
+.cover-wrapper {
+  margin: 4px;
+  padding-top: 56.25%;
+}
+
+.summary {
+  cursor: pointer;
+  margin-top: 16px;
+}

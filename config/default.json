@@ -1,0 +1,63 @@
+{
+  "zuix": {
+    "build": {
+      "input": "./source",
+      "output": "./docs",
+      "copy": [
+        "ui",
+        "css",
+        "images",
+        "js",
+        ".nojekyll",
+        "browserconfig.xml",
+        "manifest.json",
+        "humans.txt",
+        "favicon.ico",
+        "robots.txt"
+      ],
+      "ignore": [
+        "_inc"
+      ],
+      "compile": [
+        "html",
+        "less",
+        "css",
+        "js",
+        "md",
+        "svg"
+      ],
+      "prettyUrl": false,
+      "less": true,
+      "esLint": true,
+      "bundle": {
+        "js": false,
+        "css": false,
+        "zuix": false
+      },
+      "minify": {
+        "disable": true,
+        "collapseWhitespace": true,
+        "removeOptionalTags": true,
+        "removeRedundantAttributes": true,
+        "removeScriptTypeAttributes": true,
+        "removeTagWhitespace": false,
+        "useShortDoctype": false,
+        "collapseBooleanAttributes": true,
+        "removeAttributeQuotes": false,
+        "removeEmptyAttributes": true,
+        "minifyCSS": true,
+        "minifyJS": true
+      }
+    },
+    "app": {
+      "title": "HomeGenie web UI",
+      "googleSiteId": "UA-123-456",
+      "resourcePath": "/app/",
+      "libraryPath": "https://zuixjs.github.io/zkit/lib/",
+      "zuixjs.github.io": {
+        "resourcePath": "/zuix-web-starter/app",
+        "libraryPath": "https://zuixjs.github.io/zkit/lib/"
+      }
+    }
+  }
+}

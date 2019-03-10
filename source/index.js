@@ -126,10 +126,10 @@ const homegenieAdapter = zuix.load('adapters/homegenie', {
     view: '',
     // HomeGenie server connection data
     connection: {
-        address: '192.168.1.2',
+        address: '192.168.2.235',
         port: 80,
-        username: '',
-        password: ''
+        username: 'admin',
+        password: 'testt'
     },
     // event listeners
     on: {

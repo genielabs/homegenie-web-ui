@@ -25,11 +25,11 @@ self.__precacheManifest = [
   },
   {
     "url": "app/adapters/demo.js",
-    "revision": "470b98034d0bbe20ce6181b9ca90fd21"
+    "revision": "8798b04789005cff20aa99a900b5e655"
   },
   {
     "url": "app/adapters/homegenie.js",
-    "revision": "060ecfec22dd03dd47c5af752d0a2420"
+    "revision": "af121fbb0dd5cf7505fcd66d90c90304"
   },
   {
     "url": "app/components/program.css",
@@ -37,7 +37,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/components/program.html",
-    "revision": "e6dd2f29bd95c038b39fe5b0ccd78c6f"
+    "revision": "faafd287da291eacf3adab22b4a37168"
   },
   {
     "url": "app/components/program.js",
@@ -185,7 +185,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.js",
-    "revision": "2cf31856d8b20f5e10920766f397ded0"
+    "revision": "efd518e0d8580ece47fb1c2adfa4e9f3"
   },
   {
     "url": "js/mqttws31.js",

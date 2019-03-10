@@ -2,8 +2,8 @@
 
 let drawerLayout;
 let viewPager;
-let topicIndicator;
-let topicButtons;
+let groupIndicator;
+let groupButtons;
 /*
 zuix.store('config', {
     resourcePath: '/app/'
@@ -29,7 +29,7 @@ window.options = {
         ready: function() {
             const view = zuix.$(this.view());
             // handle 'topic' buttons click (goto clicked topic page)
-            topicButtons = view.find('.topics').children().each(function(i, el) {
+            groupButtons = view.find('.topics').children().each(function(i, el) {
                 this.on('click', function(e) {
                     if (viewPager) viewPager.page(i);
                 });
@@ -62,7 +62,7 @@ window.options = {
         enablePaging: true,
         startGap: 36,
         ready: function() {
-            topicIndicator = this;
+            groupIndicator = this;
         }
     },
     autoHidingBars: {
@@ -111,12 +111,16 @@ const demoAdapter = zuix.load('adapters/demo', {
     ready: (adapter) => {
         // wait until main-page is loaded, then add items to the main-list
         zuix.context('main-page', (ctx)=>{
-            const mainList = getPage(0).find('[data-ui-field=list]').eq(0);
-            mainList.append(adapter.getWidget('HomeAutomation.X10/A1'));
-            mainList.append(adapter.getWidget('HomeAutomation.X10/A2'));
-            mainList.append(adapter.getWidget('HomeAutomation.X10/A3'));
-            mainList.append(adapter.getWidget('HomeAutomation.ZWave/1'));
-            mainList.append(adapter.getWidget('HomeAutomation.ZWave/2'));
+            // manual adding of widgets to page 0 (groupId = 0)
+            // this is just for testing purpose
+            const groupId = 0;
+            const mainList = getPage(0).find('[data-ui-field=list]').eq(groupId);
+            mainList.append(adapter.getWidget(groupId, 'light-1'));
+            mainList.append(adapter.getWidget(groupId, 'light-2'));
+            mainList.append(adapter.getWidget(groupId, 'dimmer-1'));
+            mainList.append(adapter.getWidget(groupId, 'dimmer-2'));
+            mainList.append(adapter.getWidget(groupId, 'sensor-1'));
+            mainList.append(adapter.getWidget(groupId, 'scenario-1'));
         });
     }
 });
@@ -126,10 +130,10 @@ const homegenieAdapter = zuix.load('adapters/homegenie', {
     view: '',
     // HomeGenie server connection data
     connection: {
-        address: '192.168.2.235',
+        address: '192.168.1.2',
         port: 80,
-        username: 'admin',
-        password: 'testt'
+        username: '',
+        password: ''
     },
     // event listeners
     on: {
@@ -141,19 +145,26 @@ const homegenieAdapter = zuix.load('adapters/homegenie', {
     ready: (adapter) => {
         // wait until main-page is loaded, then add items to the main-list
         zuix.context('main-page', (ctx)=>{
-            const mainList = getPage(0).find('[data-ui-field=list]').eq(1);
-            mainList.append(adapter.getWidget('HomeAutomation.X10/C7'));
-            mainList.append(adapter.getWidget('HomeAutomation.ZWave/4'));
+            // manual adding of widgets to page 0 and 1 (groupId = 0 and 1)
+            // this is just for testing purpose
+            let groupId = 1;
+            let mainList = getPage(0).find('[data-ui-field=list]').eq(groupId);
+            mainList.append(adapter.getWidget(groupId, 'HomeAutomation.X10/C7'));
+            mainList.append(adapter.getWidget(groupId, 'HomeAutomation.ZWave/4'));
+            groupId = 0;
+            mainList = getPage(0).find('[data-ui-field=list]').eq(groupId);
+            mainList.append(adapter.getWidget(groupId, 'HomeAutomation.X10/C7'));
+            mainList.append(adapter.getWidget(groupId, 'HomeAutomation.ZWave/4'));
         });
     }
 });
 
 function syncPageIndicator(page) {
-    if (topicButtons) {
-        topicButtons.eq(page.out).removeClass('active');
-        topicButtons.eq(page.in).addClass('active');
+    if (groupButtons) {
+        groupButtons.eq(page.out).removeClass('active');
+        groupButtons.eq(page.in).addClass('active');
     }
-    if (topicIndicator) topicIndicator.page(page.in);
+    if (groupIndicator) groupIndicator.page(page.in);
 }
 
 function showPage(i) {

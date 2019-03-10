@@ -1,6 +1,17 @@
 'use strict';
 zuix.controller((cp) => {
+    // this method is called when the component is ready
+    cp.create = ()=> {
+        // expose public methods
+        cp.expose('getWidget', getWidget);
+    };
+
+    // private members
+
     const modules = [];
+    // TODO: this static list is for test-only purposes
+    //       the actual modules list should be fetched
+    //       via API call `HomeAutomation.HomeGenie/Config/Modules.List`
     modules['HomeAutomation.X10/C7'] = {
         Domain: 'HomeAutomation.X10',
         Address: 'C7',
@@ -13,50 +24,42 @@ zuix.controller((cp) => {
         Name: 'Soggiorno',
         DeviceType: 'Dimmer'
     };
-    // this method is called when the component is ready
-    cp.create = function() {
-        // expose public methods
-        cp.expose('getWidget', (moduleId, options)=>{
-            const m = modules[moduleId];
-            // return null if no module with the given `moduleId` is found
-            if (m == null) return m;
-            // create widget if not already present
-            if (m.widget == null)
-            {
-                const widgetId = getWidgetIdFor(m);
-                const options = {
-                    lazyLoad: true,
-                    // data-bind model to view fields
-                    model: {
-                        title: m.Name
-                    },
-                    // this gets called from the widget when a command is performed
-                    control: (command)=>{
-                        // adapter-specific implementation
-                        control(m, command);
-                    },
-                    ready: (ctx)=>{
-                        console.log('Widget ready.', ctx.contextId);
-                        // bind widget context to its module
-                        // TODO: change this as it only allow 1:1 module:widget (should allow 1:many)
-                        m.context = ctx;
-                    }
-                };
-                // call global function `addWidget` to create a new widget
-                m.widget = addWidget(widgetId, options);
-            }
-            return m.widget;
-        });
-    };
-    // private members
-    function control(m, command, options) {
-        apiCall(m.Domain + '/' + m.Address + '/' + command + '/' + options, (code, res)=>{
-            cp.log.info(code, res);
-        });
+
+    function getWidget(groupId, moduleId, options) {
+        const m = modules[moduleId];
+        // return null if no module with the given `moduleId` is found
+        if (m == null) return m;
+        if (m.widget == null) m.widget = [];
+        // create widget if not already present
+        if (m.widget[groupId] == null) {
+            const widgetId = getWidgetIdFor(m);
+            const options = {
+                lazyLoad: true,
+                // data-bind model to view fields
+                model: {
+                    title: m.Name
+                },
+                // this gets called from the widget when a command is performed
+                control: (command)=>{
+                    // bind to module `m`
+                    control(m, command);
+                }
+            };
+            // call global function `addWidget` to create a new widget
+            m.widget[groupId] = addWidget(widgetId, options);
+        }
+        return m.widget[groupId];
     }
     function getWidgetIdFor(module) {
         // TODO: return different widget path based on DeviceType and Widget.DisplayModule
         return 'components/switch';
+    }
+
+    function control(m, command, options) {
+        // adapter-specific implementation
+        apiCall(m.Domain + '/' + m.Address + '/' + command + '/' + options, (code, res)=>{
+            cp.log.info(code, res);
+        });
     }
     function apiCall(apiMethod, callback) {
         const oc = cp.options().connection;

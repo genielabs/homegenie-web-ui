@@ -1,0 +1,15 @@
+<h1 id="templates">templates</h1>
+<p>Place templates here.</p>
+<p>Example <code>card</code> template structure:</p>
+<pre><code>app/
+├── templates/          # Templates
+│   ├── card.html       #   view
+│   ├── card.css        #   [optional] style
+</code></pre>
+<h3 id="applyingatemplate">Applying a template</h3>
+<p>To apply a template use the following tag attribute:</p>
+<pre><code class="html language-html">&lt;div data-ui-include="templates/card" ...&gt;
+    &lt;h2 data-ui-field="title"&gt;Card title&lt;/h2&gt;
+    &lt;p data-ui-field="description"&gt;The quick brown fox...&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>

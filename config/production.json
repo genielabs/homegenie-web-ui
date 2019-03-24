@@ -35,7 +35,7 @@
         "zuix": true
       },
       "minify": {
-        "disable": true,
+        "disable": false,
         "collapseWhitespace": true,
         "removeOptionalTags": true,
         "removeRedundantAttributes": true,

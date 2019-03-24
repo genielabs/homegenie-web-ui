@@ -13,6 +13,8 @@ zuix.store('config', {
 zuix.using('style', '//zuixjs.github.io/zkit/css/flex-layout-attribute.min.css');
 zuix.using('style', './index.css');
 
+zuix.$.ZxQuery.prototype.animateCss = function(animationName, param1, param2) { return this; }; // forward declaration (sort of)
+
 zuix.$.find('.profile').on('click', function() {
     if (drawerLayout) drawerLayout.open();
 });

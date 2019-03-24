@@ -101,12 +101,6 @@ const demoAdapter = zuix.load('adapters/demo', {
         username: 'demo',
         password: 'demo'
     },
-    // event listeners
-    on: {
-        'status:change': function() {
-            // TODO: ...
-        }
-    },
     // once the adapter is ready add widgets
     ready: (adapter) => {
         // wait until main-page is loaded, then add items to the main-list
@@ -130,16 +124,10 @@ const homegenieAdapter = zuix.load('adapters/homegenie', {
     view: '',
     // HomeGenie server connection data
     connection: {
-        address: '192.168.2.235',
-        port: 80,
-        username: 'admin',
-        password: 'testt'
-    },
-    // event listeners
-    on: {
-        'status:change': function() {
-            // TODO: ...
-        }
+        address: 'localhost', // <- homegenie server address
+        port: 8080, // <- homegenie server port
+        // username: 'admin',
+        // password: 'password'
     },
     // once the adapter is ready add widgets
     ready: (adapter) => {
@@ -151,10 +139,12 @@ const homegenieAdapter = zuix.load('adapters/homegenie', {
             let mainList = getPage(0).find('[data-ui-field=list]').eq(groupId);
             mainList.append(adapter.getWidget(groupId, 'HomeAutomation.X10/C7'));
             mainList.append(adapter.getWidget(groupId, 'HomeAutomation.ZWave/4'));
+            mainList.append(adapter.getWidget(groupId, 'HomeAutomation.PhilipsHue/3'));
             groupId = 0;
             mainList = getPage(0).find('[data-ui-field=list]').eq(groupId);
             mainList.append(adapter.getWidget(groupId, 'HomeAutomation.X10/C7'));
             mainList.append(adapter.getWidget(groupId, 'HomeAutomation.ZWave/4'));
+            mainList.append(adapter.getWidget(groupId, 'HomeAutomation.PhilipsHue/3'));
         });
     }
 });

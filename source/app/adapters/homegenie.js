@@ -1,9 +1,16 @@
 'use strict';
 zuix.controller((cp) => {
+    let _eventSource;
     // this method is called when the component is ready
     cp.create = ()=> {
         // expose public methods
         cp.expose('getWidget', getWidget);
+        // connect to event stream
+        connectWebSocket();
+        // connectEventSource();
+    };
+    cp.destroy = ()=> {
+        // TODO: disconnect/dispose objects
     };
 
     // private members
@@ -22,10 +29,16 @@ zuix.controller((cp) => {
         Domain: 'HomeAutomation.ZWave',
         Address: '4',
         Name: 'Soggiorno',
+        DeviceType: 'Switch'
+    };
+    modules['HomeAutomation.PhilipsHue/3'] = {
+        Domain: 'HomeAutomation.PhilipsHue',
+        Address: '3',
+        Name: 'Color Light',
         DeviceType: 'Dimmer'
     };
 
-    function getWidget(groupId, moduleId, options) {
+    function getWidget(groupId, moduleId) {
         const m = modules[moduleId];
         // return null if no module with the given `moduleId` is found
         if (m == null) return m;
@@ -37,7 +50,8 @@ zuix.controller((cp) => {
                 lazyLoad: true,
                 // data-bind model to view fields
                 model: {
-                    title: m.Name
+                    title: m.Name,
+                    type: m.DeviceType
                 },
                 // this gets called from the widget when a command is performed
                 control: (command)=>{
@@ -55,20 +69,74 @@ zuix.controller((cp) => {
         return 'components/switch';
     }
 
+    function connectWebSocket() {
+        const o = cp.options().connection;
+        apiCall('HomeAutomation.HomeGenie/Config/WebSocket.GetToken', function(code, res) {
+            const r = JSON.parse(res);
+            websocket = new WebSocket('ws://' + o.address + ':8188/events?at='+r.ResponseValue);
+            websocket.onopen = function(e) {
+                cp.log.info('WebSocket connected.');
+            };
+            websocket.onclose = function(e) {
+                cp.log.error('WebSocket closed.');
+                setTimeout(connectWebSocket, 1000);
+            };
+            websocket.onmessage = function(e) {
+                const event = JSON.parse(e.data);
+                cp.log.info('WebSocket data', event);
+                processEvent(event);
+            };
+            websocket.onerror = function(e) {
+                cp.log.error('WebSocket error.');
+                setTimeout(connectWebSocket, 1000);
+            };
+        });
+    }
+
+    function connectEventSource() {
+        let es = _eventSource;
+        if (es == null) {
+            es = _eventSource = new EventSource(getBaseUrl()+'events');
+        } else {
+            try {
+                es.close();
+                es = _eventSource = null;
+            } catch (e) { }
+            setTimeout(connectEventSource, 1000);
+            cp.log.info('Reconnecting to HomeGenie SSE on ' + getBaseUrl());
+        }
+        es.onopen = function(e) {
+            cp.log.info('SSE connect');
+        };
+        es.onerror = function(e) {
+            cp.log.error('SSE error');
+            es.close();
+            es = _eventSource = null;
+            setTimeout(connectEventSource, 1000);
+        };
+        es.onmessage = function(e) {
+            const event = JSON.parse(e.data);
+            cp.log.info('SSE data', event);
+            processEvent(event);
+        };
+    }
     function control(m, command, options) {
         // adapter-specific implementation
         apiCall(m.Domain + '/' + m.Address + '/' + command + '/' + options, (code, res)=>{
             cp.log.info(code, res);
         });
     }
-    function apiCall(apiMethod, callback) {
+    function getBaseUrl() {
         const oc = cp.options().connection;
         if (oc == null) {
             // TODO: report 'connector not configured' error and exit
             return;
         }
-        const serverAddress = 'http://' + oc.address + ':' + oc.port + '/';
-        const url = serverAddress + 'api/' + apiMethod;
+        return 'http://' + oc.address + ':' + oc.port + '/';
+    }
+    function apiCall(apiMethod, callback) {
+        const oc = cp.options().connection;
+        const url = getBaseUrl() + 'api/' + apiMethod;
         cp.log.info(url);
         zuix.$.ajax({
             url: url,
@@ -83,19 +151,19 @@ zuix.controller((cp) => {
         });
     }
 
-    /**
-     * Test method for Module object.
-     * @param item {Module}
-     */
-    function testModule(item) {
-        const deviceType = item.DeviceType;
-        const widgetType = item.Properties.find((item) => item.Name === 'Widget.DisplayModule');
-        if (widgetType != null) {
-            if (widgetType.Value === 'homegenie/generic/program') {
-                // ...
-            }
+    function processEvent(event) {
+        const m = modules[event.Domain + '/' + event.Source];
+        if (m != null) {
+            // update level of all widgets instances of this module
+            m.widget.map((w)=>{
+                const ctx = zuix.context(w);
+                if (ctx == null) return;
+                if (event.Property === 'Status.Level'){
+                    ctx.setLevel(event.Value);
+                }
+                ctx.blink();
+            });
         }
-        console.log(deviceType, (widgetType != null) ? widgetType.Value : '-');
     }
 });
 

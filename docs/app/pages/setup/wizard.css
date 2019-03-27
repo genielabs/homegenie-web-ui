@@ -11,3 +11,16 @@
     width: 100vw;
     height: 100vh;
 }
+.nav-close {
+    position: absolute;
+    left: 16px; top: 8px;
+    width: 48px; height: 48px;
+    border: 0;
+    margin: 0; padding: 0;
+    background: transparent;
+    color: black;
+}
+.nav-close span {
+    font-size: 300%;
+    opacity: 0.2;
+}

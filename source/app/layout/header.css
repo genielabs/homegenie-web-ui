@@ -16,9 +16,7 @@
 }
 
 .title {
-  position: absolute;
-  top: 12px;
-  left: 80px;
+  font-family: 'Lobster', cursive;
   font-size: 180%;
 }
 

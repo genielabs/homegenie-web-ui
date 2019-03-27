@@ -73,11 +73,12 @@ window.options = {
         height: 56,
         on: {
             'page:scroll': function(e, data) {
+                const menu = zuix.context('button-menu');
                 zuix.componentize();
                 if (data.info.shift.y < 0) {
-                    zuix.context('button-menu').hideButton();
+                    if (menu.showing()) menu.hideButton();
                 } else {
-                    zuix.context('button-menu').showButton();
+                    if (!menu.showing()) menu.showButton();
                 }
             }
         }
@@ -90,7 +91,7 @@ window.options = {
 // Turn off debug output
 window.zuixNoConsoleOutput = true;
 
-showPage(0);
+showPage(2);
 
 // Load Demo adapter
 const demoAdapter = zuix.load('adapters/demo', {
@@ -99,9 +100,7 @@ const demoAdapter = zuix.load('adapters/demo', {
     // HomeGenie server connection data
     connection: {
         address: 'localhost',
-        port: 80,
-        username: 'demo',
-        password: 'demo'
+        port: 80
     },
     // once the adapter is ready add widgets
     ready: (adapter) => {
@@ -129,10 +128,7 @@ const homegenieAdapter = zuix.load('adapters/homegenie', {
         // HomeGenie Server address
         address: 'localhost',
         // HomeGenie Server port
-        port: 8080,
-        // Username and password (comment if authentication is not enabled)
-        username: 'admin',
-        password: 'password'
+        port: 8080
     },
     // once the adapter is ready add widgets
     ready: (adapter) => {

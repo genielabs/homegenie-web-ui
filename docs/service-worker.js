@@ -29,7 +29,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/adapters/homegenie.js",
-    "revision": "6abc03165d9f8e89436992e1f4c608eb"
+    "revision": "28bf9a18befa084163e98b82d3db2ed9"
   },
   {
     "url": "app/components/program.css",
@@ -73,11 +73,11 @@ self.__precacheManifest = [
   },
   {
     "url": "app/layout/header.css",
-    "revision": "50a494e94d21d06bd171e467a87e3060"
+    "revision": "e462a552588213fcb3653ea90ecb23ca"
   },
   {
     "url": "app/layout/header.html",
-    "revision": "1070f6d9dbd4ebe3bd345be2a055a049"
+    "revision": "9a07947f50eefb0fba6cc95d88252e8b"
   },
   {
     "url": "app/pages/eventslog.css",
@@ -132,16 +132,24 @@ self.__precacheManifest = [
     "revision": "d6093152119850e2f53205aea96df4dd"
   },
   {
+    "url": "app/pages/setup.css",
+    "revision": "64b7357e6c578b06d8f3b04e839c5ffc"
+  },
+  {
+    "url": "app/pages/setup.html",
+    "revision": "3dc6c91f00dbb89fd7acbda53a96de01"
+  },
+  {
     "url": "app/pages/setup/wizard.css",
-    "revision": "e558a965f5db79376b1a31e2e88ef50f"
+    "revision": "fd75aadf7f5527f459890cdc479dad63"
   },
   {
     "url": "app/pages/setup/wizard.html",
-    "revision": "d7d48696fd5fff90314a82bebdf663da"
+    "revision": "9ce8a30008e419db17baf0da0ae068e2"
   },
   {
     "url": "app/pages/setup/wizard.js",
-    "revision": "1cfca487656b1265213a93f7a7e394b2"
+    "revision": "0fa78c1559df86e175ee9363fe83743d"
   },
   {
     "url": "app/README.html",
@@ -153,7 +161,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/shared/button_menu.html",
-    "revision": "c458bea026b321663fb1ec8a575d1892"
+    "revision": "2bfd7cb7073ce1eb61e390bd26aaec10"
   },
   {
     "url": "app/shared/button_menu.js",
@@ -161,11 +169,15 @@ self.__precacheManifest = [
   },
   {
     "url": "app/shared/main_menu.css",
-    "revision": "dc7f1ee85f1c38935d5a30ef4e29b630"
+    "revision": "89f29c1dbc3f496e937ea68b5e24f4ec"
   },
   {
     "url": "app/shared/main_menu.html",
-    "revision": "619897577ac91b716c1385223a56b095"
+    "revision": "b253d84c633ead4c96e9bd413c5ad627"
+  },
+  {
+    "url": "app/shared/main_menu.js",
+    "revision": "b65bb449ac69b4c874d5bb3b3c12c4f3"
   },
   {
     "url": "app/templates/README.html",
@@ -189,11 +201,15 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "f96f834306adf5cfbb6bf2a06a5abda4"
+    "revision": "33b86a8cabe3db05fe160ea15cd44e85"
   },
   {
     "url": "index.js",
-    "revision": "c8b876d38085b2f5c71851f75aabda8d"
+    "revision": "75a95e8943bc1af02619c13e055a2c20"
+  },
+  {
+    "url": "js/digest-ajax.min.js",
+    "revision": "92977288fb5da64fefc15a5a9f88bd6d"
   },
   {
     "url": "js/mqttws31.js",
@@ -209,7 +225,7 @@ self.__precacheManifest = [
   },
   {
     "url": "js/zuix/zuix.js",
-    "revision": "1c8816752cffc0d62918505e33b8d0f6"
+    "revision": "128e8675a9442ba626305e4a4940acb4"
   },
   {
     "url": "js/zuix/zuix.min.js",
@@ -242,6 +258,10 @@ self.__precacheManifest = [
   {
     "url": "images/devices/socket.png",
     "revision": "44fe5ded79bf5a25914d0b2c66396c96"
+  },
+  {
+    "url": "images/genie.png",
+    "revision": "d311329f6b7f6588be49094a592492c9"
   },
   {
     "url": "images/icons/desktop/android-chrome-192x192.png",

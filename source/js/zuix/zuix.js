@@ -1266,11 +1266,9 @@ z$.ajax = function(opt) {
         url = opt;
     }
     const xhr = new XMLHttpRequest();
-    if (opt.username != null) {
-        xhr.withCredentials = true;
-        xhr.open('GET', url, true, opt.username, opt.password);
-    } else {
-        xhr.open('GET', url);
+    xhr.open('GET', url);
+    if (opt.withCredentials != null) {
+        xhr.withCredentials = opt.withCredentials;
     }
     xhr.onload = function() {
         if (xhr.status === 200) {

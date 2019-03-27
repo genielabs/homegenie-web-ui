@@ -8,5 +8,9 @@ zuix.controller(function(cp) {
     };
     cp.create = function() {
         console.log('created!');
+        cp.field('btn-close')
+            .on('click', ()=>{
+                showPage(0); // TODO: use enums instead of page numbers
+            });
     };
 });

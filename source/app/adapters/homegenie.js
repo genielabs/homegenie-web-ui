@@ -72,13 +72,13 @@ zuix.controller((cp) => {
     function connectWebSocket() {
         const o = cp.options().connection;
         apiCall('HomeAutomation.HomeGenie/Config/WebSocket.GetToken', function(code, res) {
-            const r = JSON.parse(res);
+            const r = res; //JSON.parse(res);
             websocket = new WebSocket('ws://' + o.address + ':8188/events?at='+r.ResponseValue);
             websocket.onopen = function(e) {
                 cp.log.info('WebSocket connected.');
             };
             websocket.onclose = function(e) {
-                cp.log.error('WebSocket closed.');
+                cp.log.error('WebSocket closed.', e);
                 setTimeout(connectWebSocket, 1000);
             };
             websocket.onmessage = function(e) {
@@ -87,7 +87,7 @@ zuix.controller((cp) => {
                 processEvent(event);
             };
             websocket.onerror = function(e) {
-                cp.log.error('WebSocket error.');
+                cp.log.error('WebSocket error.', e);
                 setTimeout(connectWebSocket, 1000);
             };
         });
@@ -140,10 +140,10 @@ zuix.controller((cp) => {
         cp.log.info(url);
         zuix.$.ajax({
             url: url,
-            username: oc.username,
-            password: oc.password,
+            // TODO: this should be auto-detected
+            withCredentials: true,
             success: function(res) {
-                callback(200, res);
+                callback(200, JSON.parse(res));
             },
             error: function(err) {
                 callback(500, err);

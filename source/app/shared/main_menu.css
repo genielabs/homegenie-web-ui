@@ -38,10 +38,10 @@ hr {
   font-size: 120%;
 }
 
-.nick {
-  font-weight: bold;
+.title {
+  font-family: 'Lobster', cursive;
 }
-.name {
+.subtitle {
   font-size: 90%;
   color: gray;
 }

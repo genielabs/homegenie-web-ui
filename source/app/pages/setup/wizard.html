@@ -6,11 +6,17 @@
         <button class="nav-close" data-ui-field="btn-close" layout="row center-center">
             <span class="material-icons">close</span>
         </button>
-        <h1>Welcome!</h1>
+        <div>
+            <h1>Settings</h1>
+        </div>
+        <div>
+            <div class="text-caption text-light text-bold">Server address</div>
+            <input type="text" data-ui-field="server-address">
+        </div>
     </div>
-    <div class="page" layout="column center-center">
-        page 2
-    </div>
+    <div class="page scrollable" data-ui-load="@lib/controllers/list_view"
+         data-ui-context="module-list" onscroll="zuix.componentize(this)"
+         layout="rows top-stretch"><!--no-view--></div>
     <div class="page" layout="column center-center">
         page 3
     </div>

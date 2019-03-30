@@ -5,7 +5,6 @@
       "output": "./docs",
       "copy": [
         "ui",
-        "css",
         "images",
         "js",
         ".nojekyll",

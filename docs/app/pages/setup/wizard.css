@@ -10,6 +10,7 @@
 .page {
     width: 100vw;
     height: 100vh;
+    overflow-y: scroll;
 }
 .nav-close {
     position: absolute;

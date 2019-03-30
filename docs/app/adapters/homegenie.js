@@ -1,13 +1,16 @@
 'use strict';
 zuix.controller((cp) => {
-    let _eventSource;
+    const EnableWebsocketStream = true;
+    let _eventSource; let websocket;
     // this method is called when the component is ready
     cp.create = ()=> {
         // expose public methods
-        cp.expose('getWidget', getWidget);
-        // connect to event stream
-        connectWebSocket();
-        // connectEventSource();
+        cp.expose('getWidget', getWidget)
+          .expose('getModules', (callback)=> {
+              apiCall('HomeAutomation.HomeGenie/Config/Modules.List', callback);
+          }).expose('getGroups', (callback)=>{
+              apiCall('HomeAutomation.HomeGenie/Config/Groups.List', callback);
+          }).expose('connect', connect);
     };
     cp.destroy = ()=> {
         // TODO: disconnect/dispose objects
@@ -69,10 +72,23 @@ zuix.controller((cp) => {
         return 'components/switch';
     }
 
+    function connect() {
+        if (EnableWebsocketStream) {
+            connectWebSocket();
+        } else {
+            connectEventSource();
+        }
+    }
+
     function connectWebSocket() {
+        if (websocket != null) {
+            websocket.onclose = null;
+            websocket.onerror = null;
+            websocket.close();
+        }
         const o = cp.options().connection;
         apiCall('HomeAutomation.HomeGenie/Config/WebSocket.GetToken', function(code, res) {
-            const r = res; //JSON.parse(res);
+            const r = res;
             websocket = new WebSocket('ws://' + o.address + ':8188/events?at='+r.ResponseValue);
             websocket.onopen = function(e) {
                 cp.log.info('WebSocket connected.');
@@ -157,7 +173,7 @@ zuix.controller((cp) => {
             // update level of all widgets instances of this module
             m.widget.map((w)=>{
                 const ctx = zuix.context(w);
-                if (ctx == null) return;
+                if (ctx == null || !ctx.isReady) return;
                 if (event.Property === 'Status.Level'){
                     ctx.setLevel(event.Value);
                 }

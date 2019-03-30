@@ -29,7 +29,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/adapters/homegenie.js",
-    "revision": "28bf9a18befa084163e98b82d3db2ed9"
+    "revision": "2f1e3d943eb5e601dbcfcb9e0b46a618"
   },
   {
     "url": "app/components/program.css",
@@ -49,7 +49,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/components/switch.css",
-    "revision": "ac9237322e1cbae86719707bc610fd0a"
+    "revision": "25f6913b947c7985b6b42f661a652205"
   },
   {
     "url": "app/components/switch.html",
@@ -57,7 +57,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/components/switch.js",
-    "revision": "c0b2cff5a119a8ca7631307ce3066ffc"
+    "revision": "9c82abe979abec1f7c269e2240919590"
   },
   {
     "url": "app/controllers/README.html",
@@ -137,19 +137,47 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/setup.html",
-    "revision": "3dc6c91f00dbb89fd7acbda53a96de01"
+    "revision": "86099965a023af07b08cc18ab65a97ed"
+  },
+  {
+    "url": "app/pages/setup/module_item.css",
+    "revision": "c7589ccdfe6a739105f9212c007c3859"
+  },
+  {
+    "url": "app/pages/setup/module_item.html",
+    "revision": "7ca95d531ee48c19545e2b66703ac1a4"
+  },
+  {
+    "url": "app/pages/setup/module_item.js",
+    "revision": "621c9dd18b9f882b9770f98d4e78aca4"
+  },
+  {
+    "url": "app/pages/setup/modulelist.css",
+    "revision": "c7589ccdfe6a739105f9212c007c3859"
+  },
+  {
+    "url": "app/pages/setup/modulelist.html",
+    "revision": "32c7123df18b152cbc7d9a7aeba61750"
+  },
+  {
+    "url": "app/pages/setup/modulelist.js",
+    "revision": "621c9dd18b9f882b9770f98d4e78aca4"
+  },
+  {
+    "url": "app/pages/setup/test.js",
+    "revision": "c2213112ee667e664cdd7ddae1c3342f"
   },
   {
     "url": "app/pages/setup/wizard.css",
-    "revision": "fd75aadf7f5527f459890cdc479dad63"
+    "revision": "70fbefb20906aa9c9fdabf3b0f4ba33e"
   },
   {
     "url": "app/pages/setup/wizard.html",
-    "revision": "9ce8a30008e419db17baf0da0ae068e2"
+    "revision": "96d2d5bddde993f3252557cbf2c8cad8"
   },
   {
     "url": "app/pages/setup/wizard.js",
-    "revision": "0fa78c1559df86e175ee9363fe83743d"
+    "revision": "316b03a1d9d0c13eae2f4b2c8f99af83"
   },
   {
     "url": "app/README.html",
@@ -196,12 +224,20 @@ self.__precacheManifest = [
     "revision": "b5fb62e9e34bf05f99a048d03105e34c"
   },
   {
+    "url": "css/common.css",
+    "revision": "ce7e27dd2bb7c12a31f7d1ee75d3a1aa"
+  },
+  {
+    "url": "css/README.html",
+    "revision": "6a4fe1ff92acfccf5d3e40f0f81fb427"
+  },
+  {
     "url": "index.css",
     "revision": "40e887d590a280938f5740dfb9e943a7"
   },
   {
     "url": "index.html",
-    "revision": "33b86a8cabe3db05fe160ea15cd44e85"
+    "revision": "3acc287b58e8a6a154f423ad959ce5a1"
   },
   {
     "url": "index.js",
@@ -225,7 +261,7 @@ self.__precacheManifest = [
   },
   {
     "url": "js/zuix/zuix.js",
-    "revision": "128e8675a9442ba626305e4a4940acb4"
+    "revision": "a918b8f88c68f6290aad9565d5357e93"
   },
   {
     "url": "js/zuix/zuix.min.js",

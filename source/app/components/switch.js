@@ -38,7 +38,7 @@ zuix.controller((cp) => {
         });
         controlLevel.on('click', (e, el)=>{
             const p = el.position();
-            let barWidth = e.clientX - p.x;
+            let barWidth = e.clientX - p.x + 12;
             let level = Math.round((100 / p.rect.width) * barWidth);
             level = (level - (level % 5)) / 100;
             displayLevel = actualLevel = level;
@@ -75,6 +75,12 @@ zuix.controller((cp) => {
             cp.field('level-bar')
                 .css('width', barWidth + 'px');
         }
+        // show actual level
+        const stopIndex = actualLevel * controlLevel.children().length();
+        controlLevel.children().each((i, el, zel)=>{
+            (i <= stopIndex) ? zel.addClass('on') : zel.removeClass('on');
+            return true;
+        });
         if (cp.model() != null && cp.model().type != null) {
             setType(cp.model().type);
         }
@@ -82,6 +88,7 @@ zuix.controller((cp) => {
 
     // private methods
     function command(apiCommand, options) {
+        blink();
         const handler = cp.options().control;
         if (handler != null) {
             handler(apiCommand, options);
@@ -106,14 +113,15 @@ zuix.controller((cp) => {
         cp.update();
         return cp.context;
     }
+    function blink() {
+        statusLed.addClass('led-on');
+        setTimeout(()=>{
+            statusLed.removeClass('led-on');
+        }, 200);
+    }
     function exposePublicMethods() {
         cp.expose('setType', setType)
-          .expose('setLevel', setLevel)
-          .expose('blink', ()=>{
-              statusLed.addClass('led-on');
-              setTimeout(()=>{
-                  statusLed.removeClass('led-on');
-              }, 200);
-          });
+            .expose('setLevel', setLevel)
+            .expose('blink', blink);
     }
 });

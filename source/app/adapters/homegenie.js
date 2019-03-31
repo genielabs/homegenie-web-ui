@@ -1,16 +1,19 @@
 'use strict';
 zuix.controller((cp) => {
+    const adapterId = 'homegenie-server-adapter:1.0';
     const EnableWebsocketStream = true;
-    let _eventSource; let websocket;
+    const ImplementedWidgets = ['Dimmer', 'Switch', 'Light', 'Siren', 'Program'];
+    let eventSource;
+    let webSocket;
+    let moduleList = []; let groupList = [];
     // this method is called when the component is ready
     cp.create = ()=> {
-        // expose public methods
-        cp.expose('getWidget', getWidget)
-          .expose('getModules', (callback)=> {
-              apiCall('HomeAutomation.HomeGenie/Config/Modules.List', callback);
-          }).expose('getGroups', (callback)=>{
-              apiCall('HomeAutomation.HomeGenie/Config/Groups.List', callback);
-          }).expose('connect', connect);
+        // expose public methods required for implementing the HGUI Adapter interface
+        cp.expose('id', () => adapterId)
+          .expose('modules', () => moduleList)
+          .expose('groups', () => groupList)
+          .expose('connect', connect)
+          .expose('control', control);
     };
     cp.destroy = ()=> {
         // TODO: disconnect/dispose objects
@@ -18,91 +21,53 @@ zuix.controller((cp) => {
 
     // private members
 
-    const modules = [];
-    // TODO: this static list is for test-only purposes
-    //       the actual modules list should be fetched
-    //       via API call `HomeAutomation.HomeGenie/Config/Modules.List`
-    modules['HomeAutomation.X10/C7'] = {
-        Domain: 'HomeAutomation.X10',
-        Address: 'C7',
-        Name: 'Bedroom',
-        DeviceType: 'Light'
-    };
-    modules['HomeAutomation.ZWave/4'] = {
-        Domain: 'HomeAutomation.ZWave',
-        Address: '4',
-        Name: 'Soggiorno',
-        DeviceType: 'Switch'
-    };
-    modules['HomeAutomation.PhilipsHue/3'] = {
-        Domain: 'HomeAutomation.PhilipsHue',
-        Address: '3',
-        Name: 'Color Light',
-        DeviceType: 'Dimmer'
-    };
-
-    function getWidget(groupId, moduleId) {
-        const m = modules[moduleId];
-        // return null if no module with the given `moduleId` is found
-        if (m == null) return m;
-        if (m.widget == null) m.widget = [];
-        // create widget if not already present
-        if (m.widget[groupId] == null) {
-            const widgetId = getWidgetIdFor(m);
-            const options = {
-                lazyLoad: true,
-                // data-bind model to view fields
-                model: {
-                    title: m.Name,
-                    type: m.DeviceType
-                },
-                // this gets called from the widget when a command is performed
-                control: (command)=>{
-                    // bind to module `m`
-                    control(m, command);
+    function connect(callback) {
+        apiCall('HomeAutomation.HomeGenie/Config/Modules.List', (status, mods)=>{
+            // filter out unsupported modules
+            mods.map((m) => {
+                if (ImplementedWidgets.includes(m.DeviceType)) {
+                    m.adapter = cp.context;
+                    m.DomainShort = m.Domain.substring(m.Domain.lastIndexOf('.') + 1);
+                    if (m.Name == '') m.Name = m.DomainShort + ' ' + m.Address;
+                    moduleList.push(m);
                 }
-            };
-            // call global function `addWidget` to create a new widget
-            m.widget[groupId] = addWidget(widgetId, options);
-        }
-        return m.widget[groupId];
-    }
-    function getWidgetIdFor(module) {
-        // TODO: return different widget path based on DeviceType and Widget.DisplayModule
-        return 'components/switch';
-    }
-
-    function connect() {
-        if (EnableWebsocketStream) {
-            connectWebSocket();
-        } else {
-            connectEventSource();
-        }
+            });
+            apiCall('HomeAutomation.HomeGenie/Config/Groups.List', (status, groups)=>{
+                groupList = groups;
+                // finally connect to the real-time event stream
+                if (EnableWebsocketStream) {
+                    connectWebSocket();
+                } else {
+                    connectEventSource();
+                }
+                callback();
+            });
+        });
     }
 
     function connectWebSocket() {
-        if (websocket != null) {
-            websocket.onclose = null;
-            websocket.onerror = null;
-            websocket.close();
+        if (webSocket != null) {
+            webSocket.onclose = null;
+            webSocket.onerror = null;
+            webSocket.close();
         }
         const o = cp.options().connection;
         apiCall('HomeAutomation.HomeGenie/Config/WebSocket.GetToken', function(code, res) {
             const r = res;
-            websocket = new WebSocket('ws://' + o.address + ':8188/events?at='+r.ResponseValue);
-            websocket.onopen = function(e) {
+            webSocket = new WebSocket('ws://' + o.address + ':8188/events?at=' + r.ResponseValue);
+            webSocket.onopen = function(e) {
                 cp.log.info('WebSocket connected.');
             };
-            websocket.onclose = function(e) {
+            webSocket.onclose = function(e) {
                 cp.log.error('WebSocket closed.', e);
                 setTimeout(connectWebSocket, 1000);
             };
-            websocket.onmessage = function(e) {
+            webSocket.onmessage = function(e) {
                 const event = JSON.parse(e.data);
                 cp.log.info('WebSocket data', event);
                 processEvent(event);
             };
-            websocket.onerror = function(e) {
+            webSocket.onerror = function(e) {
                 cp.log.error('WebSocket error.', e);
                 setTimeout(connectWebSocket, 1000);
             };
@@ -110,13 +75,13 @@ zuix.controller((cp) => {
     }
 
     function connectEventSource() {
-        let es = _eventSource;
+        let es = eventSource;
         if (es == null) {
-            es = _eventSource = new EventSource(getBaseUrl()+'events');
+            es = eventSource = new EventSource(getBaseUrl()+'events');
         } else {
             try {
                 es.close();
-                es = _eventSource = null;
+                es = eventSource = null;
             } catch (e) { }
             setTimeout(connectEventSource, 1000);
             cp.log.info('Reconnecting to HomeGenie SSE on ' + getBaseUrl());
@@ -127,7 +92,7 @@ zuix.controller((cp) => {
         es.onerror = function(e) {
             cp.log.error('SSE error');
             es.close();
-            es = _eventSource = null;
+            es = eventSource = null;
             setTimeout(connectEventSource, 1000);
         };
         es.onmessage = function(e) {
@@ -138,7 +103,7 @@ zuix.controller((cp) => {
     }
     function control(m, command, options) {
         // adapter-specific implementation
-        apiCall(m.Domain + '/' + m.Address + '/' + command + '/' + options, (code, res)=>{
+        apiCall(m.id + '/' + command + '/' + options, (code, res)=>{
             cp.log.info(code, res);
         });
     }
@@ -152,6 +117,7 @@ zuix.controller((cp) => {
     }
     function apiCall(apiMethod, callback) {
         const oc = cp.options().connection;
+        if (oc == null) return;
         const url = getBaseUrl() + 'api/' + apiMethod;
         cp.log.info(url);
         zuix.$.ajax({
@@ -168,8 +134,12 @@ zuix.controller((cp) => {
     }
 
     function processEvent(event) {
-        const m = modules[event.Domain + '/' + event.Source];
+        // if (moduleList == null) return;
+        // const m = moduleList[event.Domain + '/' + event.Source];
+        const m = hgui.getModule(event.Domain + '/' + event.Source, adapterId);
         if (m != null) {
+            m.update(event.Property, event.Value, event.UnixTimestamp);
+            /*
             // update level of all widgets instances of this module
             m.widget.map((w)=>{
                 const ctx = zuix.context(w);
@@ -179,6 +149,7 @@ zuix.controller((cp) => {
                 }
                 ctx.blink();
             });
+            */
         }
     }
 });

@@ -1,6 +1,7 @@
 . {
     background: rgba(255,255,255,0.75);
-    max-width: 280px;
+    min-width: 280px;
+    max-width: 300px;
     min-height: 164px;
     border: solid 1px whitesmoke;
     border-radius: 6px;
@@ -10,8 +11,17 @@
     padding-bottom: 0px;
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 8px 0 rgba(0, 0, 0, 0.19);
     margin: 8px;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+    opacity: 1;
 }
 
+header{
+    height: 48px;
+}
 h1 {
     margin: 8px 0 10px;
     padding-left: 8px;

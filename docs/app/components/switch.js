@@ -9,6 +9,7 @@ zuix.controller((cp) => {
     let controlToggle;
     let statusLed;
     let statusBar;
+    let levelBar;
     let levelView;
 
     // {ContextControllerHandler} interface methods
@@ -18,12 +19,14 @@ zuix.controller((cp) => {
         exposePublicMethods();
     };
     cp.create = () => {
+        cp.model().observe(cp.context); // listen for model updates
         controlOn = cp.field('control.on');
         controlOff = cp.field('control.off');
         controlLevel = cp.field('control.level');
         controlToggle = cp.field('control.toggle');
         statusLed = cp.field('status-led');
         statusBar = cp.field('status-bar');
+        levelBar = cp.field('level-bar');
         levelView = cp.field('level-view');
         // TODO: use `CMD.` enums
         controlOn.on('click', ()=>{
@@ -36,7 +39,7 @@ zuix.controller((cp) => {
             cp.update();
             command('Control.Off');
         });
-        controlLevel.on('click', (e, el)=>{
+        const levelHandler = (e, el) => {
             const p = el.position();
             let barWidth = e.clientX - p.x + 12;
             let level = Math.round((100 / p.rect.width) * barWidth);
@@ -44,7 +47,8 @@ zuix.controller((cp) => {
             displayLevel = actualLevel = level;
             cp.update();
             command('Control.Level/'+(Math.round(actualLevel * 100)));
-        });
+        };
+        controlLevel.on('click', levelHandler);
         controlToggle.on('click', (e, el)=>{
             displayLevel = (displayLevel === 0 ? actualLevel : 0);
             cp.update();
@@ -56,7 +60,14 @@ zuix.controller((cp) => {
         cp.update();
     };
 
-    cp.update = () => {
+    cp.update = (field, oldValue) => {
+        if (field != null) {
+            blink();
+            if (field.key === 'Status.Level') {
+                setLevel(field.value);
+            }
+            return;
+        }
         if (displayLevel === 0) {
             if (statusBar.hasClass('status-on')) {
                 statusBar
@@ -72,8 +83,7 @@ zuix.controller((cp) => {
                     .addClass('status-on');
             }
             const barWidth = controlLevel.position().rect.width * actualLevel;
-            cp.field('level-bar')
-                .css('width', barWidth + 'px');
+            levelBar.css('width', barWidth + 'px');
         }
         // show actual level
         const stopIndex = actualLevel * controlLevel.children().length();
@@ -120,8 +130,9 @@ zuix.controller((cp) => {
         }, 200);
     }
     function exposePublicMethods() {
-        cp.expose('setType', setType)
-            .expose('setLevel', setLevel)
-            .expose('blink', blink);
+        cp.expose('setLevel', setLevel)
+          .expose('blink', blink)
+          // Observable interface method
+          .expose('update', (field, oldValue) => cp.update(field, oldValue));
     }
 });

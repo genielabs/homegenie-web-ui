@@ -7,7 +7,6 @@ zuix.controller(function(cp) {
         zuix.using('style', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css');
     };
     cp.create = function() {
-        console.log('created!');
         cp.field('btn-close')
             .on('click', ()=>{
                 showPage(0); // TODO: use enums instead of page numbers
@@ -21,37 +20,76 @@ zuix.controller(function(cp) {
                     address: address,
                     port: port
                 };
-                homegenieAdapter.connect();
-                console.log(e, el);
-                homegenieAdapter.getModules((status, modules)=>{
-                    console.log(status, modules);
-                    homegenieAdapter.getGroups((status, groups)=>{
-                        console.log(status, groups);
-                        zuix.context('module-list', (listView)=>{
-                            listView.model({
-                                itemList: modules,
-                                getItem: function(index, item) {
-                                    // Return the item data. Each item could also be rendered with a different template,
-                                    // in this case all items are using the 'card-template' which is defined
-                                    // inline in the same page. For further information about ZUIX templates referer
-                                    // to the documentation http://genielabs.github.io/zuix/#/docs .
-                                    item.Domain = item.Domain.substring(item.Domain.lastIndexOf('.') + 1);
-                                    return {
-                                        itemId: index,
-                                        componentId: 'pages/setup/module_item',
-                                        options: {
-                                            //lazyLoad: true,
-                                            controller: ()=>{},
-                                            className: 'container-height-80',
-                                            model: item // ,
-                                            // css: false
-                                        }
-                                    }
-                                }
+                homegenieAdapter.connect(()=>{
+                    // TODO: get modules and groups list
+                    homegenieAdapter.groups().map((g) => {
+                        // add group to HGUI
+                        let hguiGroup;
+                        if (hgui.hasGroup(g.Name)) {
+                            hguiGroup = hgui.getGroup(g.Name);
+                        } else {
+                            hguiGroup = hgui.addGroup(g.Name);
+                        }
+                        // add modules to HGUI and its group
+                        g.Modules.map((moduleLink) => {
+                            // in HomeGenie Server group modules are just links, so we need to get the module instance from `moduleList`
+                            const module = homegenieAdapter.modules().find((m) => m.Domain == moduleLink.Domain && m.Address == moduleLink.Address);
+                            // if the module type is not supported it won't be found in the modules list
+                            if (module == null) return;
+                            const moduleId = module.Domain + '/' + module.Address;
+                            const adapterId = homegenieAdapter.id();
+                            let hguiModule;
+                            if (hgui.hasModule(moduleId, adapterId)) {
+                                // Update the hgui module
+                                hguiModule = hgui.getModule(moduleId, adapterId);
+                            } else {
+                                hguiModule = hgui.addModule({
+                                    id: moduleId,
+                                    type: module.DeviceType,
+                                    name: module.Name,
+                                    description: module.Description,
+                                    adapter: adapterId
+                                });
+                            }
+                            module.Properties.map((p) => {
+                                // TODO: should check update time before updating the property
+                                hguiModule.update(p.Name, p.Value, p.UpdateTime);
                             });
+                            hguiGroup.putModule(hguiModule);
                         });
                     });
                 });
+                /*
+
+                // populate wizard modules list
+                zuix.context('module-list', (listView)=>{
+                    const mods = [];
+                    Object.keys(modules).map((k)=>{
+                        mods.push(modules[k]);
+                    });
+                    listView.model({
+                        itemList: mods,
+                        getItem: function(index, item) {
+                            // Return the item data. Each item could also be rendered with a different template,
+                            // in this case all items are using the 'card-template' which is defined
+                            // inline in the same page. For further information about ZUIX templates referer
+                            // to the documentation http://genielabs.github.io/zuix/#/docs .
+                            return {
+                                itemId: index,
+                                componentId: 'pages/setup/module_item',
+                                options: {
+                                    //lazyLoad: true,
+                                    controller: ()=>{},
+                                    className: 'container-height-80',
+                                    model: item // ,
+                                    // css: false
+                                }
+                            };
+                        }
+                    });
+                });
+
+                */
             });
     };
 });

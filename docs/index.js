@@ -3,7 +3,6 @@
 let drawerLayout;
 let viewPager;
 let groupIndicator;
-let groupButtons;
 /*
 zuix.store('config', {
     resourcePath: '/app/'
@@ -23,21 +22,15 @@ window.options = {
     drawerLayout: {
         autoHideWidth: -1,
         drawerWidth: 280,
-        ready: function() {
-            drawerLayout = this; this.close();
+        ready: (ctx) => {
+            drawerLayout = ctx; ctx.close();
         }
     },
     headerBar: {
-        ready: function() {
-            const view = zuix.$(this.view());
-            // handle 'topic' buttons click (goto clicked topic page)
-            groupButtons = view.find('.topics').children().each(function(i, el) {
-                this.on('click', function(e) {
-                    if (viewPager) viewPager.page(i);
-                });
-            });
+        ready: (ctx) => {
+            const view = zuix.$(ctx.view());
             // open drawer when the profile icon is clicked
-            view.find('.profile').on('click', function() {
+            view.find('.profile').on('click', () => {
                 if (drawerLayout) drawerLayout.open();
             });
         }
@@ -46,25 +39,27 @@ window.options = {
         enablePaging: true,
         startGap: 36,
         on: {
-            'page:change': function(e, page) {
+            'page:change': (e, page) => {
                 syncPageIndicator(page);
                 // show header/footer
+                /*
                 if (viewPager) {
                     const p = viewPager.get(page.in);
                     zuix.context(p).show();
                 }
+                */
                 zuix.context('button-menu').showButton();
             }
         },
-        ready: function() {
-            viewPager = this;
+        ready: (ctx) => {
+            viewPager = ctx;
         }
     },
     groupIndicator: {
         enablePaging: true,
         startGap: 36,
-        ready: function() {
-            groupIndicator = this;
+        ready: (ctx) => {
+            groupIndicator = ctx;
         }
     },
     autoHidingBars: {
@@ -72,7 +67,7 @@ window.options = {
         footer: 'footer-bar',
         height: 56,
         on: {
-            'page:scroll': function(e, data) {
+            'page:scroll': (e, data) => {
                 const menu = zuix.context('button-menu');
                 zuix.componentize();
                 if (data.info.shift.y < 0) {
@@ -90,9 +85,45 @@ window.options = {
 
 // Turn off debug output
 window.zuixNoConsoleOutput = true;
+zuix.lazyLoad(true, -48);
 
 showPage(2);
 
+hgui.setListener({
+    onGroupAdded: (g) => {
+        console.log('group added', g);
+        // add the group to the viewpager's navigation tabs
+        const index = zuix.field('header_groups').children().length();
+        const d = zuix.$(document.createElement('div'));
+        d.html(g.name)
+            // TODO: deregister later
+            .on('click', () => viewPager.page(index));
+        zuix.field('header_groups').append(d.get());
+        // add the group page to the viewpager, this will contain the module list
+        const ld = zuix.$(document.createElement('div'));
+        ld.html('<section class="content" data-ui-load="@lib/controllers/header_auto_hide" data-ui-options="options.autoHidingBars">\n' +
+            '        <div data-ui-field="list" self="size-xxlarge center" layout="rows stretch-spread" class="main-list"></div>\n' +
+            '    </section>');
+        zuix.$(viewPager.view()).append(ld.get());
+        // store a reference to the listview of this group for using it later for adding module widgets
+        g._viewList = ld.find('[data-ui-field=list]');
+    },
+    onGroupRemoved: (g) => {
+//        console.log('group removed', g);
+    },
+    onGroupModuleAdded: (g, mr) => {
+        console.log('added module to group', g, mr, g._view);
+        g._viewList.append(mr.widget);
+    },
+    onModuleAdded: (m) => {
+//        console.log('module added', m);
+    },
+    onModuleRemoved: (m) => {
+//        console.log('module removed', m);
+    }
+});
+
+/*
 // Load Demo adapter
 const demoAdapter = zuix.load('adapters/demo', {
     // this is a controller-only component, no view, no css
@@ -115,42 +146,22 @@ const demoAdapter = zuix.load('adapters/demo', {
             mainList.append(adapter.getWidget(groupId, 'dimmer-1'));
             mainList.append(adapter.getWidget(groupId, 'dimmer-2'));
             mainList.append(adapter.getWidget(groupId, 'sensor-1'));
-            mainList.append(adapter.getWidget(groupId, 'scenario-1'));
+            mainList.append(adapter.getWidget(groupId, 'scenari192.168.2.235:80o-1'));
         });
     }
 });
+*/
+
 // Load HomeGenie adapter
 const homegenieAdapter = zuix.load('adapters/homegenie', {
     // this is a controller-only component, no view, no css
     view: '',
-    // HomeGenie server connection data
-    connection: {
-        // HomeGenie Server address
-        address: 'localhost',
-        // HomeGenie Server port
-        port: 8080
-    },
-    // once the adapter is ready add widgets
-    ready: (adapter) => {
-        // wait until main-page is loaded, then add items to the main-list
-        zuix.context('main-page', (ctx)=>{
-            // manual adding of widgets to page 0 and 1 (groupId = 0 and 1)
-            // this is just for testing purpose
-            let groupId = 1;
-            let mainList = getPage(0).find('[data-ui-field=list]').eq(groupId);
-            mainList.append(adapter.getWidget(groupId, 'HomeAutomation.X10/C7'));
-            mainList.append(adapter.getWidget(groupId, 'HomeAutomation.ZWave/4'));
-            mainList.append(adapter.getWidget(groupId, 'HomeAutomation.PhilipsHue/3'));
-            groupId = 0;
-            mainList = getPage(0).find('[data-ui-field=list]').eq(groupId);
-            mainList.append(adapter.getWidget(groupId, 'HomeAutomation.X10/C7'));
-            mainList.append(adapter.getWidget(groupId, 'HomeAutomation.ZWave/4'));
-            mainList.append(adapter.getWidget(groupId, 'HomeAutomation.PhilipsHue/3'));
-        });
-    }
+    // add the adapter to HGUI once it is loaded and ready
+    ready: (ctx) => hgui.addAdapter(ctx)
 });
 
 function syncPageIndicator(page) {
+    const groupButtons = zuix.$(groupIndicator.view()).children();
     if (groupButtons) {
         groupButtons.eq(page.out).removeClass('active');
         groupButtons.eq(page.in).addClass('active');
@@ -179,6 +190,7 @@ function getPage(i) {
 function addWidget(componentId, options, targetElement) {
     const el = zuix.createComponent(componentId, options).container();
     // center the list on wide screens
+    zuix.$(el).addClass('container-height-160');
     el.setAttribute('layout', 'column stretch-center');
     if (targetElement != null) zuix.$(targetElement).append(el);
     return el;

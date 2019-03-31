@@ -39,12 +39,11 @@ textarea:focus {
   min-width: 280px;
   height: 80px;
 }
+.container-height-160 {
+  min-height: 160px;
+  opacity: 0;
+}
 .scrollable {
-  position: absolute;
-  top: 0;
-  left: 0;
   padding-bottom: 20px;
-  width: 100vw;
-  max-height: 100vh;
   overflow-y: scroll;
 }

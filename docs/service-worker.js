@@ -11,7 +11,7 @@
  * See https://goo.gl/2aRDsh
  */
 
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox-sw.js");
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
@@ -21,7 +21,7 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox
 self.__precacheManifest = [
   {
     "url": "404.html",
-    "revision": "188a298590d77fcd9879c447666d4248"
+    "revision": "920911e362a3d5549a818dc606c6d758"
   },
   {
     "url": "app/adapters/demo.js",
@@ -29,7 +29,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/adapters/homegenie.js",
-    "revision": "2f1e3d943eb5e601dbcfcb9e0b46a618"
+    "revision": "04ce8262cbac424f0c9bf21c31ee94d4"
   },
   {
     "url": "app/components/program.css",
@@ -37,7 +37,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/components/program.html",
-    "revision": "736f3b55b8d29a341931b6aeef5cddaf"
+    "revision": "faafd287da291eacf3adab22b4a37168"
   },
   {
     "url": "app/components/program.js",
@@ -49,15 +49,15 @@ self.__precacheManifest = [
   },
   {
     "url": "app/components/switch.css",
-    "revision": "25f6913b947c7985b6b42f661a652205"
+    "revision": "838b75e06f0cd5e89e0deb4ee9766a3e"
   },
   {
     "url": "app/components/switch.html",
-    "revision": "c34dac854ebf46b9c9b9df9e50c961ec"
+    "revision": "02a66587e2d6bb0c6d1b62ae0a763450"
   },
   {
     "url": "app/components/switch.js",
-    "revision": "9c82abe979abec1f7c269e2240919590"
+    "revision": "2ffce0e81a9002dfb069d734b788158c"
   },
   {
     "url": "app/controllers/README.html",
@@ -69,15 +69,15 @@ self.__precacheManifest = [
   },
   {
     "url": "app/layout/footer.html",
-    "revision": "5c58f7cbd1219cc6b8f28a445213cbd9"
+    "revision": "e5a4f0f5846737074800349bdc9f19f4"
   },
   {
     "url": "app/layout/header.css",
-    "revision": "e462a552588213fcb3653ea90ecb23ca"
+    "revision": "e4c0d9cebe1b1502ca789f6112f16041"
   },
   {
     "url": "app/layout/header.html",
-    "revision": "9a07947f50eefb0fba6cc95d88252e8b"
+    "revision": "c20c0e13226986e7bfd78204b47bab3a"
   },
   {
     "url": "app/pages/eventslog.css",
@@ -85,7 +85,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/eventslog.html",
-    "revision": "642fce309a336f5f149abece374a565b"
+    "revision": "6449f02abd11d04c167954fa28b2341b"
   },
   {
     "url": "app/pages/home.css",
@@ -93,7 +93,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home.html",
-    "revision": "3111b20806fdde5cc59623df0475a3ef"
+    "revision": "0b749ffc45a70b8157543a0ce847e5a9"
   },
   {
     "url": "app/pages/home/items_list.css",
@@ -101,7 +101,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home/items_list.html",
-    "revision": "af7936a2a79b2ac245329490f11cebdf"
+    "revision": "2862e31ed4fb6cbce8cfa5e1b7007c9e"
   },
   {
     "url": "app/pages/home/items_list.js",
@@ -113,7 +113,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home/items_list/item_mini.html",
-    "revision": "55170b407d0e27e44c7e6d012368ad81"
+    "revision": "4e23d096433c8a1557f2203f32289138"
   },
   {
     "url": "app/pages/home/items_list/item_mini.js",
@@ -125,7 +125,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home/items_list/item.html",
-    "revision": "e588095374f8168a75b8d5df0f83683a"
+    "revision": "aca4a44a7d4494d2c73e93c164f76c80"
   },
   {
     "url": "app/pages/home/items_list/item.js",
@@ -137,7 +137,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/setup.html",
-    "revision": "86099965a023af07b08cc18ab65a97ed"
+    "revision": "cfd54a30cd38ce28a71b2ecbf86e71de"
   },
   {
     "url": "app/pages/setup/module_item.css",
@@ -145,7 +145,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/setup/module_item.html",
-    "revision": "7ca95d531ee48c19545e2b66703ac1a4"
+    "revision": "b86346b9cdbd1e47305d4318e40b3840"
   },
   {
     "url": "app/pages/setup/module_item.js",
@@ -157,7 +157,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/setup/modulelist.html",
-    "revision": "32c7123df18b152cbc7d9a7aeba61750"
+    "revision": "7ca95d531ee48c19545e2b66703ac1a4"
   },
   {
     "url": "app/pages/setup/modulelist.js",
@@ -173,11 +173,11 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/setup/wizard.html",
-    "revision": "96d2d5bddde993f3252557cbf2c8cad8"
+    "revision": "7409ce2663b3f4b9b6b7809a791e8b2f"
   },
   {
     "url": "app/pages/setup/wizard.js",
-    "revision": "316b03a1d9d0c13eae2f4b2c8f99af83"
+    "revision": "1cf321a1d4b4eb8ebec5ae3d18e630b4"
   },
   {
     "url": "app/README.html",
@@ -189,7 +189,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/shared/button_menu.html",
-    "revision": "2bfd7cb7073ce1eb61e390bd26aaec10"
+    "revision": "dc6a55e76d638a71437c153224957c13"
   },
   {
     "url": "app/shared/button_menu.js",
@@ -201,7 +201,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/shared/main_menu.html",
-    "revision": "b253d84c633ead4c96e9bd413c5ad627"
+    "revision": "405888bfe99b6fbb3fcd6d33a478d5f0"
   },
   {
     "url": "app/shared/main_menu.js",
@@ -213,19 +213,19 @@ self.__precacheManifest = [
   },
   {
     "url": "cli/mqtt.html",
-    "revision": "8ea9af01ed0c945fd4b68acdbb802e7f"
+    "revision": "d2dcf920fc9967e7563504d4c8d60069"
   },
   {
     "url": "cli/ws.html",
-    "revision": "b9381b79924607ce5f97d1eeea444cac"
+    "revision": "bc40ce1674571bc015645824e3797a1e"
   },
   {
     "url": "config.js",
-    "revision": "b5fb62e9e34bf05f99a048d03105e34c"
+    "revision": "21bf9612f3f1f4f36480f5490d9b4ada"
   },
   {
     "url": "css/common.css",
-    "revision": "ce7e27dd2bb7c12a31f7d1ee75d3a1aa"
+    "revision": "2ce23b8d1b36b68313d942a5e8c0ad4a"
   },
   {
     "url": "css/README.html",
@@ -237,15 +237,19 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "3acc287b58e8a6a154f423ad959ce5a1"
+    "revision": "249475e4d492f959685da48ab5d4e4c3"
   },
   {
     "url": "index.js",
-    "revision": "75a95e8943bc1af02619c13e055a2c20"
+    "revision": "128b300a1e68b43e01f03ae52014b0d3"
   },
   {
     "url": "js/digest-ajax.min.js",
     "revision": "92977288fb5da64fefc15a5a9f88bd6d"
+  },
+  {
+    "url": "js/homegenie_ui.js",
+    "revision": "03bc9a82246f1e426d87a19b312b5d49"
   },
   {
     "url": "js/mqttws31.js",
@@ -253,19 +257,19 @@ self.__precacheManifest = [
   },
   {
     "url": "js/zuix/zuix-bundler.js",
-    "revision": "396148535ac82a888cd2cd7a6708d942"
+    "revision": "2bb68a5874f617a868f6a96e83431df7"
   },
   {
     "url": "js/zuix/zuix-bundler.min.js",
-    "revision": "853a0a1ea6ed171d2ffa91bd2780ef47"
+    "revision": "6a73edc276475e9a405bfd5006cd8cc5"
   },
   {
     "url": "js/zuix/zuix.js",
-    "revision": "a918b8f88c68f6290aad9565d5357e93"
+    "revision": "13a38710408998bd527dbf6109102f75"
   },
   {
     "url": "js/zuix/zuix.min.js",
-    "revision": "6d62703319ca5dc92ec65ebf772a075c"
+    "revision": "4ddd90baebdb28b031c6c3df58e51fea"
   },
   {
     "url": "manifest.json",
@@ -273,7 +277,7 @@ self.__precacheManifest = [
   },
   {
     "url": "offline.html",
-    "revision": "b4994638322c95e2157f78e2c631df75"
+    "revision": "02ddb6a753b7c1e733b7cadc0fc4b109"
   },
   {
     "url": "test_protocols/index.html",
@@ -367,5 +371,5 @@ self.__precacheManifest = [
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerRoute(/\.(?:png|jpg|jpeg|svg)$/, workbox.strategies.cacheFirst({ cacheName: "images", plugins: [new workbox.expiration.Plugin({"maxEntries":50,"purgeOnQuotaError":false})] }), 'GET');
-workbox.routing.registerRoute(/\.(?:html|json|js|css)$/, workbox.strategies.cacheFirst({ cacheName: "default", plugins: [new workbox.expiration.Plugin({"maxEntries":50,"purgeOnQuotaError":false})] }), 'GET');
+workbox.routing.registerRoute(/\.(?:png|jpg|jpeg|svg)$/, workbox.strategies.cacheFirst({ "cacheName":"images", plugins: [new workbox.expiration.Plugin({"maxEntries":50,"purgeOnQuotaError":false})] }), 'GET');
+workbox.routing.registerRoute(/\.(?:html|json|js|css)$/, workbox.strategies.cacheFirst({ "cacheName":"default", plugins: [new workbox.expiration.Plugin({"maxEntries":50,"purgeOnQuotaError":false})] }), 'GET');

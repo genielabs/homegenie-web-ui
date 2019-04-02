@@ -85,13 +85,27 @@ window.options = {
 
 // Turn off debug output
 window.zuixNoConsoleOutput = true;
+let configLoadTimeout = null; let initialized = false;
 zuix.lazyLoad(true, -48);
-
+zuix.hook('componentize:end', ()=>{
+    if (initialized) return;
+    // load config
+    if (configLoadTimeout != null) clearTimeout(configLoadTimeout);
+    configLoadTimeout = configLoadTimeout = setTimeout(()=>{
+        initialized = true;
+        hgui.load((config)=>{
+            if (config != null) showPage(0);
+        });
+    }, 1000);
+});
 showPage(2);
 
+let _ui = {
+    groups: [],
+    modules: []
+};
 hgui.setListener({
     onGroupAdded: (g) => {
-        console.log('group added', g);
         // add the group to the viewpager's navigation tabs
         const index = zuix.field('header_groups').children().length();
         const d = zuix.$(document.createElement('div'));
@@ -105,15 +119,31 @@ hgui.setListener({
             '        <div data-ui-field="list" self="size-xxlarge center" layout="rows stretch-spread" class="main-list"></div>\n' +
             '    </section>');
         zuix.$(viewPager.view()).append(ld.get());
-        // store a reference to the listview of this group for using it later for adding module widgets
-        g._viewList = ld.find('[data-ui-field=list]');
+        // store a reference to the page associated to this group for using it later for adding module widgets
+        _ui.groups[g] = _ui.groups[g] || {};
+        _ui.groups[g].pageView = ld;
+        _ui.groups[g].widgets = [];
     },
     onGroupRemoved: (g) => {
 //        console.log('group removed', g);
     },
-    onGroupModuleAdded: (g, mr) => {
-        console.log('added module to group', g, mr, g._view);
-        g._viewList.append(mr.widget);
+    onGroupModuleAdded: (g, m) => {
+        // Create widget associated with this module
+        const options = {
+            lazyLoad: true,
+            // data-bind model to view fields
+            model: m,
+            // this gets called from the widget when a command is performed
+            control: (command) => {
+                hgui.getAdapter(m.adapterId).control(m, command);
+            }
+        };
+        // TODO: add utility function to get the widget from the module type
+        const widgetId = 'components/switch';
+        // call global function `addWidget` to create a new widget
+        const w = addWidget(widgetId, options);
+        _ui.groups[g].widgets[m] = w;
+        _ui.groups[g].pageView.find('[data-ui-field=list]').append(w);
     },
     onModuleAdded: (m) => {
 //        console.log('module added', m);
@@ -157,7 +187,9 @@ const homegenieAdapter = zuix.load('adapters/homegenie', {
     // this is a controller-only component, no view, no css
     view: '',
     // add the adapter to HGUI once it is loaded and ready
-    ready: (ctx) => hgui.addAdapter(ctx)
+    ready: (ctx) => {
+        hgui.addAdapter(ctx);
+    }
 });
 
 function syncPageIndicator(page) {

@@ -19,7 +19,8 @@ zuix.controller((cp) => {
         exposePublicMethods();
     };
     cp.create = () => {
-        cp.model().observe(cp.context); // listen for model updates
+        const module = cp.model();
+        hgui.observeModule(module, cp.context); // listen for model updates
         controlOn = cp.field('control.on');
         controlOff = cp.field('control.off');
         controlLevel = cp.field('control.level');

@@ -47,9 +47,9 @@ zuix.controller((cp) => {
         const m = modules[moduleId];
         // return null if no module with the given `moduleId` is found
         if (m == null) return m;
-        if (m.widget == null) m.widget = [];
+        if (m._widget == null) m._widget = [];
         // create widget if not already present
-        if (m.widget[groupId] == null)
+        if (m._widget[groupId] == null)
         {
             const widgetId = getWidgetIdFor(m);
             const options = {
@@ -65,9 +65,9 @@ zuix.controller((cp) => {
                 }
             };
             // call global function `addWidget` to create a new widget
-            m.widget[groupId] = addWidget(widgetId, options);
+            m._widget[groupId] = addWidget(widgetId, options);
         }
-        return m.widget[groupId];
+        return m._widget[groupId];
     }
     function getWidgetIdFor(module) {
         return module.widgetId;

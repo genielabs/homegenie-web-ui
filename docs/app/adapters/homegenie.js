@@ -26,7 +26,7 @@ zuix.controller((cp) => {
             // filter out unsupported modules
             mods.map((m) => {
                 if (ImplementedWidgets.includes(m.DeviceType)) {
-                    m.adapter = cp.context;
+                    m.adapterId = adapterId;
                     m.DomainShort = m.Domain.substring(m.Domain.lastIndexOf('.') + 1);
                     if (m.Name == '') m.Name = m.DomainShort + ' ' + m.Address;
                     moduleList.push(m);
@@ -138,10 +138,10 @@ zuix.controller((cp) => {
         // const m = moduleList[event.Domain + '/' + event.Source];
         const m = hgui.getModule(event.Domain + '/' + event.Source, adapterId);
         if (m != null) {
-            m.update(event.Property, event.Value, event.UnixTimestamp);
+            hgui.updateModule(m, event.Property, event.Value, event.UnixTimestamp);
             /*
             // update level of all widgets instances of this module
-            m.widget.map((w)=>{
+            m._widget.map((w)=>{
                 const ctx = zuix.context(w);
                 if (ctx == null || !ctx.isReady) return;
                 if (event.Property === 'Status.Level'){

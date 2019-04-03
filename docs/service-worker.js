@@ -133,11 +133,11 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/setup.css",
-    "revision": "df61eaeaacb1c6fb34ceace0a0a26a5f"
+    "revision": "50664bb97e21204ecec6421db82bc5f2"
   },
   {
     "url": "app/pages/setup.html",
-    "revision": "86b2e85ceba9124896390dd3ada8e78b"
+    "revision": "5940cbf5bca6a922b7a2cebbbd8284d0"
   },
   {
     "url": "app/pages/setup.js",
@@ -253,7 +253,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "7923730cf6a4bcd9084f1032db3d651f"
+    "revision": "44de8bfe1a1e6412fa2c72cfb16e8093"
   },
   {
     "url": "index.js",

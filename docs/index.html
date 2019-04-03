@@ -417,16 +417,25 @@
 <div data-ui-view="pages/setup">
 <div -data-ui-load="@lib/controllers/view_pager" -data-o-paging="true" layout="row stretch-stretch">
 
-    <div class="page" layout="column center-center">
-        <button class="nav-close" data-ui-field="btn-close" layout="row center-center">
-            <span class="material-icons">close</span>
-        </button>
-        <div>
-            <h1>Setup</h1>
+    <div class="page" layout="column top-center">
+        <div self="top" layout="row center-stretch" data-ui-field="btn-close">
+            <div self="size-x1 md-full" class="title-logo">
+                HomeGenie
+            </div>
+            <!--
+            <div>
+                <img class="img-logo" alt="HomeGenie Icon" src="images/genie.png">
+            </div>
+            -->
+            <div>
+                <h1 class="title">Setup</h1>
+            </div>
         </div>
-        <div>
-            <div class="text-caption text-light text-bold">Server address</div>
-            <input type="text" placeholder="host:port" data-ui-field="server-address">
+        <div self="size-x1 stretch-stretch" layout="column center-center">
+            <div>
+                <div class="text-caption text-light">Server address</div>
+                <input type="text" placeholder="host:port" data-ui-field="server-address">
+            </div>
             <button data-ui-field="btn-connect">Connect</button>
         </div>
     </div>
@@ -591,7 +600,7 @@
   {
     "componentId": "pages/setup",
     "controller": "'use strict';\n\nzuix.controller(function(cp) {\n    cp.init = function() {\n        // TODO: add 'using' parse to task/zuix-build-tools\n        zuix.using('style', 'https://cdnjs.cloudflare.com/ajax/libs/flex-layout-attribute/1.0.3/css/flex-layout-attribute.min.css');\n        zuix.using('style', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css');\n    };\n    cp.create = function() {\n        cp.field('btn-close')\n            .on('click', ()=>{\n                showPage(0); // TODO: use enums instead of page numbers\n            });\n        cp.field('btn-connect').on('click', connect);\n        // cp.field('server-address')\n        //    .on('change', (e, el)=>{ });\n        /*\n        // populate wizard modules list\n        zuix.context('module-list', (listView)=>{\n            const mods = [];\n            Object.keys(modules).map((k)=>{\n                mods.push(modules[k]);\n            });\n            listView.model({\n                itemList: mods,\n                getItem: function(index, item) {\n                    // Return the item data. Each item could also be rendered with a different template,\n                    // in this case all items are using the 'card-template' which is defined\n                    // inline in the same page. For further information about ZUIX templates referer\n                    // to the documentation http://genielabs.github.io/zuix/#/docs .\n                    return {\n                        itemId: index,\n                        componentId: 'pages/setup/module_item',\n                        options: {\n                            //lazyLoad: true,\n                            controller: ()=>{},\n                            className: 'container-height-80',\n                            model: item // ,\n                            // css: false\n                        }\n                    };\n                }\n            });\n        });\n        */\n    };\n\n    function connect() {\n        let address = cp.field('server-address').value();\n        const port = address.substr(address.indexOf(':') + 1);\n        address = address.substr(0, address.indexOf(':'));\n        homegenieAdapter.options().connection = {\n            address: address,\n            port: port\n        };\n        homegenieAdapter.connect(()=> {\n            // get modules and groups list\n            homegenieAdapter.groups().map((g) => {\n                // add group to HGUI\n                let hguiGroup;\n                if (hgui.hasGroup(g.Name)) {\n                    hguiGroup = hgui.getGroup(g.Name);\n                } else {\n                    hguiGroup = hgui.addGroup(g.Name);\n                }\n                // add modules and groups to HGUI\n                g.Modules.map((moduleLink) => {\n                    // in HomeGenie Server group modules are just links, so we need to get the module instance from `moduleList`\n                    const module = homegenieAdapter.modules().find((m) => m.Domain == moduleLink.Domain && m.Address == moduleLink.Address);\n                    // if the module type is not supported it won't be found in the modules list\n                    if (module == null) return;\n                    const moduleId = module.Domain + '/' + module.Address;\n                    const adapterId = homegenieAdapter.id();\n                    let hguiModule;\n                    if (hgui.hasModule(moduleId, adapterId)) {\n                        // Update the hgui module\n                        hguiModule = hgui.getModule(moduleId, adapterId);\n                    } else {\n                        hguiModule = hgui.addModule({\n                            id: moduleId,\n                            type: module.DeviceType,\n                            name: module.Name,\n                            description: module.Description,\n                            adapterId: adapterId\n                        });\n                    }\n                    hgui.addGroupModule(hguiGroup, hguiModule);\n                    module.Properties.map((p) => {\n                        // TODO: should check update time before updating the property\n                        hgui.updateModule(hguiModule, p.Name, p.Value, p.UpdateTime);\n                    });\n                });\n            });\n            hgui.save();\n            showPage(0);\n        });\n    }\n});\n",
-    "css": ". {\n    position: fixed;\n    top:0;\n    left:0;\n    width:100vw;\n    height:100vh;\n    background-color: #fafafa;\n    overflow-y: scroll;\n    z-index: 1000;\n}\n.page {\n    width: 100vw;\n    height: 100vh;\n    overflow-y: scroll;\n}\n.nav-close {\n    position: absolute;\n    left: 16px; top: 8px;\n    width: 48px; height: 48px;\n    border: 0;\n    margin: 0; padding: 0;\n    background: transparent;\n    color: black;\n}\n.nav-close span {\n    font-size: 300%;\n    opacity: 0.2;\n}\n"
+    "css": ". {\n    position: fixed;\n    top:0;\n    left:0;\n    width:100vw;\n    height:100vh;\n    background-color: #fafafa;\n    overflow-y: scroll;\n    z-index: 1000;\n}\nbutton {\n    margin: 12px 12px 72px;\n    border: 1px solid rgba(0,0,0,.3);\n    border-radius: 8px;\n    background: transparent;\n    font-weight: 200;\n    font-size: 100%;\n    text-transform: uppercase;\n    color: rgba(0,0,0,0.5);\n}\n.page {\n    width: 100vw;\n    height: 100vh;\n    overflow-y: scroll;\n}\n.nav-close {\n    position: absolute;\n    left: 16px; top: 8px;\n    width: 48px; height: 48px;\n    border: 0;\n    margin: 0; padding: 0;\n    background: transparent;\n    color: black;\n}\n.nav-close span {\n    font-size: 300%;\n    opacity: 0.2;\n}\n.title {\n    font-size: 150%;\n    font-weight: 300;\n    padding-right: 16px;\n}\n.img-logo {\n    margin-top: 8px;\n    height: 48px;\n}\n.title-logo {\n    font-family: 'Lobster', cursive;\n    font-size: 160%;\n    font-weight: 200;\n    padding-left: 12px;\n    color: rgba(0,0,200,0.5);\n}\n"
   },
   {
     "componentId": "https://zuixjs.github.io/zkit/lib/controllers/drawer_layout",

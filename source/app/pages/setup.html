@@ -2,16 +2,25 @@
      -data-o-paging="true"
      layout="row stretch-stretch">
 
-    <div class="page" layout="column center-center">
-        <button class="nav-close" data-ui-field="btn-close" layout="row center-center">
-            <span class="material-icons">close</span>
-        </button>
-        <div>
-            <h1>Setup</h1>
+    <div class="page" layout="column top-center">
+        <div self="top" layout="row center-stretch" data-ui-field="btn-close">
+            <div self="size-x1 md-full" class="title-logo">
+                HomeGenie
+            </div>
+            <!--
+            <div>
+                <img class="img-logo" alt="HomeGenie Icon" src="images/genie.png">
+            </div>
+            -->
+            <div>
+                <h1 class="title">Setup</h1>
+            </div>
         </div>
-        <div>
-            <div class="text-caption text-light text-bold">Server address</div>
-            <input type="text" placeholder="host:port" data-ui-field="server-address">
+        <div self="size-x1 stretch-stretch" layout="column center-center">
+            <div>
+                <div class="text-caption text-light">Server address</div>
+                <input type="text" placeholder="host:port" data-ui-field="server-address">
+            </div>
             <button data-ui-field="btn-connect">Connect</button>
         </div>
     </div>

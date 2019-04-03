@@ -8,6 +8,16 @@
     overflow-y: scroll;
     z-index: 1000;
 }
+button {
+    margin: 12px 12px 72px;
+    border: 1px solid rgba(0,0,0,.3);
+    border-radius: 8px;
+    background: transparent;
+    font-weight: 200;
+    font-size: 100%;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.5);
+}
 .page {
     width: 100vw;
     height: 100vh;
@@ -25,4 +35,20 @@
 .nav-close span {
     font-size: 300%;
     opacity: 0.2;
+}
+.title {
+    font-size: 150%;
+    font-weight: 300;
+    padding-right: 16px;
+}
+.img-logo {
+    margin-top: 8px;
+    height: 48px;
+}
+.title-logo {
+    font-family: 'Lobster', cursive;
+    font-size: 160%;
+    font-weight: 200;
+    padding-left: 12px;
+    color: rgba(0,0,200,0.5);
 }

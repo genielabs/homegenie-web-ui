@@ -10,34 +10,32 @@
         const dbConfigurationId = 'hgui:configuration';
         const _hgui = {
             load: (callback) => {
-                try {
-                    db.get(dbConfigurationId)
-                        .then((config)=>{
-                            if (config != null) {
-                                groups = config.groups;
-                                modules = config.modules;
-                                modules.map((m) => {
-                                    if (listener != null) listener.onModuleAdded(m);
-                                });
-                                groups.map((g) => {
-                                    if (listener != null) listener.onGroupAdded(g);
-                                    g.modules.map((mr)=> {
-                                        if (listener != null) {
-                                            listener.onGroupModuleAdded(g, modules.find((m) => m.id === mr.moduleId));
-                                        }
-                                    });
-                                });
-                            }
-                            // TODO: connect adapters
-                            adapters['homegenie-server-adapter:1.0'].options().connection = config.adapterConfig;
-                            adapters['homegenie-server-adapter:1.0'].connect(()=>{
-                                // TODO: ...
-                            });
-                            callback(config);
+                db.get(dbConfigurationId)
+                .then((config)=>{
+                    if (config != null) {
+                        groups = config.groups;
+                        modules = config.modules;
+                        modules.map((m) => {
+                            if (listener != null) listener.onModuleAdded(m);
                         });
-                } catch (e) {
-                    callback(null);
-                }
+                        groups.map((g) => {
+                            if (listener != null) listener.onGroupAdded(g);
+                            g.modules.map((mr)=> {
+                                if (listener != null) {
+                                    listener.onGroupModuleAdded(g, modules.find((m) => m.id === mr.moduleId));
+                                }
+                            });
+                        });
+                    }
+                    // TODO: connect adapters
+                    adapters['homegenie-server-adapter:1.0'].options().connection = config.adapterConfig;
+                    adapters['homegenie-server-adapter:1.0'].connect(()=>{
+                        // TODO: ...
+                    });
+                    callback(config);
+                }).catch((err) => {
+                    callback(null, err);
+                });
             },
             save: () => {
                 const config = {
@@ -68,7 +66,7 @@
                 }
                 return group;
             },
-            addGroupModule: (group, m) =>  {
+            addGroupModule: (group, m) => {
                 if (group.modules.find((em) => em.moduleId === m.id) != null) {
                     // module already added
                     return;

@@ -150,3 +150,10 @@ button:hover {
     -webkit-transition: width .2s ease-out; /* Safari */
     transition: width .2s ease-out;
 }
+
+h1[data-ui-field=name] {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

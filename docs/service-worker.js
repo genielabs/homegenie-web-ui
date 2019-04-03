@@ -21,7 +21,7 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox
 self.__precacheManifest = [
   {
     "url": "404.html",
-    "revision": "3065ad87c133096dbba38b6e7895afc7"
+    "revision": "920911e362a3d5549a818dc606c6d758"
   },
   {
     "url": "app/adapters/demo.js",
@@ -29,7 +29,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/adapters/homegenie.js",
-    "revision": "9d7fccbc366bfa2f5b3e5ea04215141b"
+    "revision": "a04f1309e90783bc26e5f83a9c249c27"
   },
   {
     "url": "app/components/program.css",
@@ -37,7 +37,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/components/program.html",
-    "revision": "eaa563a0f473ae31826af3e835d0699f"
+    "revision": "faafd287da291eacf3adab22b4a37168"
   },
   {
     "url": "app/components/program.js",
@@ -49,11 +49,11 @@ self.__precacheManifest = [
   },
   {
     "url": "app/components/switch.css",
-    "revision": "838b75e06f0cd5e89e0deb4ee9766a3e"
+    "revision": "f8ac4994b239663ff8f12a28d0eff49a"
   },
   {
     "url": "app/components/switch.html",
-    "revision": "895a1387bb0b623c90a956be761cbbb0"
+    "revision": "02a66587e2d6bb0c6d1b62ae0a763450"
   },
   {
     "url": "app/components/switch.js",
@@ -69,7 +69,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/layout/footer.html",
-    "revision": "140b14870f89415d6cf4ff790189de2a"
+    "revision": "e5a4f0f5846737074800349bdc9f19f4"
   },
   {
     "url": "app/layout/header.css",
@@ -77,7 +77,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/layout/header.html",
-    "revision": "efd79f56c342158e286d9cf7ebe15fbd"
+    "revision": "c20c0e13226986e7bfd78204b47bab3a"
   },
   {
     "url": "app/pages/eventslog.css",
@@ -85,7 +85,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/eventslog.html",
-    "revision": "a2d73443110b9e3595cae269c9819863"
+    "revision": "6449f02abd11d04c167954fa28b2341b"
   },
   {
     "url": "app/pages/home.css",
@@ -93,7 +93,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home.html",
-    "revision": "1442e75ee3210cd6522af85fd0fb94e1"
+    "revision": "0b749ffc45a70b8157543a0ce847e5a9"
   },
   {
     "url": "app/pages/home/items_list.css",
@@ -101,7 +101,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home/items_list.html",
-    "revision": "25b9f7cf760f392535bf38776a596720"
+    "revision": "2862e31ed4fb6cbce8cfa5e1b7007c9e"
   },
   {
     "url": "app/pages/home/items_list.js",
@@ -113,7 +113,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home/items_list/item_mini.html",
-    "revision": "d132282b8d0f839d59ecfd2346a6e46a"
+    "revision": "4e23d096433c8a1557f2203f32289138"
   },
   {
     "url": "app/pages/home/items_list/item_mini.js",
@@ -125,7 +125,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home/items_list/item.html",
-    "revision": "1303408c72a2cc61ffd43bc7fa5f9760"
+    "revision": "aca4a44a7d4494d2c73e93c164f76c80"
   },
   {
     "url": "app/pages/home/items_list/item.js",
@@ -133,11 +133,15 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/setup.css",
-    "revision": "64b7357e6c578b06d8f3b04e839c5ffc"
+    "revision": "df61eaeaacb1c6fb34ceace0a0a26a5f"
   },
   {
     "url": "app/pages/setup.html",
-    "revision": "f6d36ba58462d2f13cc843b1aeaa5257"
+    "revision": "84e6e5b1d5a2f6903e43c6c6c082f8f5"
+  },
+  {
+    "url": "app/pages/setup.js",
+    "revision": "a7778cff413651a271ff9c99d01b3a9c"
   },
   {
     "url": "app/pages/setup/module_item.css",
@@ -145,7 +149,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/setup/module_item.html",
-    "revision": "2b9f78649e84bcafb9b7651947c7dc2b"
+    "revision": "b86346b9cdbd1e47305d4318e40b3840"
   },
   {
     "url": "app/pages/setup/module_item.js",
@@ -173,10 +177,22 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/setup/wizard.html",
-    "revision": "2b3024e651c62d99db8b9a5c13a8f46d"
+    "revision": "c4f640f25c20d5f44c1337a67c931bfc"
   },
   {
     "url": "app/pages/setup/wizard.js",
+    "revision": "a7778cff413651a271ff9c99d01b3a9c"
+  },
+  {
+    "url": "app/pages/splash.css",
+    "revision": "3571d2801983548d806fa30f14982372"
+  },
+  {
+    "url": "app/pages/splash.html",
+    "revision": "5371d55b34957057d699391d6986aa2e"
+  },
+  {
+    "url": "app/pages/wizard.js",
     "revision": "a7778cff413651a271ff9c99d01b3a9c"
   },
   {
@@ -189,7 +205,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/shared/button_menu.html",
-    "revision": "58e33707962dba7d7ed1d9d1da81f0e9"
+    "revision": "dc6a55e76d638a71437c153224957c13"
   },
   {
     "url": "app/shared/button_menu.js",
@@ -201,7 +217,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/shared/main_menu.html",
-    "revision": "ef9e615c5cd193166261834a99eb0150"
+    "revision": "405888bfe99b6fbb3fcd6d33a478d5f0"
   },
   {
     "url": "app/shared/main_menu.js",
@@ -213,15 +229,15 @@ self.__precacheManifest = [
   },
   {
     "url": "cli/mqtt.html",
-    "revision": "dc77b01fd5a2f7ffb2797bc594b5f399"
+    "revision": "d2dcf920fc9967e7563504d4c8d60069"
   },
   {
     "url": "cli/ws.html",
-    "revision": "29b6c8b95ef24b884c9319ad47d1be61"
+    "revision": "bc40ce1674571bc015645824e3797a1e"
   },
   {
     "url": "config.js",
-    "revision": "b5fb62e9e34bf05f99a048d03105e34c"
+    "revision": "21bf9612f3f1f4f36480f5490d9b4ada"
   },
   {
     "url": "css/common.css",
@@ -237,11 +253,11 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "1367ba3a046123ed8f59135cbd4a49dd"
+    "revision": "5109f943f6aa3fc33ac798d08a47f804"
   },
   {
     "url": "index.js",
-    "revision": "f17a783c44239799a1778875ca98ffea"
+    "revision": "7ed1306a20311913da1a71f834cead84"
   },
   {
     "url": "js/digest-ajax.min.js",
@@ -249,7 +265,7 @@ self.__precacheManifest = [
   },
   {
     "url": "js/homegenie_ui.js",
-    "revision": "39385405329c6fb549eb88415ba205dc"
+    "revision": "89a6a726edf784807f457968f7dab1e0"
   },
   {
     "url": "js/mqttws31.js",
@@ -281,7 +297,7 @@ self.__precacheManifest = [
   },
   {
     "url": "offline.html",
-    "revision": "72257b195d4eb39cc00cbdcf3463f77e"
+    "revision": "02ddb6a753b7c1e733b7cadc0fc4b109"
   },
   {
     "url": "test_protocols/index.html",

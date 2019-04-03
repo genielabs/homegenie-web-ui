@@ -1,6 +1,28 @@
 . {
-    background: white;
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    background-color: #fafafa;
+    overflow-y: scroll;
     z-index: 1000;
+}
+.page {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+}
+.nav-close {
+    position: absolute;
+    left: 16px; top: 8px;
+    width: 48px; height: 48px;
+    border: 0;
+    margin: 0; padding: 0;
+    background: transparent;
+    color: black;
+}
+.nav-close span {
+    font-size: 300%;
+    opacity: 0.2;
 }

@@ -139,17 +139,6 @@ zuix.controller((cp) => {
         const m = hgui.getModule(event.Domain + '/' + event.Source, adapterId);
         if (m != null) {
             hgui.updateModule(m, event.Property, event.Value, event.UnixTimestamp);
-            /*
-            // update level of all widgets instances of this module
-            m._widget.map((w)=>{
-                const ctx = zuix.context(w);
-                if (ctx == null || !ctx.isReady) return;
-                if (event.Property === 'Status.Level'){
-                    ctx.setLevel(event.Value);
-                }
-                ctx.blink();
-            });
-            */
         }
     }
 });

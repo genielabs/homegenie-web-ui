@@ -94,7 +94,12 @@ zuix.hook('componentize:end', ()=>{
     configLoadTimeout = configLoadTimeout = setTimeout(()=>{
         initialized = true;
         hgui.load((config)=>{
-            if (config != null) showPage(0);
+            // TODO: name pages with constants instead of numbers
+            (config != null) ? showPage(0) : showPage(2);
+            const splashScreen = zuix.field('splash-screen');
+            splashScreen.animateCss('fadeOut', { delay: '.5s' }, () => {
+                splashScreen.hide();
+            });
         });
     }, 1000);
 });

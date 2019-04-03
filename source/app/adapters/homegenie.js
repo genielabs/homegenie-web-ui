@@ -122,10 +122,10 @@ zuix.controller((cp) => {
         cp.log.info(url);
         zuix.$.ajax({
             url: url,
-            // TODO: this should be auto-detected
             withCredentials: true,
             success: function(res) {
-                callback(200, JSON.parse(res));
+                if (res != null) res = JSON.parse(res);
+                callback(200, res);
             },
             error: function(err) {
                 callback(500, err);

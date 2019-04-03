@@ -27,10 +27,14 @@
                             });
                         });
                     }
-                    // TODO: connect adapters
-                    adapters['homegenie-server-adapter:1.0'].options().connection = config.adapterConfig;
-                    adapters['homegenie-server-adapter:1.0'].connect(()=>{
-                        // TODO: ...
+                    // Connect adapters
+                    config.adapters.map((ac) => {
+                        if (adapters[ac.adapterId] != null) {
+                            adapters[ac.adapterId].options().connection = ac.connection;
+                            adapters[ac.adapterId].connect(()=>{
+                                // TODO: implement and handle connection errors
+                            });
+                        }
                     });
                     callback(config);
                 }).catch((err) => {
@@ -38,11 +42,20 @@
                 });
             },
             save: () => {
+                const adaptersConfig = [];
+                Object.keys(adapters).map((k) => {
+                    const adapter = adapters[k];
+                    const ac = {
+                        adapterId: adapter.id(),
+                        connection: adapter.options().connection
+                    };
+                    adaptersConfig.push(ac);
+                });
                 const config = {
                     _id: dbConfigurationId,
                     groups: groups,
                     modules: modules,
-                    adapterConfig: adapters['homegenie-server-adapter:1.0'].options().connection,
+                    adapters: adaptersConfig,
                     timestamp: new Date().getTime()
                 };
                 db.put(config).then(()=>{
@@ -56,7 +69,6 @@
                 return adapters[adapterId];
             },
             addGroup: (name) => {
-                // TODO: maybe some other useful methods can be attached to the group object
                 const group = {};
                 group.name = name;
                 group.modules = [];
@@ -95,7 +107,6 @@
                 return groups.find((item) => item.name === name);
             },
             addModule: (module) => {
-                // TODO: should attach observable interface to the module before adding it
                 module.fields = [];
                 modules.push(module);
                 if (listener != null) {

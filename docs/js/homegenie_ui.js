@@ -164,11 +164,9 @@
             },
             setListener: (l) => listener = l,
             showLoader: () => {
-                console.log('show loader');
                 splashScreen.animateCss('fadeIn').show();
             },
             hideLoader: () => {
-                console.log('hide loader');
                 splashScreen.animateCss('fadeOut', {delay: '.5s'}, () => {
                     splashScreen.hide();
                 });

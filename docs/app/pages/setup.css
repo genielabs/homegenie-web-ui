@@ -37,11 +37,13 @@ button {
     opacity: 0.2;
 }
 .title {
+    cursor: pointer;
     padding-left: 16px;
     font-size: 150%;
     font-weight: 300;
 }
 .title-logo {
+    cursor: pointer;
     padding-right: 16px;
     font-family: 'Lobster', cursive;
     font-size: 140%;

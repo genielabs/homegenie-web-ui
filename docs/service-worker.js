@@ -29,7 +29,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/adapters/homegenie.js",
-    "revision": "46201fee61b34f2b232dc5d09fe691b5"
+    "revision": "f4eecf05a8327c1df6147351bddb93ef"
   },
   {
     "url": "app/components/program.css",
@@ -133,7 +133,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/setup.css",
-    "revision": "a053b736fbdcbd87a40fda893073eedb"
+    "revision": "c415f940444c2582c87704abfbd4d309"
   },
   {
     "url": "app/pages/setup.html",
@@ -225,7 +225,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "316c73980ef2119fa6be5f2726607519"
+    "revision": "4cfdc24424a591e352a9d8c1730a77b4"
   },
   {
     "url": "index.js",
@@ -233,7 +233,7 @@ self.__precacheManifest = [
   },
   {
     "url": "js/homegenie_ui.js",
-    "revision": "58129a797c63f2356f8d08db68745e55"
+    "revision": "c783f96415eb04fbbcfcaf8b76acfddc"
   },
   {
     "url": "js/mqttws31.js",
@@ -253,7 +253,7 @@ self.__precacheManifest = [
   },
   {
     "url": "js/zuix/zuix.js",
-    "revision": "13a38710408998bd527dbf6109102f75"
+    "revision": "a0a82db1a01d0e5ece6e284ef728792e"
   },
   {
     "url": "js/zuix/zuix.min.js",

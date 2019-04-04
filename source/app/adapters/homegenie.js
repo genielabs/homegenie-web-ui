@@ -23,25 +23,29 @@ zuix.controller((cp) => {
 
     function connect(callback) {
         apiCall('HomeAutomation.HomeGenie/Config/Modules.List', (status, mods)=>{
-            // filter out unsupported modules
-            mods.map((m) => {
-                if (ImplementedWidgets.includes(m.DeviceType)) {
-                    m.adapterId = adapterId;
-                    m.DomainShort = m.Domain.substring(m.Domain.lastIndexOf('.') + 1);
-                    if (m.Name == '') m.Name = m.DomainShort + ' ' + m.Address;
-                    moduleList.push(m);
-                }
-            });
-            apiCall('HomeAutomation.HomeGenie/Config/Groups.List', (status, groups)=>{
-                groupList = groups;
-                // finally connect to the real-time event stream
-                if (EnableWebsocketStream) {
-                    connectWebSocket();
-                } else {
-                    connectEventSource();
-                }
-                callback();
-            });
+            if (status == 200) {
+                // filter out unsupported modules
+                mods.map((m) => {
+                    if (ImplementedWidgets.includes(m.DeviceType)) {
+                        m.adapterId = adapterId;
+                        m.DomainShort = m.Domain.substring(m.Domain.lastIndexOf('.') + 1);
+                        if (m.Name == '') m.Name = m.DomainShort + ' ' + m.Address;
+                        moduleList.push(m);
+                    }
+                });
+                apiCall('HomeAutomation.HomeGenie/Config/Groups.List', (status, groups)=>{
+                    groupList = groups;
+                    // finally connect to the real-time event stream
+                    if (EnableWebsocketStream) {
+                        connectWebSocket();
+                    } else {
+                        connectEventSource();
+                    }
+                    callback();
+                });
+            } else {
+                callback(status);
+            }
         });
     }
 
@@ -122,7 +126,9 @@ zuix.controller((cp) => {
         cp.log.info(url);
         zuix.$.ajax({
             url: url,
-            withCredentials: true,
+            beforeSend: (xhr) => {
+                xhr.withCredentials = true;
+            },
             success: function(res) {
                 if (res != null) res = JSON.parse(res);
                 callback(200, res);

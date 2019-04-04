@@ -46,6 +46,7 @@ zuix.controller(function(cp) {
     };
 
     function connect() {
+        hgui.showLoader();
         let address = cp.field('server-address').value();
         const port = address.substr(address.indexOf(':') + 1);
         address = address.substr(0, address.indexOf(':'));
@@ -93,6 +94,7 @@ zuix.controller(function(cp) {
             });
             hgui.save();
             showPage(0);
+            hgui.hideLoader();
         });
     }
 });

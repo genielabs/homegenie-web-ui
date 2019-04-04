@@ -12,7 +12,9 @@ zuix.store('config', {
 zuix.using('style', '//zuixjs.github.io/zkit/css/flex-layout-attribute.min.css');
 zuix.using('style', './index.css');
 
-zuix.$.ZxQuery.prototype.animateCss = function(animationName, param1, param2) { return this; }; // forward declaration (sort of)
+zuix.$.ZxQuery.prototype.animateCss = function(animationName, param1, param2) {
+    return this;
+}; // forward declaration (sort of)
 
 zuix.$.find('.profile').on('click', function() {
     if (drawerLayout) drawerLayout.open();
@@ -86,7 +88,8 @@ window.options = {
 // Turn off debug output
 window.zuixNoConsoleOutput = true;
 let configLoadTimeout = null; let initialized = false;
-zuix.lazyLoad(true, -48);
+const splashScreen = zuix.field('splash-screen');
+zuix.lazyLoad(true, -20);
 zuix.hook('componentize:end', ()=>{
     if (initialized) return;
     // load config
@@ -96,10 +99,7 @@ zuix.hook('componentize:end', ()=>{
         hgui.load((config)=>{
             // TODO: name pages with constants instead of numbers
             (config != null) ? showPage(0) : showPage(2);
-            const splashScreen = zuix.field('splash-screen');
-            splashScreen.animateCss('fadeOut', { delay: '.5s' }, () => {
-                splashScreen.hide();
-            });
+            hgui.hideLoader();
         });
     }, 1000);
 });

@@ -30,9 +30,11 @@
                     // Connect adapters
                     config.adapters.map((ac) => {
                         if (adapters[ac.adapterId] != null) {
+                            _hgui.showLoader();
                             adapters[ac.adapterId].options().connection = ac.connection;
                             adapters[ac.adapterId].connect(()=>{
                                 // TODO: implement and handle connection errors
+                                _hgui.hideLoader();
                             });
                         }
                     });
@@ -160,7 +162,17 @@
             getModule: (moduleId, adapterId) => {
                 return modules.find((item) => item.id === moduleId && item.adapterId === adapterId);
             },
-            setListener: (l) => listener = l
+            setListener: (l) => listener = l,
+            showLoader: () => {
+                console.log('show loader');
+                splashScreen.animateCss('fadeIn').show();
+            },
+            hideLoader: () => {
+                console.log('hide loader');
+                splashScreen.animateCss('fadeOut', {delay: '.5s'}, () => {
+                    splashScreen.hide();
+                });
+            }
         };
         return _hgui;
     }

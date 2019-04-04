@@ -37,18 +37,18 @@ button {
     opacity: 0.2;
 }
 .title {
+    padding-left: 16px;
     font-size: 150%;
     font-weight: 300;
+}
+.title-logo {
     padding-right: 16px;
+    font-family: 'Lobster', cursive;
+    font-size: 140%;
+    font-weight: 200;
+    color: rgba(0,0,200,0.5);
 }
 .img-logo {
     margin-top: 8px;
     height: 48px;
-}
-.title-logo {
-    font-family: 'Lobster', cursive;
-    font-size: 160%;
-    font-weight: 200;
-    padding-left: 12px;
-    color: rgba(0,0,200,0.5);
 }

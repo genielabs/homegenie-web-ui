@@ -15,7 +15,8 @@
         "robots.txt"
       ],
       "ignore": [
-        "_inc"
+        "_inc",
+        "css/_inc"
       ],
       "compile": [
         "html",

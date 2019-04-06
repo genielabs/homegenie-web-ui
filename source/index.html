@@ -6,8 +6,15 @@ head:
   description: 'HomeGenie UI Progressive Web App.'
 ---
 {% include "_inc/head_open.html" %}
-  <!-- main app script -->
+  <!-- HGUI -->
+  <script src="js/hgui.js"></script>
+  <!-- Main page script and components loading options -->
   <script src="index.js" defer></script>
+  <script src="index.options.js"></script>
+  <script src="index.hgui.js" defer></script>
+  <!-- Main page style includes -->
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="css/common/widgets.css">
 {% include "_inc/head_close.html" %}
 <body>
 
@@ -19,13 +26,17 @@ head:
 <main data-ui-field="pages">
 
   <!-- HOME -->
-  <section data-ui-include="pages/home" data-ui-context="main-page" data-ui-field="main-page"></section>
+  <section data-ui-include="pages/home"
+           data-ui-context="main-page"
+           data-ui-field="main-page"></section>
 
   <!-- EVENTS & LOGS -->
-  <section data-ui-include="pages/eventslog" data-ui-field="logs-page"></section>
+  <section data-ui-include="pages/eventslog"
+           data-ui-field="logs-page"></section>
 
   <!-- SETUP WIZARD -->
-  <section data-ui-load="pages/setup" data-ui-field="setup-page"></section>
+  <section data-ui-load="pages/setup"
+           data-ui-field="setup-page"></section>
 
 </main>
 
@@ -45,9 +56,12 @@ head:
   <div data-ui-load="shared/main_menu"></div>
 </div>
 
-<div data-ui-include="shared/button_menu" data-ui-field="footer-bar"></div>
+<div data-ui-include="shared/button_menu"
+     data-ui-field="footer-bar"></div>
 
-<div data-ui-include="pages/splash" data-ui-field="splash-screen" data-ui-priority="-1"
+<div data-ui-include="pages/splash"
+     data-ui-field="splash-screen"
+     data-ui-priority="-1"
      layout="row center-center"></div>
 
 <noscript>

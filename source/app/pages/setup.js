@@ -50,51 +50,59 @@ zuix.controller(function(cp) {
         let address = cp.field('server-address').value();
         const port = address.substr(address.indexOf(':') + 1);
         address = address.substr(0, address.indexOf(':'));
-        homegenieAdapter.options().connection = {
-            address: address,
-            port: port
-        };
-        homegenieAdapter.connect(()=> {
-            // get modules and groups list
-            homegenieAdapter.groups().map((g) => {
-                // add group to HGUI
-                let hguiGroup;
-                if (hgui.hasGroup(g.Name)) {
-                    hguiGroup = hgui.getGroup(g.Name);
-                } else {
-                    hguiGroup = hgui.addGroup(g.Name);
+
+
+        const adapterId = address + ':' + port;
+        // Load HomeGenie adapter
+        hgui.getAdapter(adapterId, 'adapters/homegenie', (homegenieAdapter) => {
+            homegenieAdapter.options().config = {
+                connection: {
+                    address: address,
+                    port: port
                 }
-                // add modules and groups to HGUI
-                g.Modules.map((moduleLink) => {
-                    // in HomeGenie Server group modules are just links, so we need to get the module instance from `moduleList`
-                    const module = homegenieAdapter.modules().find((m) => m.Domain == moduleLink.Domain && m.Address == moduleLink.Address);
-                    // if the module type is not supported it won't be found in the modules list
-                    if (module == null) return;
-                    const moduleId = module.Domain + '/' + module.Address;
-                    const adapterId = homegenieAdapter.id();
-                    let hguiModule;
-                    if (hgui.hasModule(moduleId, adapterId)) {
-                        // Update the hgui module
-                        hguiModule = hgui.getModule(moduleId, adapterId);
+            };
+            homegenieAdapter.connect(()=> {
+                // get modules and groups list
+                homegenieAdapter.groups().map((g) => {
+                    // add group to HGUI
+                    let hguiGroup;
+                    if (hgui.hasGroup(g.Name)) {
+                        hguiGroup = hgui.getGroup(g.Name);
                     } else {
-                        hguiModule = hgui.addModule({
-                            id: moduleId,
-                            type: module.DeviceType,
-                            name: module.Name,
-                            description: module.Description,
-                            adapterId: adapterId
-                        });
+                        hguiGroup = hgui.addGroup(g.Name);
                     }
-                    hgui.addGroupModule(hguiGroup, hguiModule);
-                    module.Properties.map((p) => {
-                        // TODO: should check update time before updating the property
-                        hgui.updateModule(hguiModule, p.Name, p.Value, p.UpdateTime);
+                    // add modules and groups to HGUI
+                    g.Modules.map((moduleLink) => {
+                        // in HomeGenie Server group modules are just links, so we need to get the module instance from `moduleList`
+                        const module = homegenieAdapter.modules().find((m) => m.Domain == moduleLink.Domain && m.Address == moduleLink.Address);
+                        // if the module type is not supported it won't be found in the modules list
+                        if (module == null) return;
+                        const moduleId = module.Domain + '/' + module.Address;
+                        const adapterId = homegenieAdapter.id();
+                        let hguiModule;
+                        if (hgui.hasModule(moduleId, adapterId)) {
+                            // Update the hgui module
+                            hguiModule = hgui.getModule(moduleId, adapterId);
+                        } else {
+                            hguiModule = hgui.addModule({
+                                id: moduleId,
+                                type: module.DeviceType.toLowerCase(),
+                                name: module.Name,
+                                description: module.Description,
+                                adapterId: adapterId
+                            });
+                        }
+                        hgui.addGroupModule(hguiGroup, hguiModule);
+                        module.Properties.map((p) => {
+                            // TODO: should check update time before updating the property
+                            hgui.updateModule(hguiModule, p.Name, p.Value, p.UpdateTime);
+                        });
                     });
                 });
+                hgui.save();
+                showPage(0);
+                hgui.hideLoader();
             });
-            hgui.save();
-            showPage(0);
-            hgui.hideLoader();
         });
     }
 });

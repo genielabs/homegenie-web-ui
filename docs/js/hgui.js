@@ -5,13 +5,14 @@
         let observers = [];
         let groups = [];
         let modules = [];
+        let currentGroup = 0;
         let listener;
         const db = new PouchDB('hgui_data');
         const dbConfigurationId = 'hgui:configuration';
         const _hgui = {
             load: (callback) => {
                 db.get(dbConfigurationId)
-                .then((config)=>{
+                .then((config) => {
                     if (config != null) {
                         groups = config.groups;
                         modules = config.modules;
@@ -20,7 +21,7 @@
                         });
                         groups.map((g) => {
                             if (listener != null) listener.onGroupAdded(g);
-                            g.modules.map((mr)=> {
+                            g.modules.map((mr) => {
                                 if (listener != null) {
                                     listener.onGroupModuleAdded(g, modules.find((m) => m.id === mr.moduleId));
                                 }
@@ -29,14 +30,14 @@
                     }
                     // Connect adapters
                     config.adapters.map((ac) => {
-                        if (adapters[ac.adapterId] != null) {
-                            _hgui.showLoader();
-                            adapters[ac.adapterId].options().connection = ac.connection;
-                            adapters[ac.adapterId].connect(()=>{
+                        _hgui.showLoader();
+                        _hgui.getAdapter(ac.adapterId, ac.componentId, (adapter) => {
+                            adapter.options().config = ac.config;
+                            adapter.connect(()=>{
                                 // TODO: implement and handle connection errors
                                 _hgui.hideLoader();
                             });
-                        }
+                        });
                     });
                     callback(config);
                 }).catch((err) => {
@@ -45,11 +46,11 @@
             },
             save: () => {
                 const adaptersConfig = [];
-                Object.keys(adapters).map((k) => {
-                    const adapter = adapters[k];
+                adapters.map((adapter) => {
                     const ac = {
                         adapterId: adapter.id(),
-                        connection: adapter.options().connection
+                        componentId: adapter.componentId,
+                        config: adapter.options().config
                     };
                     adaptersConfig.push(ac);
                 });
@@ -65,10 +66,27 @@
                 });
             },
             addAdapter: (adapter) => {
-                adapters[adapter.id()] = adapter;
+                adapters.push(adapter);
             },
-            getAdapter: (adapterId) => {
-                return adapters[adapterId];
+            getAdapter: (adapterId, componentId, callback) => {
+                let adapter = adapters.find((a) => a.id() === adapterId);
+                if (componentId == null && callback == null) return adapter;
+                // create a new instance if not found
+                if (adapter == null) {
+                    zuix.load(componentId, {
+                        // this is a controller-only component with no view
+                        view: '',
+                        // add the adapter to HGUI once it is loaded and ready
+                        ready: (ctx) => {
+                            adapters.push(ctx);
+                            callback(ctx);
+                        }
+                    });
+                } else callback(adapter);
+            },
+            getCurrentGroup: () => groups[currentGroup],
+            setCurrentGroup: (groupIndex) => {
+                currentGroup = groupIndex;
             },
             addGroup: (name) => {
                 const group = {};
@@ -164,7 +182,7 @@
             },
             setListener: (l) => listener = l,
             showLoader: () => {
-                splashScreen.animateCss('fadeIn').show();
+                splashScreen.show().animateCss('fadeIn');
             },
             hideLoader: () => {
                 splashScreen.animateCss('fadeOut', {delay: '.5s'}, () => {

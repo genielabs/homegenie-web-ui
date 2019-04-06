@@ -1,14 +1,23 @@
 . {
     background: rgba(255,255,255,0.75);
-    max-width: 280px;
+    min-width: 280px;
+    max-width: 300px;
+    height: 56px;
     border: solid 1px whitesmoke;
-    border-radius: 12px;
+    border-radius: 6px;
     font-family: Helvetica, serif;
     font-weight: 400;
     font-size: 14px;
-    padding-bottom: 16px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding-bottom: 0px;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 8px 0 rgba(0, 0, 0, 0.19);
     margin: 8px;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+    opacity: 1;
+    cursor: pointer;
 }
 
 h1 {
@@ -16,5 +25,12 @@ h1 {
     padding-left: 8px;
     padding-right: 8px;
     opacity: 0.35;
-    font-size: 160%;
+    font-size: 140%;
+}
+
+h1[data-ui-field=name] {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

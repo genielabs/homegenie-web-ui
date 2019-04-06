@@ -4,7 +4,7 @@
     font-size: 110%;
     width: 100vw;
     height: 100vh;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .feed-pager {
@@ -16,3 +16,4 @@
     margin-top: 104px;
     margin-bottom: 206px;
 }
+

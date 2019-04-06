@@ -1,15 +1,14 @@
 'use strict';
 zuix.controller((cp) => {
-    const adapterId = 'homegenie-server-adapter:1.0';
     const EnableWebsocketStream = true;
-    const ImplementedWidgets = ['Dimmer', 'Switch', 'Light', 'Siren', 'Program'];
+    const ImplementedWidgets = ['Dimmer', 'Switch', 'Light', 'Siren', 'Program', 'Sensor', 'DoorWindow'];
     let eventSource;
     let webSocket;
     let moduleList = []; let groupList = [];
     // this method is called when the component is ready
     cp.create = ()=> {
         // expose public methods required for implementing the HGUI Adapter interface
-        cp.expose('id', () => adapterId)
+        cp.expose('id', id)
           .expose('modules', () => moduleList)
           .expose('groups', () => groupList)
           .expose('connect', connect)
@@ -21,13 +20,22 @@ zuix.controller((cp) => {
 
     // private members
 
+    function id() {
+        let address = '0.0.0.0';
+        const cfg = cp.options().config;
+        if (cfg != null && cfg.connection != null) {
+            address = cfg.connection.address + ':' + cfg.connection.port;
+        }
+        return address;
+    }
+
     function connect(callback) {
         apiCall('HomeAutomation.HomeGenie/Config/Modules.List', (status, mods)=>{
             if (status == 200) {
                 // filter out unsupported modules
                 mods.map((m) => {
                     if (ImplementedWidgets.includes(m.DeviceType)) {
-                        m.adapterId = adapterId;
+                        m.adapterId = id();
                         m.DomainShort = m.Domain.substring(m.Domain.lastIndexOf('.') + 1);
                         if (m.Name == '') m.Name = m.DomainShort + ' ' + m.Address;
                         moduleList.push(m);
@@ -55,7 +63,7 @@ zuix.controller((cp) => {
             webSocket.onerror = null;
             webSocket.close();
         }
-        const o = cp.options().connection;
+        const o = cp.options().config.connection;
         apiCall('HomeAutomation.HomeGenie/Config/WebSocket.GetToken', function(code, res) {
             const r = res;
             webSocket = new WebSocket('ws://' + o.address + ':8188/events?at=' + r.ResponseValue);
@@ -107,12 +115,20 @@ zuix.controller((cp) => {
     }
     function control(m, command, options) {
         // adapter-specific implementation
-        apiCall(m.id + '/' + command + '/' + options, (code, res)=>{
-            cp.log.info(code, res);
-        });
+        if (m.type === 'program') {
+            const programAddress = m.id.substring(m.id.lastIndexOf('/') + 1);
+            options = programAddress + '/' + options;
+            apiCall('HomeAutomation.HomeGenie/Automation/' + command + '/' + options, (code, res)=>{
+                cp.log.info(code, res);
+            });
+        } else {
+            apiCall(m.id + '/' + command + '/' + options, (code, res)=>{
+                cp.log.info(code, res);
+            });
+        }
     }
     function getBaseUrl() {
-        const oc = cp.options().connection;
+        const oc = cp.options().config.connection;
         if (oc == null) {
             // TODO: report 'connector not configured' error and exit
             return;
@@ -120,7 +136,7 @@ zuix.controller((cp) => {
         return 'http://' + oc.address + ':' + oc.port + '/';
     }
     function apiCall(apiMethod, callback) {
-        const oc = cp.options().connection;
+        const oc = cp.options().config.connection;
         if (oc == null) return;
         const url = getBaseUrl() + 'api/' + apiMethod;
         cp.log.info(url);
@@ -130,7 +146,7 @@ zuix.controller((cp) => {
                 xhr.withCredentials = true;
             },
             success: function(res) {
-                if (res != null) res = JSON.parse(res);
+                if (res != null && res !== '') res = JSON.parse(res);
                 callback(200, res);
             },
             error: function(err) {
@@ -142,7 +158,7 @@ zuix.controller((cp) => {
     function processEvent(event) {
         // if (moduleList == null) return;
         // const m = moduleList[event.Domain + '/' + event.Source];
-        const m = hgui.getModule(event.Domain + '/' + event.Source, adapterId);
+        const m = hgui.getModule(event.Domain + '/' + event.Source, id());
         if (m != null) {
             hgui.updateModule(m, event.Property, event.Value, event.UnixTimestamp);
         }

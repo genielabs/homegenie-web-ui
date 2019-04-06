@@ -29,35 +29,47 @@ self.__precacheManifest = [
   },
   {
     "url": "app/adapters/homegenie.js",
-    "revision": "f4eecf05a8327c1df6147351bddb93ef"
+    "revision": "cec929470ceae0e5476d7ced22bbe0ef"
   },
   {
     "url": "app/components/program.css",
-    "revision": "df561bb6edfb5cfa1e3699493e66a056"
+    "revision": "925216798d4d1da1d8f9162a3b657b37"
   },
   {
     "url": "app/components/program.html",
-    "revision": "eaa563a0f473ae31826af3e835d0699f"
+    "revision": "6525d3791131b384252b5c9039b7bd89"
   },
   {
     "url": "app/components/program.js",
-    "revision": "77633066654ef2ec30defdb0fe60024c"
+    "revision": "7612d963ebcebf75219bd2cc3042b826"
   },
   {
     "url": "app/components/README.html",
     "revision": "4d933ef7afc7943ed5c13ac5185a5d88"
   },
   {
+    "url": "app/components/sensor.css",
+    "revision": "401ed41b8c6bd78e2082a788798d5620"
+  },
+  {
+    "url": "app/components/sensor.html",
+    "revision": "9b93a81494a63cb5336812a3dadb0b95"
+  },
+  {
+    "url": "app/components/sensor.js",
+    "revision": "0b747a3acc6e836475c899aaebb73a9f"
+  },
+  {
     "url": "app/components/switch.css",
-    "revision": "f8ac4994b239663ff8f12a28d0eff49a"
+    "revision": "17318346442a2edaa64b78211bd38f90"
   },
   {
     "url": "app/components/switch.html",
-    "revision": "895a1387bb0b623c90a956be761cbbb0"
+    "revision": "a4fafa68113a2dd1549a92c45e77741c"
   },
   {
     "url": "app/components/switch.js",
-    "revision": "fcded92450c2631e5eedad5113ab6cac"
+    "revision": "b627500ae45fa7a0ad56c5c12fe96d43"
   },
   {
     "url": "app/controllers/README.html",
@@ -73,11 +85,11 @@ self.__precacheManifest = [
   },
   {
     "url": "app/layout/header.css",
-    "revision": "e4c0d9cebe1b1502ca789f6112f16041"
+    "revision": "7faf862273f4c48c8f7abbb5b8b40d19"
   },
   {
     "url": "app/layout/header.html",
-    "revision": "efd79f56c342158e286d9cf7ebe15fbd"
+    "revision": "e98784bb3202148f5e368374de923b44"
   },
   {
     "url": "app/pages/eventslog.css",
@@ -89,7 +101,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home.css",
-    "revision": "7e1884cbe84e9e4534437ecebe619adc"
+    "revision": "45ba4c0abf96b74b00abdad3d442c822"
   },
   {
     "url": "app/pages/home.html",
@@ -137,11 +149,11 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/setup.html",
-    "revision": "36ca4d69fdef5c9115ba60afd4aad350"
+    "revision": "75c3fff843af8c88e2d25ba7d990fe30"
   },
   {
     "url": "app/pages/setup.js",
-    "revision": "bdc15c9beb9b42f588287508f1ca20b7"
+    "revision": "e207cdf1652d07a14e1f013a05de87d6"
   },
   {
     "url": "app/pages/setup/module_item.css",
@@ -212,8 +224,20 @@ self.__precacheManifest = [
     "revision": "b5fb62e9e34bf05f99a048d03105e34c"
   },
   {
-    "url": "css/common.css",
-    "revision": "2ce23b8d1b36b68313d942a5e8c0ad4a"
+    "url": "css/common/base.css",
+    "revision": "0e49a0b3ca52fc8173a8691514daf81c"
+  },
+  {
+    "url": "css/common/layout.css",
+    "revision": "ba043b1550921afb72f5f0d709766c1a"
+  },
+  {
+    "url": "css/common/text.css",
+    "revision": "3dd02835d964bc6c577d2680c1ae7577"
+  },
+  {
+    "url": "css/common/widgets.css",
+    "revision": "e96c094a9fb3e505e3a281e7651815e1"
   },
   {
     "url": "css/README.html",
@@ -224,16 +248,24 @@ self.__precacheManifest = [
     "revision": "40e887d590a280938f5740dfb9e943a7"
   },
   {
+    "url": "index.hgui.js",
+    "revision": "c1ce5b53fdad6f094f5a185bed163adf"
+  },
+  {
     "url": "index.html",
-    "revision": "4cfdc24424a591e352a9d8c1730a77b4"
+    "revision": "53cc837236e83d8a3f98f6a0188b7fe9"
   },
   {
     "url": "index.js",
-    "revision": "a49cb17badcf498509538e2f9b8253ae"
+    "revision": "74f2c427de79c2ee2e1cba489c58d1b8"
   },
   {
-    "url": "js/homegenie_ui.js",
-    "revision": "c783f96415eb04fbbcfcaf8b76acfddc"
+    "url": "index.options.js",
+    "revision": "96d2b9ae3e75b1153b4140c98f9ebdf5"
+  },
+  {
+    "url": "js/hgui.js",
+    "revision": "533e4993e08a182bc9270b174670bbdf"
   },
   {
     "url": "js/mqttws31.js",

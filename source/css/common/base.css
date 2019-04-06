@@ -22,28 +22,3 @@ input[type=text]:focus, textarea:focus {
     margin: 5px 1px 3px 0;
     border: 1px solid rgba(81, 203, 238, 1);
 }
-.text-bold {
-    font-weight: bold;
-}
-.text-title {
-    font-size: 120%;
-}
-.text-light {
-    opacity: 0.5;
-}
-.text-caption {
-    font-size: 80%;
-}
-
-.container-height-80 {
-    min-width: 280px;
-    height: 80px;
-}
-.container-height-160 {
-    min-height: 160px;
-    opacity: 0;
-}
-.scrollable {
-    padding-bottom: 20px;
-    overflow-y: scroll;
-}

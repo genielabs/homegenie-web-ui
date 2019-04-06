@@ -7,8 +7,8 @@ zuix.controller((cp) => {
     let controlOff;
     let controlLevel;
     let controlToggle;
+    let activityLed;
     let statusLed;
-    let statusBar;
     let levelBar;
     let levelView;
 
@@ -25,8 +25,8 @@ zuix.controller((cp) => {
         controlOff = cp.field('control.off');
         controlLevel = cp.field('control.level');
         controlToggle = cp.field('control.toggle');
+        activityLed = cp.field('activity-led');
         statusLed = cp.field('status-led');
-        statusBar = cp.field('status-bar');
         levelBar = cp.field('level-bar');
         levelView = cp.field('level-view');
         // TODO: use `CMD.` enums
@@ -70,19 +70,11 @@ zuix.controller((cp) => {
             return;
         }
         if (displayLevel === 0) {
-            if (statusBar.hasClass('status-on')) {
-                statusBar
-                    .removeClass('status-on')
-                    .addClass('status-off');
-            }
+            toggleClass(statusLed, 'off', 'on');
             cp.field('level-bar')
                 .css('width', '0');
         } else {
-            if (statusBar.hasClass('status-off')) {
-                statusBar
-                    .removeClass('status-off')
-                    .addClass('status-on');
-            }
+            toggleClass(statusLed, 'on', 'off');
             const barWidth = controlLevel.position().rect.width * actualLevel;
             levelBar.css('width', barWidth + 'px');
         }
@@ -125,9 +117,9 @@ zuix.controller((cp) => {
         return cp.context;
     }
     function blink() {
-        statusLed.addClass('led-on');
+        activityLed.addClass('on');
         setTimeout(()=>{
-            statusLed.removeClass('led-on');
+            activityLed.removeClass('on');
         }, 200);
     }
     function exposePublicMethods() {

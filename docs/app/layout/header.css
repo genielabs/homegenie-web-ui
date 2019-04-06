@@ -20,7 +20,7 @@
   font-size: 180%;
 }
 
-.profile {
+.logo {
   position: absolute;
   left: 20px; top: 8px;
   width: 42px;
@@ -31,7 +31,7 @@
   overflow: hidden;
   cursor: pointer;
 }
-.profile img {
+.logo img {
   margin-left: -2px;
   height: 44px;
 }

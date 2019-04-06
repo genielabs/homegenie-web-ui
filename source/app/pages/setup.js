@@ -50,8 +50,7 @@ zuix.controller(function(cp) {
         let address = cp.field('server-address').value();
         const port = address.substr(address.indexOf(':') + 1);
         address = address.substr(0, address.indexOf(':'));
-
-
+        // allocate HomeGenie adapter
         const adapterId = address + ':' + port;
         // Load HomeGenie adapter
         hgui.getAdapter(adapterId, 'adapters/homegenie', (homegenieAdapter) => {

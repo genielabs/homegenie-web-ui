@@ -71,3 +71,7 @@
   padding-left: 8px;
   padding-right: 8px;
 }
+
+.pressed {
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2), 0 0 3px 0 rgba(0, 0, 0, 0.19) !important;
+}

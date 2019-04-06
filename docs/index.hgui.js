@@ -34,8 +34,8 @@ hgui.setListener({
             // data-bind model to view fields
             model: m,
             // this gets called from the widget when a command is performed
-            control: (command, options) => {
-                hgui.getAdapter(m.adapterId).control(m, command, options);
+            control: (command, options, callback) => {
+                hgui.getAdapter(m.adapterId).control(m, command, options, callback);
             }
         };
         // TODO: add utility function to get the widget from the module type
@@ -64,6 +64,57 @@ hgui.setListener({
 //        console.log('module removed', m);
     }
 });
+
+function initDemoAdapter() {
+    // load demo adapter
+    hgui.getAdapter('demo-adapter', 'adapters/demo', (adapter) => {
+        adapter.options().config = {};
+        adapter.connect(()=> {
+            // get modules and groups list
+            adapter.groups().map((g) => {
+                // add group to HGUI
+                let hguiGroup;
+                if (hgui.hasGroup(g.name)) {
+                    hguiGroup = hgui.getGroup(g.name);
+                } else {
+                    hguiGroup = hgui.addGroup(g.name);
+                }
+                // add modules and groups to HGUI
+                g.modules.map((moduleLink) => {
+                    // in HomeGenie Server group modules are just links, so we need to get the module instance from `moduleList`
+                    const module = adapter.modules().find((m) => m.id == moduleLink.moduleId);
+                    // if the module type is not supported it won't be found in the modules list
+                    if (module == null) return;
+                    const moduleId = module.id;
+                    const adapterId = adapter.id();
+                    let hguiModule;
+                    if (hgui.hasModule(moduleId, adapterId)) {
+                        // Update the hgui module
+                        hguiModule = hgui.getModule(moduleId, adapterId);
+                    } else {
+                        hguiModule = hgui.addModule({
+                            id: moduleId,
+                            type: module.type,
+                            name: module.name,
+                            description: module.description,
+                            adapterId: adapterId
+                        });
+                    }
+                    hgui.addGroupModule(hguiGroup, hguiModule);
+                    /*
+                    module.Properties.map((p) => {
+                        // TODO: should check update time before updating the property
+                        hgui.updateModule(hguiModule, p.Name, p.Value, p.UpdateTime);
+                    });
+                    */
+                });
+            });
+            hgui.save();
+            showPage(0);
+            hgui.hideLoader();
+        });
+    });
+}
 
 /**
  * Load and add a widget to a given container element

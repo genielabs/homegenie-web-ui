@@ -25,6 +25,7 @@ zuix.hook('componentize:end', ()=>{
             // TODO: name pages with constants instead of numbers
             (config != null) ? showPage(0) : showPage(2);
             hgui.hideLoader();
+            initDemoAdapter();
         });
     }, 1000);
 });

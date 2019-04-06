@@ -11,15 +11,14 @@
     padding-bottom: 0px;
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 8px 0 rgba(0, 0, 0, 0.19);
     margin: 8px;
-    -webkit-transition: all 0.4s;
-    -moz-transition: all 0.4s;
-    -ms-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    transition: all 0.4s;
-    opacity: 1;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+    opacity: 0.9;
     cursor: pointer;
 }
-
 h1 {
     margin: 12px;
     padding-left: 8px;
@@ -33,4 +32,9 @@ h1[data-ui-field=name] {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.status-led.idle {
+    opacity: 0.8;
+    background-color: #aaaa00;
+    box-shadow: 0 0 8px rgba(103, 100, 44, 0.5);
 }

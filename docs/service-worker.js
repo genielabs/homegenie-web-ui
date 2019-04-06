@@ -25,15 +25,15 @@ self.__precacheManifest = [
   },
   {
     "url": "app/adapters/demo.js",
-    "revision": "e40d64e96886f390e84ef2b28e6526c5"
+    "revision": "a0f8dc61dfdca69770e6da781d4f58e3"
   },
   {
     "url": "app/adapters/homegenie.js",
-    "revision": "cec929470ceae0e5476d7ced22bbe0ef"
+    "revision": "f46e24956ec9fc7d05c01a28fc05c7a1"
   },
   {
     "url": "app/components/program.css",
-    "revision": "925216798d4d1da1d8f9162a3b657b37"
+    "revision": "40f1b4e521b9230421a4e47a89a4c753"
   },
   {
     "url": "app/components/program.html",
@@ -41,7 +41,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/components/program.js",
-    "revision": "7612d963ebcebf75219bd2cc3042b826"
+    "revision": "e27034f2a7b5963c9852c27d4f785767"
   },
   {
     "url": "app/components/README.html",
@@ -49,7 +49,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/components/sensor.css",
-    "revision": "401ed41b8c6bd78e2082a788798d5620"
+    "revision": "28426c6bac235b6911f97e59a1a6dcd6"
   },
   {
     "url": "app/components/sensor.html",
@@ -61,7 +61,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/components/switch.css",
-    "revision": "17318346442a2edaa64b78211bd38f90"
+    "revision": "7dfb50674009a6215e499fe06c445727"
   },
   {
     "url": "app/components/switch.html",
@@ -153,7 +153,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/setup.js",
-    "revision": "e207cdf1652d07a14e1f013a05de87d6"
+    "revision": "a59aa1b56d2a07c5cee30789bfe70edc"
   },
   {
     "url": "app/pages/setup/module_item.css",
@@ -201,7 +201,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/shared/main_menu.html",
-    "revision": "525b96e33e88eebf391b5afb43f12ef6"
+    "revision": "95e478bf1114c55e34bb12d27051d3d4"
   },
   {
     "url": "app/shared/main_menu.js",
@@ -237,7 +237,7 @@ self.__precacheManifest = [
   },
   {
     "url": "css/common/widgets.css",
-    "revision": "e96c094a9fb3e505e3a281e7651815e1"
+    "revision": "69430746f0edf8cce068254d5ce7edd3"
   },
   {
     "url": "css/README.html",
@@ -249,15 +249,15 @@ self.__precacheManifest = [
   },
   {
     "url": "index.hgui.js",
-    "revision": "c1ce5b53fdad6f094f5a185bed163adf"
+    "revision": "1358236fa222cd03a291f35465a8e0a2"
   },
   {
     "url": "index.html",
-    "revision": "53cc837236e83d8a3f98f6a0188b7fe9"
+    "revision": "2b1b7f64e3eeeaf0b751c4c5e743a79b"
   },
   {
     "url": "index.js",
-    "revision": "74f2c427de79c2ee2e1cba489c58d1b8"
+    "revision": "d6f2a931b7ea33ef6d9b44b7f6406725"
   },
   {
     "url": "index.options.js",

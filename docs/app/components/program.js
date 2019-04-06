@@ -7,18 +7,24 @@ zuix.controller((cp) => {
         // register UI event handlers
         cp.view().on('click', () => {
             command('Programs.Toggle', hgui.getCurrentGroup().name);
+        }).on('mouseup', () => {
+            cp.view().removeClass('pressed');
+        }).on('mousedown', () => {
+            cp.view().addClass('pressed');
         });
     };
     cp.update = (field, oldValue) => {
         if (field.key === 'Program.Status') {
             const led = cp.field('status-led')
-                .removeClass('on off disabled error');
+                .removeClass('on off idle disabled error');
             switch (field.value) {
                 case 'Running':
                     led.addClass('on');
                     break;
-                case 'Enabled':
                 case 'Idle':
+                    led.addClass('idle');
+                    break;
+                case 'Enabled':
                     led.addClass('off');
                     break;
                 case 'Disabled':
@@ -31,11 +37,11 @@ zuix.controller((cp) => {
             }
         }
     };
-    function command(apiCommand, options) {
+    function command(apiCommand, options, callback) {
         //blink();
-        const handler = cp.options().control;
-        if (handler != null) {
-            handler(apiCommand, options);
+        const control = cp.options().control;
+        if (control != null) {
+            control(apiCommand, options, callback);
         }
     }
 });

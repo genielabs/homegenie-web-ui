@@ -113,17 +113,19 @@ zuix.controller((cp) => {
             processEvent(event);
         };
     }
-    function control(m, command, options) {
+    function control(m, command, options, callback) {
         // adapter-specific implementation
         if (m.type === 'program') {
             const programAddress = m.id.substring(m.id.lastIndexOf('/') + 1);
             options = programAddress + '/' + options;
             apiCall('HomeAutomation.HomeGenie/Automation/' + command + '/' + options, (code, res)=>{
                 cp.log.info(code, res);
+                if (callback) callback();
             });
         } else {
             apiCall(m.id + '/' + command + '/' + options, (code, res)=>{
                 cp.log.info(code, res);
+                if (callback) callback();
             });
         }
     }
@@ -156,9 +158,8 @@ zuix.controller((cp) => {
     }
 
     function processEvent(event) {
-        // if (moduleList == null) return;
-        // const m = moduleList[event.Domain + '/' + event.Source];
-        const m = hgui.getModule(event.Domain + '/' + event.Source, id());
+        const moduleId = event.Domain + '/' + event.Source;
+        const m = hgui.getModule(moduleId, id());
         if (m != null) {
             hgui.updateModule(m, event.Property, event.Value, event.UnixTimestamp);
         }

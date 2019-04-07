@@ -7,9 +7,9 @@ zuix.controller((cp) => {
         // register UI event handlers
         cp.view().on('click', () => {
             command('Programs.Toggle', hgui.getCurrentGroup().name);
-        }).on('mouseup', () => {
+        }).on('mouseup touchend', () => {
             cp.view().removeClass('pressed');
-        }).on('mousedown', () => {
+        }).on('mousedown touchstart', () => {
             cp.view().addClass('pressed');
         });
     };
@@ -38,7 +38,6 @@ zuix.controller((cp) => {
         }
     };
     function command(apiCommand, options, callback) {
-        //blink();
         const control = cp.options().control;
         if (control != null) {
             control(apiCommand, options, callback);

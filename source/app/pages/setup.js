@@ -48,6 +48,7 @@ zuix.controller(function(cp) {
     function connect() {
         hgui.showLoader();
         let address = cp.field('server-address').value();
+        const credentials = cp.field('server-credentials').checked();
         const port = address.substr(address.indexOf(':') + 1);
         address = address.substr(0, address.indexOf(':'));
         // allocate HomeGenie adapter
@@ -57,19 +58,15 @@ zuix.controller(function(cp) {
             homegenieAdapter.options().config = {
                 connection: {
                     address: address,
-                    port: port
+                    port: port,
+                    credentials: credentials
                 }
             };
             homegenieAdapter.connect(()=> {
                 // get modules and groups list
                 homegenieAdapter.groups().map((g) => {
                     // add group to HGUI
-                    let hguiGroup;
-                    if (hgui.hasGroup(g.Name)) {
-                        hguiGroup = hgui.getGroup(g.Name);
-                    } else {
-                        hguiGroup = hgui.addGroup(g.Name);
-                    }
+                    const hguiGroup = hgui.addGroup(g.Name);
                     // add modules and groups to HGUI
                     g.Modules.map((moduleLink) => {
                         // in HomeGenie Server group modules are just links, so we need to get the module instance from `moduleList`
@@ -78,24 +75,19 @@ zuix.controller(function(cp) {
                         if (module == null) return;
                         const moduleId = module.Domain + '/' + module.Address;
                         const adapterId = homegenieAdapter.id();
-                        let hguiModule;
-                        if (hgui.hasModule(moduleId, adapterId)) {
-                            // Update the hgui module
-                            hguiModule = hgui.getModule(moduleId, adapterId);
-                        } else {
-                            hguiModule = hgui.addModule({
-                                id: moduleId,
-                                type: module.DeviceType.toLowerCase(),
-                                name: module.Name,
-                                description: module.Description,
-                                adapterId: adapterId
-                            });
-                        }
-                        hgui.addGroupModule(hguiGroup, hguiModule);
-                        module.Properties.map((p) => {
-                            // TODO: should check update time before updating the property
-                            hgui.updateModule(hguiModule, p.Name, p.Value, p.UpdateTime);
+                        const hguiModule = hgui.addModule({
+                            id: moduleId,
+                            adapterId: adapterId,
+                            type: module.DeviceType.toLowerCase(),
+                            name: module.Name,
+                            description: module.Description,
+                            fields: []
                         });
+                        // Update modules fields (hgui fields = hg Properties)
+                        module.Properties.map((p) => {
+                            hgui.updateModuleField(hguiModule, p.Name, p.Value, p.UpdateTime);
+                        });
+                        hgui.addGroupModule(hguiGroup, hguiModule);
                     });
                 });
                 hgui.save();

@@ -39,6 +39,14 @@ zuix.controller((cp) => {
                         m.DomainShort = m.Domain.substring(m.Domain.lastIndexOf('.') + 1);
                         if (m.Name == '') m.Name = m.DomainShort + ' ' + m.Address;
                         moduleList.push(m);
+                        // update fields of associated HGUI module
+                        m.Properties.map((p) => {
+                            const moduleId = m.Domain + '/' + m.Address;
+                            module = hgui.getModule(moduleId, m.adapterId);
+                            if (module != null) {
+                                hgui.updateModuleField(module, p.Name, p.Value, p.UpdateTime);
+                            }
+                        });
                     }
                 });
                 apiCall('HomeAutomation.HomeGenie/Config/Groups.List', (status, groups)=>{
@@ -145,13 +153,13 @@ zuix.controller((cp) => {
         zuix.$.ajax({
             url: url,
             beforeSend: (xhr) => {
-                xhr.withCredentials = true;
+                xhr.withCredentials = (oc.credentials === true);
             },
-            success: function(res) {
+            success: (res) => {
                 if (res != null && res !== '') res = JSON.parse(res);
                 callback(200, res);
             },
-            error: function(err) {
+            error: (err) => {
                 callback(500, err);
             }
         });
@@ -161,7 +169,7 @@ zuix.controller((cp) => {
         const moduleId = event.Domain + '/' + event.Source;
         const m = hgui.getModule(moduleId, id());
         if (m != null) {
-            hgui.updateModule(m, event.Property, event.Value, event.UnixTimestamp);
+            hgui.updateModuleField(m, event.Property, event.Value, event.UnixTimestamp);
         }
     }
 });

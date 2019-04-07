@@ -25,7 +25,6 @@ zuix.hook('componentize:end', ()=>{
             // TODO: name pages with constants instead of numbers
             (config != null) ? showPage(0) : showPage(2);
             hgui.hideLoader();
-            initDemoAdapter();
         });
     }, 1000);
 });
@@ -50,7 +49,11 @@ function showPage(i) {
 function getPage(i) {
     return zuix.field('pages').children().eq(i);
 }
-
+function showSetupPage() {
+    zuix.field('page-adapters').show();
+    zuix.field('page-homegenie-adapter').hide();
+    showPage(2);
+}
 // Utility Functions
 
 function toggleClass(element, statusIn, statusOut) {

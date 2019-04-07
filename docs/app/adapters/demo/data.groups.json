@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Dashboard",
+    "modules": [
+      { "moduleId": "light-1" },
+      { "moduleId": "light-2" },
+      { "moduleId": "dimmer-1" },
+      { "moduleId": "dimmer-2" },
+      { "moduleId": "sensor-1" },
+      { "moduleId": "p:blink" },
+      { "moduleId": "p:lights-on" },
+      { "moduleId": "p:lights-off" }
+    ]
+  },
+  {
+    "name": "Living Room",
+    "modules": [
+      { "moduleId": "dimmer-1" },
+      { "moduleId": "dimmer-3" },
+      { "moduleId": "dimmer-4" },
+      { "moduleId": "p:lights-on" },
+      { "moduleId": "p:lights-off" }
+    ]
+  }
+]

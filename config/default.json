@@ -4,7 +4,7 @@
       "input": "./source",
       "output": "./docs",
       "copy": [
-        "ui",
+        "app",
         "images",
         "js",
         ".nojekyll",

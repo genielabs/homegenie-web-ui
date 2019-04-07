@@ -4,7 +4,7 @@ zuix.controller((cp) => {
         cp.field('btn-settings')
             .on('click', (e, el)=>{
                 drawerLayout.close();
-                showPage(2);
+                showSetupPage();
             });
     };
 });

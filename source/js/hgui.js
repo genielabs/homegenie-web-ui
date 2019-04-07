@@ -5,6 +5,7 @@
         let observers = [];
         let groups = [];
         let modules = [];
+        let _configRevision;
         let currentGroup = 0;
         let listener;
         const db = new PouchDB('hgui_data');
@@ -14,6 +15,7 @@
                 db.get(dbConfigurationId)
                 .then((config) => {
                     if (config != null) {
+                        _configRevision = config._rev;
                         groups = config.groups;
                         modules = config.modules;
                         modules.map((m) => {
@@ -37,6 +39,9 @@
                                 // TODO: implement and handle connection errors
                                 _hgui.hideLoader();
                             });
+                            if (listener != null) {
+                                listener.onAdapterAdded(adapter);
+                            }
                         });
                     });
                     callback(config);
@@ -56,17 +61,30 @@
                 });
                 const config = {
                     _id: dbConfigurationId,
+                    _rev: _configRevision,
                     groups: groups,
                     modules: modules,
                     adapters: adaptersConfig,
                     timestamp: new Date().getTime()
                 };
-                db.put(config).then(()=>{
-                    console.log('configuration saved');
+                db.put(config).then((response)=>{
+                    if (!response.ok) {
+                        console.log('Error saving configuration.', response);
+                        return;
+                    }
+                    _configRevision = response.rev;
+                    console.log('Configuration saved.', _configRevision);
                 });
             },
             addAdapter: (adapter) => {
+                if (adapters.find((a) => a.id() === adapter.id()) != null) {
+                    return false;
+                }
                 adapters.push(adapter);
+                if (listener != null) {
+                    listener.onAdapterAdded(adapter);
+                }
+                return true;
             },
             getAdapter: (adapterId, componentId, callback) => {
                 let adapter = adapters.find((a) => a.id() === adapterId);
@@ -78,18 +96,21 @@
                         view: '',
                         // add the adapter to HGUI once it is loaded and ready
                         ready: (ctx) => {
-                            adapters.push(ctx);
+                            _hgui.addAdapter(ctx);
                             callback(ctx);
                         }
                     });
                 } else callback(adapter);
             },
+            getAdapters: () => adapters,
             getCurrentGroup: () => groups[currentGroup],
             setCurrentGroup: (groupIndex) => {
                 currentGroup = groupIndex;
             },
             addGroup: (name) => {
-                const group = {};
+                let group = _hgui.getGroup(name);
+                if (group != null) return group;
+                group = {};
                 group.name = name;
                 group.modules = [];
                 groups.push(group);
@@ -101,15 +122,17 @@
             addGroupModule: (group, m) => {
                 if (group.modules.find((em) => em.moduleId === m.id) != null) {
                     // module already added
-                    return;
+                    return false;
                 }
                 const moduleReference = {
-                    moduleId: m.id
+                    moduleId: m.id,
+                    adapterId: m.adapterId
                 };
                 group.modules.push(moduleReference);
                 if (listener != null) {
                     listener.onGroupModuleAdded(group, m);
                 }
+                return true;
             },
             removeGroup: (name) => {
                 const group = groups.find((g) => g.name === name);
@@ -118,7 +141,9 @@
                     if (listener != null) {
                         listener.onGroupRemoved(group);
                     }
+                    return true;
                 }
+                return false;
             },
             hasGroup: (name) => {
                 return _hgui.getGroup(name) != null;
@@ -127,34 +152,13 @@
                 return groups.find((item) => item.name === name);
             },
             addModule: (module) => {
-                module.fields = [];
+                const m = _hgui.getModule(module.id, module.adapterId);
+                if (m != null) return m;
                 modules.push(module);
                 if (listener != null) {
                     listener.onModuleAdded(module);
                 }
                 return module;
-            },
-            observeModule: (module, observer) => {
-                // TODO: do not push if already present
-                observers[module.id] = observers[module.id] || [];
-                observers[module.id].push(observer);
-            },
-            getObservers: () => observers,
-            updateModule: (module, key, value, timestamp) => {
-                if (module.fields[key] != null && module.fields[key].timestamp === timestamp) {
-                    return;
-                }
-                let field = module.fields[key];
-                const old = field;
-                module.fields[key] = field = {
-                    key: key,
-                    value: value,
-                    timestamp: timestamp
-                };
-                // Signal to all observers
-                if (observers[module.id]) {
-                    observers[module.id].map((observer) => observer.update(field, old));
-                }
             },
             removeModule: (module) => {
                 modules = modules.filter((item) => item !== module);
@@ -168,8 +172,8 @@
              * @param adapter {string} Adapter identifier
              * @return {boolean}
              */
-            hasModule: (moduleId, adapter) => {
-                return _hgui.getModule(moduleId, adapter) != null;
+            hasModule: (moduleId, adapterId) => {
+                return _hgui.getModule(moduleId, adapterId) != null;
             },
             /**
              * Get a module
@@ -179,6 +183,34 @@
              */
             getModule: (moduleId, adapterId) => {
                 return modules.find((item) => item.id === moduleId && item.adapterId === adapterId);
+            },
+            getModules: () => modules,
+            observeModule: (module, observer) => {
+                // TODO: do not push if already present
+                observers[module.id] = observers[module.id] || [];
+                observers[module.id].push(observer);
+            },
+            getObservers: () => observers,
+            updateModuleField: (module, key, value, timestamp) => {
+                if (module.fields == null) module.fields = [];
+                let field = module.fields.find((f) => f.key === key);
+                if (field != null && field.timestamp === timestamp) {
+                    return;
+                } else if (field == null) {
+                    field = {key: key};
+                    module.fields.push(field);
+                }
+                const old = {
+                    key: field.key,
+                    value: field.value,
+                    timestamp: field.timestamp
+                };
+                field.value = value;
+                field.timestamp = timestamp;
+                // Signal to all observers
+                if (observers[module.id]) {
+                    observers[module.id].map((observer) => observer.update(field, old));
+                }
             },
             setListener: (l) => listener = l,
             showLoader: () => {

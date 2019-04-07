@@ -1,10 +1,14 @@
-<html><head>    <style>[data-ui-view]:not([data-ui-include]):not([data-ui-load]) { display: none; }</style>
-</head><body><div -data-ui-load="@lib/controllers/view_pager" -data-o-paging="true" layout="row stretch-stretch">
+<div -data-ui-load="@lib/controllers/view_pager"
+     -data-o-paging="true"
+     layout="row stretch-stretch">
 
     <div class="page" layout="column top-center">
-        <div self="top" layout="row center-left" data-ui-field="btn-close">
+        <div self="top" layout="row center-left">
             <div self="size-x1">
-                <h1 class="title">Setup</h1>
+                <h1 class="title" layout="row center-left">
+                    <em data-ui-field="btn-close" class="material-icons">arrow_back</em>
+                    Setup
+                </h1>
             </div>
             <!--
             <div>
@@ -12,13 +16,40 @@
             </div>
             -->
             <div class="title-logo">
-                HomeGenie
+                <span class="logo">H</span>GUI
             </div>
         </div>
-        <div self="size-x1 stretch-stretch" layout="column center-center">
+        <div data-ui-field="page-adapters" self="size-x1 stretch-stretch" layout="column center-center">
+            <!--
+            <h2 class="summary">Add a new connection...</h2>
+            -->
+            <div layout="column center-center">
+                <div>
+                    <div class="connection-button" onclick="setupDemoAdapter()">
+                        <h3 layout="row center-left">
+                            <em class="material-icons">arrow_right</em>
+                            <a>Demo</a>
+                        </h3>
+                        <p>Demo connection adapter based on JSON data files.</p>
+                    </div>
+                    <div class="connection-button" onclick="setupHomeGenieAdapter()">
+                        <h3 layout="row center-left">
+                            <em class="material-icons">arrow_right</em>
+                            <a>HomeGenie</a>
+                        </h3>
+                        <p>Connection adapter for HomeGenie server.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-ui-field="page-homegenie-adapter" class="hidden" self="size-x1 stretch-stretch" layout="column center-center">
             <div>
-                <div class="text-caption text-light">Server address</div>
+                <div class="text-caption text-light">HomeGenie server address</div>
                 <input type="text" placeholder="host:port" data-ui-field="server-address">
+                <div layout="row center-left">
+                    <input type="checkbox" data-ui-field="server-credentials">
+                    <span>With credentials</span>
+                </div>
             </div>
             <button data-ui-field="btn-connect">Connect</button>
         </div>
@@ -38,4 +69,3 @@
     </div>
     -->
 </div>
-<!-- zUIx inline resource resourceBundle --></body></html>

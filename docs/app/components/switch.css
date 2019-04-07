@@ -39,6 +39,7 @@ label {
 }
 
 button {
+    cursor: pointer;
     outline: none;
     border: rgba(0,0,0,0.25);
     background: rgba(255,255,255,0.5);
@@ -86,7 +87,7 @@ button:hover {
 }
 .level-bar {
     height: 6px;
-    width: 200px;
+    width: 0;
     background: #46c12e;
     -webkit-transition: width .2s ease-out; /* Safari */
     transition: width .2s ease-out;
@@ -97,4 +98,7 @@ h1[data-ui-field=name] {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+div[data-ui-field="control.level"] {
+    cursor: pointer;
 }

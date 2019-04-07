@@ -19,6 +19,7 @@ hgui.setListener({
             '        <div data-ui-field="list" self="size-xxlarge center" layout="rows stretch-spread" class="main-list"></div>\n' +
             '    </section>');
         zuix.$(viewPager.view()).append(ld.get());
+        viewPager.refresh();
         // store a reference to the page associated to this group for using it later for adding module widgets
         _ui.groups[g] = _ui.groups[g] || {};
         _ui.groups[g].pageView = ld;
@@ -56,16 +57,26 @@ hgui.setListener({
         const w = addWidget(widgetId, options);
         _ui.groups[g].widgets[m] = w;
         _ui.groups[g].pageView.find('[data-ui-field=list]').append(w);
+        viewPager.refresh();
     },
     onModuleAdded: (m) => {
-//        console.log('module added', m);
+        zuix.field('status-modules-count')
+            .html(hgui.getModules().length);
     },
     onModuleRemoved: (m) => {
-//        console.log('module removed', m);
+        zuix.field('status-modules-count')
+            .html(hgui.getModules().length);
+    },
+    onAdapterAdded: (a) => {
+        zuix.field('status-connections-count')
+            .html(hgui.getAdapters().length);
+    },
+    onAdapterRemoved: (a) => {
+        // TODO: implement adapters removal
     }
 });
 
-function initDemoAdapter() {
+function setupDemoAdapter() {
     // load demo adapter
     hgui.getAdapter('demo-adapter', 'adapters/demo', (adapter) => {
         adapter.options().config = {};
@@ -73,40 +84,24 @@ function initDemoAdapter() {
             // get modules and groups list
             adapter.groups().map((g) => {
                 // add group to HGUI
-                let hguiGroup;
-                if (hgui.hasGroup(g.name)) {
-                    hguiGroup = hgui.getGroup(g.name);
-                } else {
-                    hguiGroup = hgui.addGroup(g.name);
-                }
+                const hguiGroup = hgui.addGroup(g.name);
                 // add modules and groups to HGUI
                 g.modules.map((moduleLink) => {
                     // in HomeGenie Server group modules are just links, so we need to get the module instance from `moduleList`
-                    const module = adapter.modules().find((m) => m.id == moduleLink.moduleId);
+                    const module = adapter.modules().find((m) => m.id === moduleLink.moduleId);
                     // if the module type is not supported it won't be found in the modules list
                     if (module == null) return;
                     const moduleId = module.id;
                     const adapterId = adapter.id();
-                    let hguiModule;
-                    if (hgui.hasModule(moduleId, adapterId)) {
-                        // Update the hgui module
-                        hguiModule = hgui.getModule(moduleId, adapterId);
-                    } else {
-                        hguiModule = hgui.addModule({
-                            id: moduleId,
-                            type: module.type,
-                            name: module.name,
-                            description: module.description,
-                            adapterId: adapterId
-                        });
-                    }
-                    hgui.addGroupModule(hguiGroup, hguiModule);
-                    /*
-                    module.Properties.map((p) => {
-                        // TODO: should check update time before updating the property
-                        hgui.updateModule(hguiModule, p.Name, p.Value, p.UpdateTime);
+                    const hguiModule = hgui.addModule({
+                        id: moduleId,
+                        type: module.type,
+                        name: module.name,
+                        description: module.description,
+                        fields: module.fields,
+                        adapterId: adapterId
                     });
-                    */
+                    hgui.addGroupModule(hguiGroup, hguiModule);
                 });
             });
             hgui.save();
@@ -114,6 +109,13 @@ function initDemoAdapter() {
             hgui.hideLoader();
         });
     });
+}
+
+function setupHomeGenieAdapter() {
+    zuix.field('page-adapters').hide();
+    zuix.field('page-homegenie-adapter')
+        .removeClass('hidden')
+        .show();
 }
 
 /**

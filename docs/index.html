@@ -4907,6 +4907,7 @@ module.exports = function(root) {
         let observers = [];
         let groups = [];
         let modules = [];
+        let _configRevision;
         let currentGroup = 0;
         let listener;
         const db = new PouchDB('hgui_data');
@@ -4916,6 +4917,7 @@ module.exports = function(root) {
                 db.get(dbConfigurationId)
                 .then((config) => {
                     if (config != null) {
+                        _configRevision = config._rev;
                         groups = config.groups;
                         modules = config.modules;
                         modules.map((m) => {
@@ -4939,6 +4941,9 @@ module.exports = function(root) {
                                 // TODO: implement and handle connection errors
                                 _hgui.hideLoader();
                             });
+                            if (listener != null) {
+                                listener.onAdapterAdded(adapter);
+                            }
                         });
                     });
                     callback(config);
@@ -4958,17 +4963,30 @@ module.exports = function(root) {
                 });
                 const config = {
                     _id: dbConfigurationId,
+                    _rev: _configRevision,
                     groups: groups,
                     modules: modules,
                     adapters: adaptersConfig,
                     timestamp: new Date().getTime()
                 };
-                db.put(config).then(()=>{
-                    console.log('configuration saved');
+                db.put(config).then((response)=>{
+                    if (!response.ok) {
+                        console.log('Error saving configuration.', response);
+                        return;
+                    }
+                    _configRevision = response.rev;
+                    console.log('Configuration saved.', _configRevision);
                 });
             },
             addAdapter: (adapter) => {
+                if (adapters.find((a) => a.id() === adapter.id()) != null) {
+                    return false;
+                }
                 adapters.push(adapter);
+                if (listener != null) {
+                    listener.onAdapterAdded(adapter);
+                }
+                return true;
             },
             getAdapter: (adapterId, componentId, callback) => {
                 let adapter = adapters.find((a) => a.id() === adapterId);
@@ -4980,18 +4998,21 @@ module.exports = function(root) {
                         view: '',
                         // add the adapter to HGUI once it is loaded and ready
                         ready: (ctx) => {
-                            adapters.push(ctx);
+                            _hgui.addAdapter(ctx);
                             callback(ctx);
                         }
                     });
                 } else callback(adapter);
             },
+            getAdapters: () => adapters,
             getCurrentGroup: () => groups[currentGroup],
             setCurrentGroup: (groupIndex) => {
                 currentGroup = groupIndex;
             },
             addGroup: (name) => {
-                const group = {};
+                let group = _hgui.getGroup(name);
+                if (group != null) return group;
+                group = {};
                 group.name = name;
                 group.modules = [];
                 groups.push(group);
@@ -5003,15 +5024,17 @@ module.exports = function(root) {
             addGroupModule: (group, m) => {
                 if (group.modules.find((em) => em.moduleId === m.id) != null) {
                     // module already added
-                    return;
+                    return false;
                 }
                 const moduleReference = {
-                    moduleId: m.id
+                    moduleId: m.id,
+                    adapterId: m.adapterId
                 };
                 group.modules.push(moduleReference);
                 if (listener != null) {
                     listener.onGroupModuleAdded(group, m);
                 }
+                return true;
             },
             removeGroup: (name) => {
                 const group = groups.find((g) => g.name === name);
@@ -5020,7 +5043,9 @@ module.exports = function(root) {
                     if (listener != null) {
                         listener.onGroupRemoved(group);
                     }
+                    return true;
                 }
+                return false;
             },
             hasGroup: (name) => {
                 return _hgui.getGroup(name) != null;
@@ -5029,34 +5054,13 @@ module.exports = function(root) {
                 return groups.find((item) => item.name === name);
             },
             addModule: (module) => {
-                module.fields = [];
+                const m = _hgui.getModule(module.id, module.adapterId);
+                if (m != null) return m;
                 modules.push(module);
                 if (listener != null) {
                     listener.onModuleAdded(module);
                 }
                 return module;
-            },
-            observeModule: (module, observer) => {
-                // TODO: do not push if already present
-                observers[module.id] = observers[module.id] || [];
-                observers[module.id].push(observer);
-            },
-            getObservers: () => observers,
-            updateModule: (module, key, value, timestamp) => {
-                if (module.fields[key] != null && module.fields[key].timestamp === timestamp) {
-                    return;
-                }
-                let field = module.fields[key];
-                const old = field;
-                module.fields[key] = field = {
-                    key: key,
-                    value: value,
-                    timestamp: timestamp
-                };
-                // Signal to all observers
-                if (observers[module.id]) {
-                    observers[module.id].map((observer) => observer.update(field, old));
-                }
             },
             removeModule: (module) => {
                 modules = modules.filter((item) => item !== module);
@@ -5070,8 +5074,8 @@ module.exports = function(root) {
              * @param adapter {string} Adapter identifier
              * @return {boolean}
              */
-            hasModule: (moduleId, adapter) => {
-                return _hgui.getModule(moduleId, adapter) != null;
+            hasModule: (moduleId, adapterId) => {
+                return _hgui.getModule(moduleId, adapterId) != null;
             },
             /**
              * Get a module
@@ -5081,6 +5085,34 @@ module.exports = function(root) {
              */
             getModule: (moduleId, adapterId) => {
                 return modules.find((item) => item.id === moduleId && item.adapterId === adapterId);
+            },
+            getModules: () => modules,
+            observeModule: (module, observer) => {
+                // TODO: do not push if already present
+                observers[module.id] = observers[module.id] || [];
+                observers[module.id].push(observer);
+            },
+            getObservers: () => observers,
+            updateModuleField: (module, key, value, timestamp) => {
+                if (module.fields == null) module.fields = [];
+                let field = module.fields.find((f) => f.key === key);
+                if (field != null && field.timestamp === timestamp) {
+                    return;
+                } else if (field == null) {
+                    field = {key: key};
+                    module.fields.push(field);
+                }
+                const old = {
+                    key: field.key,
+                    value: field.value,
+                    timestamp: field.timestamp
+                };
+                field.value = value;
+                field.timestamp = timestamp;
+                // Signal to all observers
+                if (observers[module.id]) {
+                    observers[module.id].map((observer) => observer.update(field, old));
+                }
             },
             setListener: (l) => listener = l,
             showLoader: () => {
@@ -5492,9 +5524,12 @@ input[type=text]:focus, textarea:focus {
 <div -data-ui-load="@lib/controllers/view_pager" -data-o-paging="true" layout="row stretch-stretch">
 
     <div class="page" layout="column top-center">
-        <div self="top" layout="row center-left" data-ui-field="btn-close">
+        <div self="top" layout="row center-left">
             <div self="size-x1">
-                <h1 class="title">Setup</h1>
+                <h1 class="title" layout="row center-left">
+                    <em data-ui-field="btn-close" class="material-icons">arrow_back</em>
+                    Setup
+                </h1>
             </div>
             <!--
             <div>
@@ -5502,13 +5537,40 @@ input[type=text]:focus, textarea:focus {
             </div>
             -->
             <div class="title-logo">
-                HomeGenie
+                <span class="logo">H</span>GUI
             </div>
         </div>
-        <div self="size-x1 stretch-stretch" layout="column center-center">
+        <div data-ui-field="page-adapters" self="size-x1 stretch-stretch" layout="column center-center">
+            <!--
+            <h2 class="summary">Add a new connection...</h2>
+            -->
+            <div layout="column center-center">
+                <div>
+                    <div class="connection-button" onclick="setupDemoAdapter()">
+                        <h3 layout="row center-left">
+                            <em class="material-icons">arrow_right</em>
+                            <a>Demo</a>
+                        </h3>
+                        <p>Demo connection adapter based on JSON data files.</p>
+                    </div>
+                    <div class="connection-button" onclick="setupHomeGenieAdapter()">
+                        <h3 layout="row center-left">
+                            <em class="material-icons">arrow_right</em>
+                            <a>HomeGenie</a>
+                        </h3>
+                        <p>Connection adapter for HomeGenie server.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-ui-field="page-homegenie-adapter" class="hidden" self="size-x1 stretch-stretch" layout="column center-center">
             <div>
-                <div class="text-caption text-light">Server address</div>
+                <div class="text-caption text-light">HomeGenie server address</div>
                 <input type="text" placeholder="host:port" data-ui-field="server-address">
+                <div layout="row center-left">
+                    <input type="checkbox" data-ui-field="server-credentials">
+                    <span>With credentials</span>
+                </div>
             </div>
             <button data-ui-field="btn-connect">Connect</button>
         </div>
@@ -5537,10 +5599,10 @@ input[type=text]:focus, textarea:focus {
 </div>
 <div class="info">
   <div class="title">HomeGenie</div>
-  <div class="subtitle">@192.168.1.x</div>
+  <div class="subtitle">@genielabs</div>
   <div class="summary">
-    <strong>1</strong> Connection
-    <strong>16</strong> Modules
+    <strong data-ui-field="status-connections-count">--</strong> Connection
+    <strong data-ui-field="status-modules-count">--</strong> Modules
   </div>
 </div>
 
@@ -5550,22 +5612,22 @@ input[type=text]:focus, textarea:focus {
 
   <button data-ui-field="btn-settings">
     <i class="material-icons">settings</i>
-    <span>Connect HomeGenie</span>
+    <span>Setup</span>
   </button>
 
-  <button>
-    <i class="material-icons">assignment</i>
-    <span>Lists</span>
-  </button>
-
-  <button>
-    <i class="material-icons">bookmark</i>
-    <span>Bookmarks</span>
-  </button>
-
-  <button>
+  <button class="disabled">
     <i class="material-icons">flash_on</i>
     <span>Events log</span>
+  </button>
+
+  <button class="disabled">
+    <i class="material-icons">assignment</i>
+    <span>This is a</span>
+  </button>
+
+  <button class="disabled">
+    <i class="material-icons">bookmark</i>
+    <span>Demo place holder</span>
   </button>
 
 </div>
@@ -5673,8 +5735,8 @@ input[type=text]:focus, textarea:focus {
   },
   {
     "componentId": "pages/setup",
-    "controller": "'use strict';\n\nzuix.controller(function(cp) {\n    cp.init = function() {\n        // TODO: add 'using' parse to task/zuix-build-tools\n        zuix.using('style', 'https://cdnjs.cloudflare.com/ajax/libs/flex-layout-attribute/1.0.3/css/flex-layout-attribute.min.css');\n        zuix.using('style', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css');\n    };\n    cp.create = function() {\n        cp.field('btn-close')\n            .on('click', ()=>{\n                showPage(0); // TODO: use enums instead of page numbers\n            });\n        cp.field('btn-connect').on('click', connect);\n        // cp.field('server-address')\n        //    .on('change', (e, el)=>{ });\n        /*\n        // populate wizard modules list\n        zuix.context('module-list', (listView)=>{\n            const mods = [];\n            Object.keys(modules).map((k)=>{\n                mods.push(modules[k]);\n            });\n            listView.model({\n                itemList: mods,\n                getItem: function(index, item) {\n                    // Return the item data. Each item could also be rendered with a different template,\n                    // in this case all items are using the 'card-template' which is defined\n                    // inline in the same page. For further information about ZUIX templates referer\n                    // to the documentation http://genielabs.github.io/zuix/#/docs .\n                    return {\n                        itemId: index,\n                        componentId: 'pages/setup/module_item',\n                        options: {\n                            //lazyLoad: true,\n                            controller: ()=>{},\n                            className: 'container-height-80',\n                            model: item // ,\n                            // css: false\n                        }\n                    };\n                }\n            });\n        });\n        */\n    };\n\n    function connect() {\n        hgui.showLoader();\n        let address = cp.field('server-address').value();\n        const port = address.substr(address.indexOf(':') + 1);\n        address = address.substr(0, address.indexOf(':'));\n        // allocate HomeGenie adapter\n        const adapterId = address + ':' + port;\n        // Load HomeGenie adapter\n        hgui.getAdapter(adapterId, 'adapters/homegenie', (homegenieAdapter) => {\n            homegenieAdapter.options().config = {\n                connection: {\n                    address: address,\n                    port: port\n                }\n            };\n            homegenieAdapter.connect(()=> {\n                // get modules and groups list\n                homegenieAdapter.groups().map((g) => {\n                    // add group to HGUI\n                    let hguiGroup;\n                    if (hgui.hasGroup(g.Name)) {\n                        hguiGroup = hgui.getGroup(g.Name);\n                    } else {\n                        hguiGroup = hgui.addGroup(g.Name);\n                    }\n                    // add modules and groups to HGUI\n                    g.Modules.map((moduleLink) => {\n                        // in HomeGenie Server group modules are just links, so we need to get the module instance from `moduleList`\n                        const module = homegenieAdapter.modules().find((m) => m.Domain == moduleLink.Domain && m.Address == moduleLink.Address);\n                        // if the module type is not supported it won't be found in the modules list\n                        if (module == null) return;\n                        const moduleId = module.Domain + '/' + module.Address;\n                        const adapterId = homegenieAdapter.id();\n                        let hguiModule;\n                        if (hgui.hasModule(moduleId, adapterId)) {\n                            // Update the hgui module\n                            hguiModule = hgui.getModule(moduleId, adapterId);\n                        } else {\n                            hguiModule = hgui.addModule({\n                                id: moduleId,\n                                type: module.DeviceType.toLowerCase(),\n                                name: module.Name,\n                                description: module.Description,\n                                adapterId: adapterId\n                            });\n                        }\n                        hgui.addGroupModule(hguiGroup, hguiModule);\n                        module.Properties.map((p) => {\n                            // TODO: should check update time before updating the property\n                            hgui.updateModule(hguiModule, p.Name, p.Value, p.UpdateTime);\n                        });\n                    });\n                });\n                hgui.save();\n                showPage(0);\n                hgui.hideLoader();\n            });\n        });\n    }\n});\n",
-    "css": ". {\n    position: fixed;\n    top:0;\n    left:0;\n    width:100vw;\n    height:100vh;\n    background-color: #fafafa;\n    overflow-y: scroll;\n    z-index: 1000;\n}\nbutton {\n    margin: 12px 12px 72px;\n    border: 1px solid rgba(0,0,0,.3);\n    border-radius: 8px;\n    background: transparent;\n    font-weight: 200;\n    font-size: 100%;\n    text-transform: uppercase;\n    color: rgba(0,0,0,0.5);\n}\n.page {\n    width: 100vw;\n    height: 100vh;\n    overflow-y: scroll;\n}\n.nav-close {\n    position: absolute;\n    left: 16px; top: 8px;\n    width: 48px; height: 48px;\n    border: 0;\n    margin: 0; padding: 0;\n    background: transparent;\n    color: black;\n}\n.nav-close span {\n    font-size: 300%;\n    opacity: 0.2;\n}\n.title {\n    cursor: pointer;\n    padding-left: 16px;\n    font-size: 150%;\n    font-weight: 300;\n}\n.title-logo {\n    cursor: pointer;\n    padding-right: 16px;\n    font-family: 'Lobster', cursive;\n    font-size: 140%;\n    font-weight: 200;\n    color: rgba(0,0,200,0.5);\n}\n.img-logo {\n    margin-top: 8px;\n    height: 48px;\n}\n"
+    "controller": "'use strict';\n\nzuix.controller(function(cp) {\n    cp.init = function() {\n        // TODO: add 'using' parse to task/zuix-build-tools\n        zuix.using('style', 'https://cdnjs.cloudflare.com/ajax/libs/flex-layout-attribute/1.0.3/css/flex-layout-attribute.min.css');\n        zuix.using('style', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css');\n    };\n    cp.create = function() {\n        cp.field('btn-close')\n            .on('click', ()=>{\n                showPage(0); // TODO: use enums instead of page numbers\n            });\n        cp.field('btn-connect').on('click', connect);\n        // cp.field('server-address')\n        //    .on('change', (e, el)=>{ });\n        /*\n        // populate wizard modules list\n        zuix.context('module-list', (listView)=>{\n            const mods = [];\n            Object.keys(modules).map((k)=>{\n                mods.push(modules[k]);\n            });\n            listView.model({\n                itemList: mods,\n                getItem: function(index, item) {\n                    // Return the item data. Each item could also be rendered with a different template,\n                    // in this case all items are using the 'card-template' which is defined\n                    // inline in the same page. For further information about ZUIX templates referer\n                    // to the documentation http://genielabs.github.io/zuix/#/docs .\n                    return {\n                        itemId: index,\n                        componentId: 'pages/setup/module_item',\n                        options: {\n                            //lazyLoad: true,\n                            controller: ()=>{},\n                            className: 'container-height-80',\n                            model: item // ,\n                            // css: false\n                        }\n                    };\n                }\n            });\n        });\n        */\n    };\n\n    function connect() {\n        hgui.showLoader();\n        let address = cp.field('server-address').value();\n        const credentials = cp.field('server-credentials').checked();\n        const port = address.substr(address.indexOf(':') + 1);\n        address = address.substr(0, address.indexOf(':'));\n        // allocate HomeGenie adapter\n        const adapterId = address + ':' + port;\n        // Load HomeGenie adapter\n        hgui.getAdapter(adapterId, 'adapters/homegenie', (homegenieAdapter) => {\n            homegenieAdapter.options().config = {\n                connection: {\n                    address: address,\n                    port: port,\n                    credentials: credentials\n                }\n            };\n            homegenieAdapter.connect(()=> {\n                // get modules and groups list\n                homegenieAdapter.groups().map((g) => {\n                    // add group to HGUI\n                    const hguiGroup = hgui.addGroup(g.Name);\n                    // add modules and groups to HGUI\n                    g.Modules.map((moduleLink) => {\n                        // in HomeGenie Server group modules are just links, so we need to get the module instance from `moduleList`\n                        const module = homegenieAdapter.modules().find((m) => m.Domain == moduleLink.Domain && m.Address == moduleLink.Address);\n                        // if the module type is not supported it won't be found in the modules list\n                        if (module == null) return;\n                        const moduleId = module.Domain + '/' + module.Address;\n                        const adapterId = homegenieAdapter.id();\n                        const hguiModule = hgui.addModule({\n                            id: moduleId,\n                            adapterId: adapterId,\n                            type: module.DeviceType.toLowerCase(),\n                            name: module.Name,\n                            description: module.Description,\n                            fields: []\n                        });\n                        // Update modules fields (hgui fields = hg Properties)\n                        module.Properties.map((p) => {\n                            hgui.updateModuleField(hguiModule, p.Name, p.Value, p.UpdateTime);\n                        });\n                        hgui.addGroupModule(hguiGroup, hguiModule);\n                    });\n                });\n                hgui.save();\n                showPage(0);\n                hgui.hideLoader();\n            });\n        });\n    }\n});\n",
+    "css": ". {\n    position: fixed;\n    top:0;\n    left:0;\n    width:100vw;\n    height:100vh;\n    background-color: #fafafa;\n    overflow-y: scroll;\n    z-index: 1000;\n}\nbutton {\n    margin: 24px 24px;\n    padding: 12px;\n    border: 1px solid rgba(0,0,0,.3);\n    border-radius: 8px;\n    background: transparent;\n    font-weight: 200;\n    font-size: 100%;\n    text-transform: uppercase;\n    color: rgba(0,0,0,0.5);\n}\n.page {\n    width: 100vw;\n    height: 100vh;\n    overflow-y: scroll;\n}\n.title {\n    margin: 0;\n    font-size: 180%;\n    font-weight: 300;\n}\n.title em {\n    cursor: pointer;\n    padding: 16px;\n}\n.title-logo {\n    padding-right: 16px;\n    font-size: 135%;\n    font-weight: 600;\n    color: red;\n}\n.img-logo {\n    margin-top: 8px;\n    height: 48px;\n}\n.logo {\n    color: rgba(20,0,200,0.75);\n    font-family: 'Lobster', cursive;\n    font-weight: 400;\n    font-size: 98%;\n}\n.summary {\n    font-size: 120%;\n    font-weight: 300;\n}\n.connection-button {\n    cursor: pointer;\n    margin: 8px;\n    padding-left: 16px;\n    padding-right: 16px;\n}\n.connection-button a {\n    text-decoration: none;\n}\n.connection-button p {\n    margin-left: 24px;\n}\n.connection-button h3 {\n    margin: 0;\n    font-size: 150%;\n}\ndiv[data-ui-field=\"page-adapters\"] {\n    padding-bottom: 56px;\n}\n"
   },
   {
     "componentId": "https://zuixjs.github.io/zkit/lib/controllers/drawer_layout",
@@ -5682,8 +5744,8 @@ input[type=text]:focus, textarea:focus {
   },
   {
     "componentId": "shared/main_menu",
-    "controller": "'use strict'\nzuix.controller((cp) => {\n    cp.create = ()=>{\n        cp.field('btn-settings')\n            .on('click', (e, el)=>{\n                drawerLayout.close();\n                showPage(2);\n            });\n    };\n});\n",
-    "css": ". {\n  font-family: \"Trebuchet MS\", sans-serif;\n  overflow-x: hidden;\n}\n\na {\n  text-decoration: none;\n  color: black;\n}\n\nhr {\n  margin-top: 12px;\n  margin-bottom: 12px;\n  opacity: 0.2;\n}\n\n.profile {\n  margin-top: 16px;\n  margin-left: 16px;\n  width: 64px;\n  height: 64px;\n  background: #f5f8fa;\n  border-radius: 50%;\n  border: solid 1px #00aced;\n  overflow: hidden;\n  cursor: pointer;\n}\n\n.profile img {\n  margin-left: -4px;\n  width: 68px;\n  height: 68px;\n}\n\n.info {\n  margin-top: 8px;\n  margin-left: 16px;\n  font-size: 120%;\n}\n\n.title {\n  font-family: 'Lobster', cursive;\n}\n.subtitle {\n  font-size: 90%;\n  color: gray;\n}\n.summary {\n  color: darkgray;\n  font-size: 80%;\n  margin-top: 8px;\n}\n.summary strong {\n  color: gray;\n}\n\n.options button {\n    font-family: \"Trebuchet MS\", sans-serif;\n    font-size: 110%;\n    width: 100%;\n    height:56px;\n    border: 0;\n    margin: 0;\n    padding: 0 0 0 16px;\n    background: transparent;\n    color: black;\n    vertical-align: middle;\n    align-items: center;\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n}\n.options button i {\n  font-size: 200%;\n  color: darkgray;\n}\n.options button span {\n  margin-left: 8px;\n}\n"
+    "controller": "'use strict'\nzuix.controller((cp) => {\n    cp.create = ()=>{\n        cp.field('btn-settings')\n            .on('click', (e, el)=>{\n                drawerLayout.close();\n                showSetupPage();\n            });\n    };\n});\n",
+    "css": ". {\n  font-family: \"Trebuchet MS\", sans-serif;\n  overflow-x: hidden;\n}\n\na {\n  text-decoration: none;\n  color: black;\n}\n\nhr {\n  margin-top: 12px;\n  margin-bottom: 12px;\n  opacity: 0.2;\n}\n\n.profile {\n  margin-top: 16px;\n  margin-left: 16px;\n  width: 64px;\n  height: 64px;\n  background: #f5f8fa;\n  border-radius: 50%;\n  border: solid 1px #00aced;\n  overflow: hidden;\n  cursor: pointer;\n}\n\n.profile img {\n  margin-left: -4px;\n  width: 68px;\n  height: 68px;\n}\n\n.info {\n  margin-top: 8px;\n  margin-left: 16px;\n  font-size: 120%;\n}\n\n.title {\n  font-family: 'Lobster', cursive;\n}\n.subtitle {\n  font-size: 90%;\n  color: gray;\n}\n.summary {\n  color: darkgray;\n  font-size: 80%;\n  margin-top: 8px;\n}\n.summary strong {\n  color: gray;\n}\n\n.options button {\n    cursor: pointer;\n    font-family: \"Trebuchet MS\", sans-serif;\n    font-size: 110%;\n    width: 100%;\n    height:56px;\n    border: 0;\n    margin: 0;\n    padding: 0 0 0 16px;\n    background: transparent;\n    color: black;\n    vertical-align: middle;\n    align-items: center;\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n}\n.options button i {\n  font-size: 200%;\n  color: darkgray;\n}\n.options button span {\n  margin-left: 8px;\n}\n.options button.disabled {\n    cursor: default;\n    opacity: 0.3;\n}\n"
   },
   {
     "componentId": "https://zuixjs.github.io/zkit/lib/components/menu_overlay",

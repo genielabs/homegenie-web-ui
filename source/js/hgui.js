@@ -191,6 +191,10 @@
                 observers[module.id].push(observer);
             },
             getObservers: () => observers,
+            getModuleField: (module, key) => {
+                if (module.fields == null) return null;
+                return module.fields.find((f) => f.key === key);
+            },
             updateModuleField: (module, key, value, timestamp) => {
                 if (module.fields == null) module.fields = [];
                 let field = module.fields.find((f) => f.key === key);
@@ -229,3 +233,30 @@
         window.hgui = new HGUI();
     }
 })(window);
+
+// HG commands enum
+var CMD = {
+    Control: {
+        On: 'Control.On',
+        Off: 'Control.Off',
+        Level: 'Control.Level',
+        Toggle: 'Control.Toggle'
+    },
+    Programs: {
+        Toggle: 'Programs.Toggle'
+    }
+};
+var FLD = {
+    Sensor: {
+        Humidity: 'Sensor.Humidity',
+        Luminance: 'Sensor.Luminance',
+        Temperature: 'Sensor.Temperature'
+    },
+    Status: {
+        Level: 'Status.Level'
+    },
+    Program: {
+        Status: 'Program.Status',
+        Error: 'Program.Error'
+    }
+};

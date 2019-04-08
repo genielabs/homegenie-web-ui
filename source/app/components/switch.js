@@ -37,18 +37,18 @@ zuix.controller((cp) => {
         controlOn.on('click', ()=>{
             if (actualLevel === 0) actualLevel = 1;
             setLevel(actualLevel);
-            command('Control.On');
+            command(CMD.Control.On);
         });
         controlOff.on('click', ()=>{
             setLevel(0);
-            command('Control.Off');
+            command(CMD.Control.Off);
         });
         controlLevel.on('click', levelChangeHandler);
         controlToggle.on('click', (e, el)=>{
             if (actualLevel === 0) actualLevel = 1;
             displayLevel = (displayLevel === 0 ? actualLevel : 0);
             setLevel(displayLevel);
-            command('Control.Toggle');
+            command(CMD.Control.Toggle);
         });
         cp.field('menu').on('click', ()=>{
             zuix.context('main-options-menu').show();
@@ -66,7 +66,7 @@ zuix.controller((cp) => {
         // TODO: handle other fields like 'Meter.Watts' and most recent fields 'timestamp'
         if (field != null) {
             blink();
-            if (field.key === 'Status.Level') {
+            if (field.key === FLD.Status.Level) {
                 actualLevel = parseFloat(field.value);
                 setLevel(actualLevel);
             }
@@ -74,7 +74,7 @@ zuix.controller((cp) => {
         }
         // if no field is given then update all fields bound to the view
         const module = cp.model();
-        const level = module.fields.find((f) => f.key === 'Status.Level');
+        const level = module.fields.find((f) => f.key === FLD.Status.Level);
         if (level != null) {
             actualLevel = parseFloat(level.value);
             setLevel(actualLevel);
@@ -123,7 +123,7 @@ zuix.controller((cp) => {
         level = (level - (level % 5)) / 100;
         displayLevel = actualLevel = level;
         setLevel(displayLevel);
-        command('Control.Level/'+(Math.round(actualLevel * 100)));
+        command(CMD.Control.Level + '/' + (Math.round(actualLevel * 100)));
     }
     function blink() {
         activityLed.addClass('on');

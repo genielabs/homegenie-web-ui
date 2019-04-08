@@ -46,13 +46,14 @@ zuix.controller((cp) => {
     function control(m, command, options, callback) {
         // adapter-specific implementation
         if (m.type === 'program') {
+            hgui.updateModuleField(m, FLD.Program.Status, 'Running', new Date().getTime());
             const currentGroup = hgui.getCurrentGroup();
             switch (m.id) {
                 case 'p:lights-on':
                     currentGroup.modules.map((mr) => {
                         const mod = hgui.getModule(mr.moduleId, mr.adapterId);
                         if (mod != null && (mod.type === 'light' || mod.type === 'dimmer')) {
-                            hgui.updateModuleField(mod, 'Status.Level', '1.0', new Date().getTime());
+                            moduleOn(mod);
                         }
                     });
                     break;
@@ -60,11 +61,15 @@ zuix.controller((cp) => {
                     currentGroup.modules.map((mr) => {
                         const mod = hgui.getModule(mr.moduleId, mr.adapterId);
                         if (mod != null && (mod.type === 'light' || mod.type === 'dimmer')) {
-                            hgui.updateModuleField(mod, 'Status.Level', '0', new Date().getTime());
+                            moduleOff(mod);
                         }
                     });
                     break;
             }
+            setTimeout(
+                ()=> hgui.updateModuleField(m, FLD.Program.Status, 'Idle', new Date().getTime()),
+                150
+            );
         } else if (m.type === 'light' || m.type === 'dimmer' || m.type === 'switch') {
             console.log(command, options);
             let args; const si = command.indexOf('/');
@@ -72,28 +77,47 @@ zuix.controller((cp) => {
                 args = command.substring(si + 1);
                 command = command.substring(0, si);
             }
-            console.log(command, args, options);
-            switch(command) {
-                case 'Control.On':
-                    hgui.updateModuleField(m, 'Status.Level', 1, new Date().getTime());
+            switch (command) {
+                case CMD.Control.On:
+                    moduleOn(m);
                     break;
-                case 'Control.Off':
-                    hgui.updateModuleField(m, 'Status.Level', 0, new Date().getTime());
+                case CMD.Control.Off:
+                    moduleOff(m);
                     break;
-                case 'Control.Level':
-                    hgui.updateModuleField(m, 'Status.Level', (parseFloat(args) / 100.0), new Date().getTime());
+                case CMD.Control.Level:
+                    const level = (parseFloat(args) / 100.0);
+                    moduleLevel(m, level);
+                    break;
+                case CMD.Control.Toggle:
+                    moduleToggle(m);
                     break;
             }
         }
-        console.log(m, command, options, callback);
         if (callback) callback();
     }
 
-    function processEvent(event) {
-        const moduleId = event.Domain + '/' + event.Source;
-        const m = hgui.getModule(moduleId, id());
-        if (m != null) {
-            hgui.updateModuleField(m, event.Property, event.Value, event.UnixTimestamp);
+    function moduleOn(module) {
+        const lastLevelField = hgui.getModuleField(module, FLD.Status.Level+'.Last');
+        const lastLevel = lastLevelField != null ? lastLevelField.value : 1;
+        hgui.updateModuleField(module, FLD.Status.Level, lastLevel, new Date().getTime());
+    }
+    function moduleOff(module) {
+        hgui.updateModuleField(module, FLD.Status.Level, 0, new Date().getTime());
+    }
+    function moduleLevel(module, level) {
+        hgui.updateModuleField(module, FLD.Status.Level, level, new Date().getTime());
+        if (level > 0) {
+            hgui.updateModuleField(module, FLD.Status.Level+'.Last', level, new Date().getTime());
+        }
+    }
+    function moduleToggle(module) {
+        const lastLevelField = hgui.getModuleField(module, FLD.Status.Level+'.Last');
+        const lastLevel = (lastLevelField != null ? lastLevelField.value : 1);
+        const levelField = hgui.getModuleField(module, FLD.Status.Level);
+        if (levelField != null && levelField.value === 0) {
+            hgui.updateModuleField(module, FLD.Status.Level, lastLevel, new Date().getTime());
+        } else {
+            hgui.updateModuleField(module, FLD.Status.Level, 0, new Date().getTime());
         }
     }
 });

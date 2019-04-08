@@ -6,7 +6,7 @@ zuix.controller((cp) => {
         cp.expose('update', cp.update);
         // register UI event handlers
         cp.view().on('click', () => {
-            command('Programs.Toggle', hgui.getCurrentGroup().name);
+            command(CMD.Programs.Toggle, hgui.getCurrentGroup().name);
         }).on('mouseup touchend', () => {
             cp.view().removeClass('pressed');
         }).on('mousedown touchstart', () => {
@@ -14,7 +14,7 @@ zuix.controller((cp) => {
         });
     };
     cp.update = (field, oldValue) => {
-        if (field.key === 'Program.Status') {
+        if (field.key === FLD.Program.Status) {
             const led = cp.field('status-led')
                 .removeClass('on off idle disabled error');
             switch (field.value) {

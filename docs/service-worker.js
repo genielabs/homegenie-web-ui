@@ -57,11 +57,11 @@ self.__precacheManifest = [
   },
   {
     "url": "app/components/sensor.css",
-    "revision": "28426c6bac235b6911f97e59a1a6dcd6"
+    "revision": "0906b20d6fa5ba1d74b8987fe6b0dab1"
   },
   {
     "url": "app/components/sensor.html",
-    "revision": "98d38dc8a01763a5895a92ef40e45cf7"
+    "revision": "91f2d6e496b19ce61958c7ef00de200f"
   },
   {
     "url": "app/components/sensor.js",
@@ -69,7 +69,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/components/switch.css",
-    "revision": "2ff7abb2bf3d3af3b2fba20142db5d05"
+    "revision": "7bc8924d407fcdda6905b2edbd19327e"
   },
   {
     "url": "app/components/switch.html",
@@ -253,7 +253,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "2f45f23d9f916a7155cce9e7b01b9b80"
+    "revision": "0604d3d1af56f2586d1e33e6270062bf"
   },
   {
     "url": "index.js",

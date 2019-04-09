@@ -32,10 +32,28 @@
         </div>
     </div>
 
-    <div layout="row center-right">
-        <div class="status-message" self="size-x1">12/12/2019 15:15:15</div>
-        <button data-ui-field="menu" class="flat-32 no-shadow">=</button>
+    <div layout="row center-right" class="status-bar">
+        <div data-ui-field="status-message" class="status-message" self="size-x1">12/12/2019 15:15:15</div>
         <div data-ui-field="activity-led" class="activity-led"></div>
     </div>
 
+</div>
+<div data-ui-field="context-menu-view" class="hidden">
+    <h1 data-ui-field="menu-title">ModuleName</h1>
+    <button layout="row center-left">
+        <i class="material-icons">timer</i>
+        <span>Automatic turn off timer</span>
+    </button>
+    <button layout="row center-left" class="disabled">
+        <i class="material-icons">show_chart</i>
+        <span>Show metering graph</span>
+    </button>
+    <button layout="row center-left" class="disabled">
+        <i class="material-icons">settings</i>
+        <span>Settings</span>
+    </button>
+    <button layout="row center-left" class="disabled">
+        <i class="material-icons">check_box</i>
+        <span>Enable voice control</span>
+    </button>
 </div>

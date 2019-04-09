@@ -11,12 +11,16 @@ zuix.controller((cp) => {
     let statusLed;
     let levelBar;
     let levelView;
+    let updateStatusInterval;
 
     // {ContextControllerHandler} interface methods
     cp.init = () => {
-        // TODO: implement 'zuix.using' parsing/handling in zuix_bundler (nodejs)
         zuix.using('style', 'https://cdnjs.cloudflare.com/ajax/libs/flex-layout-attribute/1.0.3/css/flex-layout-attribute.min.css');
         zuix.using('style', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css');
+        zuix.using('script', 'https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.12/dayjs.min.js');
+        zuix.using('script', 'https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.12/plugin/relativeTime.js', ()=>{
+            dayjs.extend(dayjs_plugin_relativeTime);
+        });
         exposePublicMethods();
     };
     cp.create = () => {
@@ -50,8 +54,17 @@ zuix.controller((cp) => {
             setLevel(displayLevel);
             command(CMD.Control.Toggle);
         });
-        cp.field('menu').on('click', ()=>{
-            zuix.context('main-options-menu').show();
+        // show options menu by clicking on the icon image
+        cp.field('icon').on('click', ()=>{
+            const optionsMenu = zuix.context('main-options-menu');
+            const view = zuix.field('menu', optionsMenu.view());
+            cp.field('menu-title')
+                .html(module.name.toUpperCase());
+            const menuHtml = cp.field('context-menu-view').html();
+            view.field('menu')
+                .css('max-width', '300px')
+                .html(menuHtml);
+            optionsMenu.show();
         });
         // update aspect of this widget according to the module type (switch, light or dimmer)
         if (module != null && module.type != null) {
@@ -69,6 +82,7 @@ zuix.controller((cp) => {
             if (field.key === FLD.Status.Level) {
                 actualLevel = parseFloat(field.value);
                 setLevel(actualLevel);
+                showUpdateTime(field);
             }
             return;
         }
@@ -78,6 +92,13 @@ zuix.controller((cp) => {
         if (level != null) {
             actualLevel = parseFloat(level.value);
             setLevel(actualLevel);
+            showUpdateTime(level);
+        }
+    };
+
+    cp.destroy = () => {
+        if (updateStatusInterval != null) {
+            clearInterval(updateStatusInterval);
         }
     };
 
@@ -130,6 +151,15 @@ zuix.controller((cp) => {
         setTimeout(()=>{
             activityLed.removeClass('on');
         }, 200);
+    }
+    function showUpdateTime(field) {
+        const u = () => {
+            const relativeDate = dayjs(field.timestamp).fromNow();
+            cp.field('status-message').html(relativeDate);
+        }
+        u();
+        if (updateStatusInterval != null) clearInterval(updateStatusInterval);
+        updateStatusInterval = setInterval(u, 30000);
     }
 
     // HGUI widget interface methods

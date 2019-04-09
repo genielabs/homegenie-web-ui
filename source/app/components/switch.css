@@ -57,6 +57,7 @@ button:hover {
     height: 36px;
     margin-left: 8px;
     margin-right: 8px;
+    cursor: pointer;
 }
 
 .no-shadow {
@@ -91,6 +92,10 @@ button:hover {
     background: #46c12e;
     -webkit-transition: width .2s ease-out; /* Safari */
     transition: width .2s ease-out;
+}
+
+.status-bar {
+    height: 24px;
 }
 
 h1[data-ui-field=name] {

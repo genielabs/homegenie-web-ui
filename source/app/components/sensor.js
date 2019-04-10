@@ -21,11 +21,12 @@ zuix.controller((cp) => {
     };
 
     // private methods
-    function command(apiCommand, options) {
+
+    function command(apiCommand, options, callback) {
         blink();
         const handler = cp.options().control;
         if (handler != null) {
-            handler(apiCommand, options);
+            handler(apiCommand, options, callback);
         }
     }
     function setType(type) {

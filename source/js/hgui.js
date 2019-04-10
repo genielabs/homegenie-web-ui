@@ -247,6 +247,9 @@ var CMD = {
     }
 };
 var FLD = {
+    Meter: {
+        Watts: 'Meter.Watts'
+    },
     Sensor: {
         Humidity: 'Sensor.Humidity',
         Luminance: 'Sensor.Luminance',

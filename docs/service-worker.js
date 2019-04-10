@@ -25,7 +25,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/adapters/demo.js",
-    "revision": "cb4d684bea01ffba7b0ede97329f9f35"
+    "revision": "e8010542423eef36f369dc7f186b0513"
   },
   {
     "url": "app/adapters/demo/data.groups.json",
@@ -33,7 +33,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/adapters/demo/data.modules.json",
-    "revision": "8fcead4386820ff5870db67552d4ab0c"
+    "revision": "61b4c5ce9e96d95f23e3be116e02f560"
   },
   {
     "url": "app/adapters/homegenie.js",
@@ -61,15 +61,15 @@ self.__precacheManifest = [
   },
   {
     "url": "app/components/sensor.html",
-    "revision": "91f2d6e496b19ce61958c7ef00de200f"
+    "revision": "67ae0255e3501131d89efd6426e21c39"
   },
   {
     "url": "app/components/sensor.js",
-    "revision": "0b747a3acc6e836475c899aaebb73a9f"
+    "revision": "ebd7a47f92a5f071fac3d14acf0a44e2"
   },
   {
     "url": "app/components/switch.css",
-    "revision": "7bc8924d407fcdda6905b2edbd19327e"
+    "revision": "a686d701b010ed0aeeeb308165dda98e"
   },
   {
     "url": "app/components/switch.html",
@@ -237,7 +237,7 @@ self.__precacheManifest = [
   },
   {
     "url": "css/common/widgets.css",
-    "revision": "69430746f0edf8cce068254d5ce7edd3"
+    "revision": "452b272238ee11a3ec8b28c6eb0dff18"
   },
   {
     "url": "css/README.html",
@@ -253,7 +253,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "0604d3d1af56f2586d1e33e6270062bf"
+    "revision": "444f43dd6ffc6012d9cd478a340fb79c"
   },
   {
     "url": "index.js",
@@ -264,8 +264,16 @@ self.__precacheManifest = [
     "revision": "96d2b9ae3e75b1153b4140c98f9ebdf5"
   },
   {
+    "url": "js/chartist/chartist.min.css",
+    "revision": "0d6caf50a899aab4422a3afcfa80f4d7"
+  },
+  {
+    "url": "js/chartist/chartist.min.js",
+    "revision": "cf9d912db488847b9ee2c7993eaf5e27"
+  },
+  {
     "url": "js/hgui.js",
-    "revision": "86ca7d32a59d198abea50eacaff3a0a4"
+    "revision": "64966074deb734d3a5dbfe0ad1803c64"
   },
   {
     "url": "js/mqttws31.js",
@@ -318,6 +326,34 @@ self.__precacheManifest = [
   {
     "url": "images/genie.png",
     "revision": "d311329f6b7f6588be49094a592492c9"
+  },
+  {
+    "url": "images/icons/desktop/android-chrome-192x192.png",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "images/icons/desktop/android-chrome-512x512.png",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "images/icons/desktop/apple-touch-icon.png",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "images/icons/desktop/favicon-16x16.png",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "images/icons/desktop/favicon-32x32.png",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "images/icons/desktop/mstile-150x150.png",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "images/icons/desktop/safari-pinned-tab.svg",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "images/icons/icon-128x128.png",

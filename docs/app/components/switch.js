@@ -78,11 +78,19 @@ zuix.controller((cp) => {
     cp.update = (field, oldValue) => {
         // TODO: handle other fields like 'Meter.Watts' and most recent fields 'timestamp'
         if (field != null) {
+            // console.log(field, field.key, field.value);
             blink();
-            if (field.key === FLD.Status.Level) {
-                actualLevel = parseFloat(field.value);
-                setLevel(actualLevel);
-                showUpdateTime(field);
+            switch (field.key) {
+                case FLD.Status.Level:
+                    actualLevel = parseFloat(field.value);
+                    setLevel(actualLevel);
+                    showUpdateTime(field);
+                    break;
+                case FLD.Meter.Watts:
+                    let watt = parseFloat(field.value);
+                    watt = Math.round(watt * 10) / 10;
+                    cp.field('meter-watts').html(watt > 0 ? watt+' W' : '');
+                    break;
             }
             return;
         }
@@ -146,6 +154,12 @@ zuix.controller((cp) => {
         setLevel(displayLevel);
         command(CMD.Control.Level + '/' + (Math.round(actualLevel * 100)));
     }
+
+    // Common functions
+    // TODO: these functions could be placed
+    //       in a separate file (eg. _inc/widgets) and
+    //       included with {% include "_inc/widgets/common.js" %}
+
     function blink() {
         activityLed.addClass('on');
         setTimeout(()=>{
@@ -156,19 +170,49 @@ zuix.controller((cp) => {
         const u = () => {
             const relativeDate = dayjs(field.timestamp).fromNow();
             cp.field('status-message').html(relativeDate);
-        }
+            //showChart();
+        };
         u();
         if (updateStatusInterval != null) clearInterval(updateStatusInterval);
         updateStatusInterval = setInterval(u, 30000);
     }
+    function showChart() {
+        command('GetStats', null, (data) => {
+            if (data != null) {
+                new Chartist.Line(cp.field('chart').get(), {
+                    series: [
+                        data
+                    ]
+                }, {
+                    showPoint: false,
+                    showLine: true,
+                    showArea: false,
+                    fullWidth: true,
+                    showLabel: false,
+                    lineSmooth: true,
+                    axisX: {
+                        showGrid: true,
+                        showLabel: false,
+                        offset: 0
+                    },
+                    axisY: {
+                        showGrid: true,
+                        showLabel: false,
+                        offset: 0
+                    },
+                    chartPadding: 0
+                });
+            }
+        });
+    }
 
     // HGUI widget interface methods
 
-    function command(apiCommand, options) {
+    function command(apiCommand, options, callback) {
         blink();
         const handler = cp.options().control;
         if (handler != null) {
-            handler(apiCommand, options);
+            handler(apiCommand, options, callback);
         }
     }
     function exposePublicMethods() {

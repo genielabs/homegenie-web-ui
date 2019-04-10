@@ -94,10 +94,6 @@ button:hover {
     transition: width .2s ease-out;
 }
 
-.status-bar {
-    height: 24px;
-}
-
 h1[data-ui-field=name] {
     width: 100%;
     white-space: nowrap;

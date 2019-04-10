@@ -2,6 +2,9 @@
 'use strict';
 zuix.controller((cp) => {
     let moduleList = []; let groupList = [];
+    // this interval is used to simulate device events
+    // such as 'Meter.Watts' and other sensors events
+    let eventGeneratorInterval;
     // this method is called when the component is ready
     cp.create = ()=> {
         // expose public methods required for implementing the HGUI Adapter interface
@@ -10,9 +13,13 @@ zuix.controller((cp) => {
             .expose('groups', () => groupList)
             .expose('connect', connect)
             .expose('control', control);
+        eventGeneratorInterval = setInterval(generateEvents, 2000);
     };
     cp.destroy = ()=> {
         // TODO: disconnect/dispose objects
+        if (eventGeneratorInterval != null) {
+            clearInterval(eventGeneratorInterval);
+        }
     };
 
     // private members
@@ -71,7 +78,6 @@ zuix.controller((cp) => {
                 150
             );
         } else if (m.type === 'light' || m.type === 'dimmer' || m.type === 'switch') {
-            console.log(command, options);
             let args; const si = command.indexOf('/');
             if (si > 0) {
                 args = command.substring(si + 1);
@@ -93,8 +99,19 @@ zuix.controller((cp) => {
                     break;
             }
         }
+        if (command === 'GetStats') {
+            // TODO:
+            const module = moduleList.find((mod) => mod.id === m.id);
+            if (module != null && module.stats) {
+                const data = module.stats[FLD.Meter.Watts] || [];
+                if (callback) callback(data);
+                return;
+            }
+        }
         if (callback) callback();
     }
+
+    // common device commands and events simulation
 
     function moduleOn(module) {
         const lastLevelField = hgui.getModuleField(module, FLD.Status.Level+'.Last');
@@ -118,6 +135,37 @@ zuix.controller((cp) => {
             hgui.updateModuleField(module, FLD.Status.Level, lastLevel, new Date().getTime());
         } else {
             hgui.updateModuleField(module, FLD.Status.Level, 0, new Date().getTime());
+        }
+    }
+
+    function generateEvents() {
+        moduleList.map((m) => {
+            const module = hgui.getModule(m.id, id());
+            if (module != null) {
+                // Generate new Meter.Watts event
+                let maxWatt = hgui.getModuleField(module, 'Properties.Watt');
+                if (maxWatt != null) {
+                    maxWatt = parseFloat(maxWatt.value);
+                    let level = hgui.getModuleField(module, FLD.Status.Level);
+                    if (level != null) {
+                        level = parseFloat(level.value);
+                        const watt = (level * maxWatt) + (Math.random() * 2) * level;
+                        hgui.updateModuleField(module, FLD.Meter.Watts, watt, new Date().getTime());
+                        addStatsValue(m, FLD.Meter.Watts, watt);
+                    }
+                }
+                // TODO: generate other sensor values
+            }
+        });
+    }
+
+    function addStatsValue(module, fieldName, value) {
+        module.stats = module.stats || [];
+        module.stats[fieldName] = module.stats[fieldName] || [];
+        module.stats[fieldName].push(value);
+        // max stats data size = 200
+        if (module.stats[fieldName].size > 200) {
+            module.stats[fieldName].splice(0, 1);
         }
     }
 });

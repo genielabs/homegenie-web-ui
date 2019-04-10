@@ -6,7 +6,8 @@
     "widgetId": "components/switch",
     "fields": [
       { "key": "Meter.Watts", "value": 8.22 },
-      { "key": "Status.Level", "value": 1 }
+      { "key": "Status.Level", "value": 1 },
+      { "key": "Properties.Watt", "value": 12 }
     ]
   },
   {
@@ -16,7 +17,8 @@
     "widgetId": "components/switch",
     "fields": [
       { "key": "Meter.Watts", "value": 0 },
-      { "key": "Status.Level", "value": 0 }
+      { "key": "Status.Level", "value": 0 },
+      { "key": "Properties.Watt", "value": 12 }
     ]
   },
   {
@@ -26,7 +28,8 @@
     "widgetId": "components/switch",
     "fields": [
       { "key": "Meter.Watts", "value": 5.62 },
-      { "key": "Status.Level", "value": 0.3 }
+      { "key": "Status.Level", "value": 0.3 },
+      { "key": "Properties.Watt", "value": 24 }
     ]
   },
   {
@@ -36,7 +39,8 @@
     "widgetId": "components/switch",
     "fields": [
       { "key": "Meter.Watts", "value": 9.18 },
-      { "key": "Status.Level", "value": 0.7 }
+      { "key": "Status.Level", "value": 0.7 },
+      { "key": "Properties.Watt", "value": 14 }
     ]
   },
   {
@@ -46,7 +50,8 @@
     "widgetId": "components/switch",
     "fields": [
       { "key": "Meter.Watts", "value": 2.02 },
-      { "key": "Status.Level", "value": 0.25 }
+      { "key": "Status.Level", "value": 0.25 },
+      { "key": "Properties.Watt", "value": 14 }
     ]
   },
   {
@@ -56,7 +61,8 @@
     "widgetId": "components/switch",
     "fields": [
       { "key": "Meter.Watts", "value": 7.14 },
-      { "key": "Status.Level", "value": 0.51 }
+      { "key": "Status.Level", "value": 0.51 },
+      { "key": "Properties.Watt", "value": 14 }
     ]
   },
   {

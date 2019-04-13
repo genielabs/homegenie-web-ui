@@ -13,7 +13,7 @@ zuix.controller((cp) => {
             .expose('groups', () => groupList)
             .expose('connect', connect)
             .expose('control', control);
-        eventGeneratorInterval = setInterval(generateEvents, 2000);
+        eventGeneratorInterval = setInterval(generateEvents, 1000);
     };
     cp.destroy = ()=> {
         // TODO: disconnect/dispose objects

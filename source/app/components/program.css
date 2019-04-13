@@ -38,3 +38,7 @@ h1[data-ui-field=name] {
     background-color: #aaaa00;
     box-shadow: 0 0 8px rgba(103, 100, 44, 0.5);
 }
+
+div[data-ui-field="status-led"].status-led {
+    margin-left: 16px;
+}

@@ -1151,6 +1151,9 @@ ZxQuery.prototype.detach = function() {
  */
 ZxQuery.prototype.attach = function() {
     const el = this._selection[0];
+    if (el.parentNode != null && el.__zuix_oldParent != null) {
+        el.parentNode.removeChild(el);
+    }
     if (el.parentNode == null && el.__zuix_oldParent != null) {
         z$(el.__zuix_oldParent).insert(el.__zuix_oldIndex, el);
         el.__zuix_oldParent = null;

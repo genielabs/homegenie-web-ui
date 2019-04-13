@@ -11,6 +11,7 @@ zuix.controller((cp) => {
     let statusLed;
     let levelBar;
     let levelView;
+    let headerBar;
     let updateStatusInterval;
 
     // {ContextControllerHandler} interface methods
@@ -37,6 +38,12 @@ zuix.controller((cp) => {
         statusLed = cp.field('status-led');
         levelBar = cp.field('level-bar');
         levelView = cp.field('level-view');
+        headerBar = cp.view().find('header');
+        // UI events listeners
+        headerBar.on('click', () => {
+            zuix.context('module-detail')
+                .open(cp.view());
+        });
         // actions to perform upon user interaction on UI fields
         controlOn.on('click', ()=>{
             if (actualLevel === 0) actualLevel = 1;
@@ -72,7 +79,7 @@ zuix.controller((cp) => {
         }
         // this delay is due to the animation, we must wait the animation
         // to end in order to measure the level bar width consistently
-        setTimeout(cp.update, 500);
+        //setTimeout(cp.update, 500);
     };
 
     cp.update = (field, oldValue) => {
@@ -170,40 +177,10 @@ zuix.controller((cp) => {
         const u = () => {
             const relativeDate = dayjs(field.timestamp).fromNow();
             cp.field('status-message').html(relativeDate);
-            //showChart();
         };
         u();
         if (updateStatusInterval != null) clearInterval(updateStatusInterval);
         updateStatusInterval = setInterval(u, 30000);
-    }
-    function showChart() {
-        command('GetStats', null, (data) => {
-            if (data != null) {
-                new Chartist.Line(cp.field('chart').get(), {
-                    series: [
-                        data
-                    ]
-                }, {
-                    showPoint: false,
-                    showLine: true,
-                    showArea: false,
-                    fullWidth: true,
-                    showLabel: false,
-                    lineSmooth: true,
-                    axisX: {
-                        showGrid: true,
-                        showLabel: false,
-                        offset: 0
-                    },
-                    axisY: {
-                        showGrid: true,
-                        showLabel: false,
-                        offset: 0
-                    },
-                    chartPadding: 0
-                });
-            }
-        });
     }
 
     // HGUI widget interface methods
@@ -218,6 +195,7 @@ zuix.controller((cp) => {
     function exposePublicMethods() {
         cp.expose('setLevel', setLevel)
           .expose('blink', blink)
+          .expose('command', command)
           // Observable interface method
           .expose('update', (field, oldValue) => cp.update(field, oldValue));
     }

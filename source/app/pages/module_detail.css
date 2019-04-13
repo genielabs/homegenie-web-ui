@@ -1,0 +1,11 @@
+. {
+    display: none;
+    position: fixed;
+    background: rgba(250, 150, 50, 1) linear-gradient(black, yellow);
+    top:0; left:0; right:0; bottom:0;
+    z-index: 2000;
+}
+
+div[data-ui-field="detail-page"] {
+    min-height: 100vh;
+}

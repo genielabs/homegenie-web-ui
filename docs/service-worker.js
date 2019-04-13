@@ -21,11 +21,11 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox
 self.__precacheManifest = [
   {
     "url": "404.html",
-    "revision": "3065ad87c133096dbba38b6e7895afc7"
+    "revision": "920911e362a3d5549a818dc606c6d758"
   },
   {
     "url": "app/adapters/demo.js",
-    "revision": "e8010542423eef36f369dc7f186b0513"
+    "revision": "a00e0e7ff9e7d4636e2a898b4d17f5c4"
   },
   {
     "url": "app/adapters/demo/data.groups.json",
@@ -41,7 +41,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/components/program.css",
-    "revision": "40f1b4e521b9230421a4e47a89a4c753"
+    "revision": "5d7a7322b6cbe5871d30e812edcbd190"
   },
   {
     "url": "app/components/program.html",
@@ -88,16 +88,8 @@ self.__precacheManifest = [
     "revision": "204665ad6ba031dbd4627e0392c57dda"
   },
   {
-    "url": "app/layout/footer.html",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
-  },
-  {
-    "url": "app/layout/header.css",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
-  },
-  {
     "url": "app/layout/header.html",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "cd7f61abedf1547138f081917b48af42"
   },
   {
     "url": "app/pages/eventslog.css",
@@ -152,6 +144,18 @@ self.__precacheManifest = [
     "revision": "d6093152119850e2f53205aea96df4dd"
   },
   {
+    "url": "app/pages/module_detail.css",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "app/pages/module_detail.html",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "app/pages/module_detail.js",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
     "url": "app/pages/setup.css",
     "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
@@ -196,6 +200,14 @@ self.__precacheManifest = [
     "revision": "fe34504c045cca13ffa4ced9489f427c"
   },
   {
+    "url": "app/shared/button_menu.html",
+    "revision": "dbc20df3662083e442e41ab541f1c137"
+  },
+  {
+    "url": "app/shared/button_menu.js",
+    "revision": "43c46366aa989104f8dabee90a2b1685"
+  },
+  {
     "url": "app/shared/main_menu.css",
     "revision": "6426486699a406ededcd7ff37f5524e2"
   },
@@ -213,15 +225,15 @@ self.__precacheManifest = [
   },
   {
     "url": "cli/mqtt.html",
-    "revision": "dc77b01fd5a2f7ffb2797bc594b5f399"
+    "revision": "d2dcf920fc9967e7563504d4c8d60069"
   },
   {
     "url": "cli/ws.html",
-    "revision": "29b6c8b95ef24b884c9319ad47d1be61"
+    "revision": "bc40ce1674571bc015645824e3797a1e"
   },
   {
     "url": "config.js",
-    "revision": "b5fb62e9e34bf05f99a048d03105e34c"
+    "revision": "21bf9612f3f1f4f36480f5490d9b4ada"
   },
   {
     "url": "css/common/base.css",
@@ -237,7 +249,7 @@ self.__precacheManifest = [
   },
   {
     "url": "css/common/widgets.css",
-    "revision": "452b272238ee11a3ec8b28c6eb0dff18"
+    "revision": "f9d271ebcdbd1a0a182511683fa6c1e4"
   },
   {
     "url": "css/README.html",
@@ -253,7 +265,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "444f43dd6ffc6012d9cd478a340fb79c"
+    "revision": "ef93d87106fff14ea9180c15f815fd2a"
   },
   {
     "url": "index.js",
@@ -293,7 +305,7 @@ self.__precacheManifest = [
   },
   {
     "url": "js/zuix/zuix.js",
-    "revision": "f2ea5d1feea8a79ba11f29c663e8c9cf"
+    "revision": "8a17441713a3009ccd759fa3e4b43c7b"
   },
   {
     "url": "js/zuix/zuix.min.js",
@@ -305,7 +317,7 @@ self.__precacheManifest = [
   },
   {
     "url": "offline.html",
-    "revision": "72257b195d4eb39cc00cbdcf3463f77e"
+    "revision": "02ddb6a753b7c1e733b7cadc0fc4b109"
   },
   {
     "url": "images/devices/alarm.png",
@@ -326,34 +338,6 @@ self.__precacheManifest = [
   {
     "url": "images/genie.png",
     "revision": "d311329f6b7f6588be49094a592492c9"
-  },
-  {
-    "url": "images/icons/desktop/android-chrome-192x192.png",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
-  },
-  {
-    "url": "images/icons/desktop/android-chrome-512x512.png",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
-  },
-  {
-    "url": "images/icons/desktop/apple-touch-icon.png",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
-  },
-  {
-    "url": "images/icons/desktop/favicon-16x16.png",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
-  },
-  {
-    "url": "images/icons/desktop/favicon-32x32.png",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
-  },
-  {
-    "url": "images/icons/desktop/mstile-150x150.png",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
-  },
-  {
-    "url": "images/icons/desktop/safari-pinned-tab.svg",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "images/icons/icon-128x128.png",

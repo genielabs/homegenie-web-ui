@@ -1,11 +1,49 @@
 . {
     display: none;
     position: fixed;
-    background: rgba(250, 150, 50, 1) linear-gradient(black, yellow);
+    background: rgba(250, 150, 50, 1) linear-gradient(rgba(40,40,40), lightblue);
     top:0; left:0; right:0; bottom:0;
     z-index: 2000;
+    tab-index: 0;
 }
 
-div[data-ui-field="detail-page"] {
-    min-height: 100vh;
+p {
+    color: white;
+    text-align: center;
+}
+.header {
+    color: white;
+    padding: 8px;
+    margin-bottom: 8px;
+    background: black;
+}
+.header h1 {
+    margin: 0;
+    font-size: 160%;
+    font-weight: 700;
+}
+.header em {
+    font-size: 200%;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.char-view {
+    background: white linear-gradient(white, lightcyan);
+    min-width:280px;
+    height:164px;
+    margin:8px;
+    margin-left:0;
+    border-radius: 8px;
+}
+
+.ct-series-a .ct-line {
+    /* Set the colour of this series line */
+    stroke: darkgreen;
+    /* Control the thikness of your lines */
+    stroke-width: 2px;
+}
+
+.wip-note {
+    padding-top: 24px;
 }

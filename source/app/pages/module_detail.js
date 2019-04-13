@@ -17,43 +17,24 @@ zuix.controller((cp) => {
           .expose('close', close);
         setInterval(()=>{
             if (chartView != null) chartView.update();
-        } ,2000);
-    };
-
-    function showChart() {
-        zuix.context(targetView).
-        command('GetStats', null, (data) => {
-            if (data != null) {
-                chartView = new Chartist.Line(cp.field('chart').get(), {
-                    series: [
-                        data
-                    ]
-                }, {
-                    showPoint: false,
-                    showLine: true,
-                    showArea: false,
-                    fullWidth: true,
-                    showLabel: false,
-                    lineSmooth: true,
-                    axisX: {
-                        showGrid: true,
-                        showLabel: false,
-                        offset: 0
-                    },
-                    axisY: {
-                        showGrid: true,
-                        showLabel: false,
-                        offset: 0
-                    },
-                    chartPadding: 0
-                });
+        } ,5000);
+        cp.view().on('keydown', (e) => {
+            if (!isOpen) return;
+            if (e.keyCode === 27) {
+                close();
             }
         });
-    }
+        cp.field('btn-back')
+          .on('click', close);
+    };
 
     function open(view) {
-        if (isOpen) return;
+        if (isOpen) {
+            close();
+            return;
+        }
         isOpen = true;
+        cp.view().get().focus();
         targetView = view;
         oldPosition = targetView.position();
         const parent = targetView.parent();
@@ -76,7 +57,7 @@ zuix.controller((cp) => {
         detailPage.insert(0, targetView.get());
         // show this page with a fade-in effect
         cp.view().display('block')
-            .animateCss('fadeIn', {duration: '0.5s'});
+            .animateCss('fadeIn', {duration: '0.25s'});
         // animate the targetView with a translate transform from old location to the new location
         newPosition = targetView.position();
         removeTransition(targetView);
@@ -87,15 +68,10 @@ zuix.controller((cp) => {
             // new position
             targetView.css('transform', 'translate(0,0)');
         });
-        detailPage.one('keydown', (e) => {
-            if (e.keyCode === 27) {
-                close(targetView);
-            }
-        }).get().focus();
-        showChart();
+        updateChart();
     }
     function close() {
-        detailPage.off('keydown', close);
+        isOpen = false;
         // detach placeHolder and reattach targetView to the original parent
         placeHolder.detach();
         detailPage.insert(0, placeHolder.get());
@@ -104,16 +80,15 @@ zuix.controller((cp) => {
         removeTransition();
         // current position
         targetView.css('transform', 'translate('+(-oldPosition.x+newPosition.x)+'px,'+(-oldPosition.y+newPosition.y)+'px)');
-        cp.view().animateCss('fadeOut', {duration: '0.5s'}, ()=> {
+        cp.view().animateCss('fadeOut', {duration: '0.25s'}, ()=> {
             cp.view().hide();
             targetView.css('z-index', 0);
-            isOpen = false;
         });
         setTimeout(()=>{
             addTransition();
             // original position
             targetView.css('transform', 'translate(0,0)');
-        }, 150);
+        }, 50);
         if (chartView != null) {
             chartView.detach();
             chartView = null;
@@ -138,6 +113,43 @@ zuix.controller((cp) => {
             '-ms-transition': 'none',
             '-o-transition': 'none',
             'transition:': 'none',
+        });
+    }
+
+    function updateChart() {
+        zuix.context(targetView).
+        command('GetStats', null, (data) => {
+            if (data != null) {
+                chartView = new Chartist.Line(cp.field('chart').get(), {
+                    series: [
+                        data
+                    ]
+                }, {
+                    showPoint: false,
+                    showLine: true,
+                    showArea: false,
+                    fullWidth: true,
+                    showLabel: true,
+                    lineSmooth: true,
+                    axisX: {
+                        showGrid: true,
+                        showLabel: true,
+                        type: Chartist.FixedScaleAxis,
+                        divisor: 12,
+                        labelInterpolationFnc: function(value) {
+                            return dayjs(value).format('DD / HH');
+                        }
+                    }, /*
+                    axisY: {
+                        showGrid: false,
+                        showLabel: false,
+                        offset: 0
+                    },*/
+                    chartPadding: {
+                        right: 8
+                    }
+                });
+            }
         });
     }
 });

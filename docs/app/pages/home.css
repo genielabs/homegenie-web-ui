@@ -1,5 +1,5 @@
 .content {
-    background: wheat linear-gradient(white, wheat, deepskyblue);
+    background: wheat linear-gradient(deepskyblue, wheat, white);
     font-family: serif;
     font-size: 110%;
     width: 100vw;

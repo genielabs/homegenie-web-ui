@@ -61,6 +61,7 @@ zuix.controller((cp) => {
             setLevel(displayLevel);
             command(CMD.Control.Toggle);
         });
+        /*
         // show options menu by clicking on the icon image
         cp.field('icon').on('click', ()=>{
             const optionsMenu = zuix.context('main-options-menu');
@@ -73,13 +74,14 @@ zuix.controller((cp) => {
                 .html(menuHtml);
             optionsMenu.show();
         });
+        */
         // update aspect of this widget according to the module type (switch, light or dimmer)
         if (module != null && module.type != null) {
             setType(module.type);
         }
         // this delay is due to the animation, we must wait the animation
         // to end in order to measure the level bar width consistently
-        //setTimeout(cp.update, 500);
+        setTimeout(cp.update, 500);
     };
 
     cp.update = (field, oldValue) => {

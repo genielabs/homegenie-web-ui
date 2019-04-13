@@ -13,7 +13,7 @@ zuix.controller((cp) => {
             .expose('groups', () => groupList)
             .expose('connect', connect)
             .expose('control', control);
-        eventGeneratorInterval = setInterval(generateEvents, 1000);
+        eventGeneratorInterval = setInterval(generateEvents, 10000);
     };
     cp.destroy = ()=> {
         // TODO: disconnect/dispose objects
@@ -36,7 +36,11 @@ zuix.controller((cp) => {
             url: 'app/adapters/demo/data.modules.json',
             success: (mods) => {
                 moduleList = JSON.parse(mods);
-                moduleList.map((m) => m.adapterId = id());
+                moduleList.map((m) => {
+                    m.adapterId = id();
+                    // generate random stats for the last 24 hrs
+                    addStatsValue(m, 'Meter.Watts', 0);
+                });
                 zuix.$.ajax({
                     url: 'app/adapters/demo/data.groups.json',
                     success: (grps) => {
@@ -143,13 +147,13 @@ zuix.controller((cp) => {
             const module = hgui.getModule(m.id, id());
             if (module != null) {
                 // Generate new Meter.Watts event
-                let maxWatt = hgui.getModuleField(module, 'Properties.Watt');
+                let maxWatt = hgui.getModuleField(module, 'Properties.Meter.Watts.Max');
                 if (maxWatt != null) {
                     maxWatt = parseFloat(maxWatt.value);
                     let level = hgui.getModuleField(module, FLD.Status.Level);
                     if (level != null) {
                         level = parseFloat(level.value);
-                        const watt = (level * maxWatt) + (Math.random() * 2) * level;
+                        const watt = (level * maxWatt) + (Math.random() * 1.5) * level;
                         hgui.updateModuleField(module, FLD.Meter.Watts, watt, new Date().getTime());
                         addStatsValue(m, FLD.Meter.Watts, watt);
                     }
@@ -162,10 +166,25 @@ zuix.controller((cp) => {
     function addStatsValue(module, fieldName, value) {
         module.stats = module.stats || [];
         module.stats[fieldName] = module.stats[fieldName] || [];
-        module.stats[fieldName].push(value);
-        // max stats data size = 200
-        if (module.stats[fieldName].size > 200) {
-            module.stats[fieldName].splice(0, 1);
+        const stats = module.stats[fieldName];
+        const now = new Date();
+        if (stats.length === 0) {
+            // initialize with random-generated data for last 24hrs
+            let maxWatt = hgui.getModuleField(module, 'Properties.'+fieldName+'.Max');
+            (maxWatt != null) ? maxWatt = parseFloat(maxWatt.value) : 0;
+            // subtract 1 day to now
+            let d = new Date(); d = d.setDate(d.getDate() - 1);
+            const samplesCount = 200;
+            let v = Math.random() * maxWatt;
+            for (let i = 0; i < samplesCount; i++) {
+                if (i % 20 === 0) {
+                    v = Math.random() * 20;
+                }
+                const cd = new Date(d+(i*(1440/samplesCount)*60*1000));
+                stats[i] = {x: cd.getTime(), y: (Math.random() * 1.5) + v};
+            }
         }
+        stats.splice(0, 1);
+        stats.push({ x: now.getTime(), y: value});
     }
 });

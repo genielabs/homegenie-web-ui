@@ -21,11 +21,11 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox
 self.__precacheManifest = [
   {
     "url": "404.html",
-    "revision": "920911e362a3d5549a818dc606c6d758"
+    "revision": "3065ad87c133096dbba38b6e7895afc7"
   },
   {
     "url": "app/adapters/demo.js",
-    "revision": "a00e0e7ff9e7d4636e2a898b4d17f5c4"
+    "revision": "f2e790bdc002d2d87bdb2dbf39c1303e"
   },
   {
     "url": "app/adapters/demo/data.groups.json",
@@ -33,7 +33,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/adapters/demo/data.modules.json",
-    "revision": "61b4c5ce9e96d95f23e3be116e02f560"
+    "revision": "c586974447e9c11664004d54f2514e69"
   },
   {
     "url": "app/adapters/homegenie.js",
@@ -69,7 +69,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/components/switch.css",
-    "revision": "a686d701b010ed0aeeeb308165dda98e"
+    "revision": "b1d24762f3c82bf1b509a55ae228c463"
   },
   {
     "url": "app/components/switch.html",
@@ -88,8 +88,16 @@ self.__precacheManifest = [
     "revision": "204665ad6ba031dbd4627e0392c57dda"
   },
   {
+    "url": "app/layout/footer.html",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "app/layout/header.css",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
     "url": "app/layout/header.html",
-    "revision": "cd7f61abedf1547138f081917b48af42"
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "app/pages/eventslog.css",
@@ -164,10 +172,6 @@ self.__precacheManifest = [
     "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
-    "url": "app/pages/setup.js",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
-  },
-  {
     "url": "app/pages/setup/module_item.css",
     "revision": "c7589ccdfe6a739105f9212c007c3859"
   },
@@ -184,12 +188,8 @@ self.__precacheManifest = [
     "revision": "c2213112ee667e664cdd7ddae1c3342f"
   },
   {
-    "url": "app/pages/splash.css",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
-  },
-  {
     "url": "app/pages/splash.html",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "d0e1361433abf430dc2ce032209c940c"
   },
   {
     "url": "app/README.html",
@@ -225,15 +225,15 @@ self.__precacheManifest = [
   },
   {
     "url": "cli/mqtt.html",
-    "revision": "d2dcf920fc9967e7563504d4c8d60069"
+    "revision": "dc77b01fd5a2f7ffb2797bc594b5f399"
   },
   {
     "url": "cli/ws.html",
-    "revision": "bc40ce1674571bc015645824e3797a1e"
+    "revision": "29b6c8b95ef24b884c9319ad47d1be61"
   },
   {
     "url": "config.js",
-    "revision": "21bf9612f3f1f4f36480f5490d9b4ada"
+    "revision": "b5fb62e9e34bf05f99a048d03105e34c"
   },
   {
     "url": "css/common/base.css",
@@ -265,7 +265,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "ef93d87106fff14ea9180c15f815fd2a"
+    "revision": "9e2a8a1e4465030df2f0ea687c52d4f4"
   },
   {
     "url": "index.js",
@@ -317,7 +317,7 @@ self.__precacheManifest = [
   },
   {
     "url": "offline.html",
-    "revision": "02ddb6a753b7c1e733b7cadc0fc4b109"
+    "revision": "72257b195d4eb39cc00cbdcf3463f77e"
   },
   {
     "url": "images/devices/alarm.png",
@@ -338,6 +338,34 @@ self.__precacheManifest = [
   {
     "url": "images/genie.png",
     "revision": "d311329f6b7f6588be49094a592492c9"
+  },
+  {
+    "url": "images/icons/desktop/android-chrome-192x192.png",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "images/icons/desktop/android-chrome-512x512.png",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "images/icons/desktop/apple-touch-icon.png",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "images/icons/desktop/favicon-16x16.png",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "images/icons/desktop/favicon-32x32.png",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "images/icons/desktop/mstile-150x150.png",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "images/icons/desktop/safari-pinned-tab.svg",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "images/icons/icon-128x128.png",

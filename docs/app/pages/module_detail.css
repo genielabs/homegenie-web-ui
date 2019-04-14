@@ -12,6 +12,7 @@ p {
     text-align: center;
 }
 .header {
+    height: 56px;
     color: white;
     padding: 8px;
     margin-bottom: 8px;
@@ -23,7 +24,9 @@ p {
     font-weight: 700;
 }
 .header em {
-    font-size: 200%;
+    font-size: 36px;
+    width: 48px;
+    text-align: center;
     margin-right: 8px;
     cursor: pointer;
 }
@@ -33,7 +36,6 @@ p {
     min-width:280px;
     height:164px;
     margin:8px;
-    margin-left:0;
     border-radius: 8px;
 }
 
@@ -42,6 +44,19 @@ p {
     stroke: darkgreen;
     /* Control the thikness of your lines */
     stroke-width: 2px;
+}
+
+.data-box {
+    margin: 8px;
+    color: white;
+}
+
+.data-box label {
+    color: yellow;
+}
+
+.data-box div {
+    padding: 4px;
 }
 
 .wip-note {

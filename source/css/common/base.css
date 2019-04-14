@@ -2,8 +2,13 @@ body {
     font-size: 14px;
 }
 h1 {
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
     font-size: 280%;
+    font-weight: 400;
 }
+
+/* INPUT TEXT AND TEXTAREA */
+
 input[type=text], textarea {
     border-radius: 6px;
     -webkit-transition: all 0.30s ease-in-out;
@@ -21,4 +26,168 @@ input[type=text]:focus, textarea:focus {
     padding: 3px 0 3px 3px;
     margin: 5px 1px 3px 0;
     border: 1px solid rgba(81, 203, 238, 1);
+}
+
+/* LINK */
+
+a,a:hover,a:visited {
+    color: palevioletred;
+    text-decoration: none;
+}
+
+/* LABEL */
+
+label {
+    text-transform: uppercase;
+    padding: 4px;
+    font-size: 80%;
+    font-weight: 800;
+}
+
+/* BUTTON */
+
+.hgui-button {
+    position: relative;
+
+    display: block;
+    margin: 8px auto;
+    padding: 8px;
+
+    overflow: hidden;
+
+    border-width: 0;
+    outline: none;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+
+    background-color: #229553;
+    color: #ecf0f1;
+
+    text-transform: uppercase;
+    font-size: 90%;
+    font-weight: 800;
+
+    transition: background-color .3s;
+}
+
+.hgui-button:hover, button:focus {
+    background-color: #27ae60;
+}
+
+.hgui-button > * {
+    position: relative;
+}
+
+.hgui-button span {
+    display: block;
+    padding: 12px 24px;
+}
+
+.hgui-button:before {
+    content: "";
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    display: block;
+    width: 0;
+    padding-top: 0;
+
+    border-radius: 100%;
+
+    background-color: rgba(236, 240, 241, .3);
+
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.hgui-button:active:before {
+    width: 120%;
+    padding-top: 120%;
+
+    transition: width .2s ease-out, padding-top .2s ease-out;
+}
+
+/* CHECKBOX */
+
+/* The container */
+.hgui-checkbox {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding-top: 8px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.hgui-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 24px;
+    width: 24px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.hgui-checkbox:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.hgui-checkbox input:checked ~ .checkmark {
+    background-color: #229553;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.hgui-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.hgui-checkbox .checkmark:after {
+    left: 10px;
+    top: 5px;
+    width: 5px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* MISC */
+
+.hidden {
+    display: none;
+}
+.clickable {
+    cursor: pointer;
 }

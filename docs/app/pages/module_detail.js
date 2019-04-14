@@ -1,6 +1,5 @@
 'use strict';
 zuix.controller((cp) => {
-    // TODO: ...
     let detailPage;
     let placeHolder;
     let targetView;
@@ -8,16 +7,16 @@ zuix.controller((cp) => {
     let newPosition;
     let isOpen;
     let chartView;
+    let chartUpdateInterval;
 
     cp.create = () => {
-        // TODO: implement widgets.commonIncludes() (with all common zuix.using ...)
+        hgui.widgetIncludes();
         detailPage = cp.field('detail-page');
         placeHolder = zuix.$(document.createElement('div'));
+        // Expose public methods
         cp.expose('open', open)
           .expose('close', close);
-        setInterval(()=>{
-            if (chartView != null) chartView.update();
-        } ,5000);
+        // UI event handlers
         cp.view().on('keydown', (e) => {
             if (!isOpen) return;
             if (e.keyCode === 27) {
@@ -26,6 +25,9 @@ zuix.controller((cp) => {
         });
         cp.field('btn-back')
           .on('click', close);
+    };
+    cp.destroy = () => {
+        stopUpdateInterval();
     };
 
     function open(view) {
@@ -62,7 +64,7 @@ zuix.controller((cp) => {
         newPosition = targetView.position();
         removeTransition(targetView);
         // old position
-        targetView.css('transform', 'translate('+(oldPosition.x-newPosition.x)+'px,'+(oldPosition.y-newPosition.y)+'px)');
+        targetView.css('transform', 'translate('+(oldPosition.rect.x-newPosition.rect.x)+'px,'+(oldPosition.rect.y-newPosition.rect.y)+'px)');
         setTimeout(()=>{
             addTransition(targetView);
             // new position
@@ -79,7 +81,7 @@ zuix.controller((cp) => {
         // animate targetView to the original position
         removeTransition();
         // current position
-        targetView.css('transform', 'translate('+(-oldPosition.x+newPosition.x)+'px,'+(-oldPosition.y+newPosition.y)+'px)');
+        targetView.css('transform', 'translate('+(newPosition.rect.x-oldPosition.rect.x)+'px,'+(newPosition.rect.y-oldPosition.rect.y)+'px)');
         cp.view().animateCss('fadeOut', {duration: '0.25s'}, ()=> {
             cp.view().hide();
             targetView.css('z-index', 0);
@@ -90,6 +92,7 @@ zuix.controller((cp) => {
             targetView.css('transform', 'translate(0,0)');
         }, 50);
         if (chartView != null) {
+            stopUpdateInterval();
             chartView.detach();
             chartView = null;
         }
@@ -120,6 +123,7 @@ zuix.controller((cp) => {
         zuix.context(targetView).
         command('GetStats', null, (data) => {
             if (data != null) {
+                let previousDayLabel;
                 chartView = new Chartist.Line(cp.field('chart').get(), {
                     series: [
                         data
@@ -137,7 +141,12 @@ zuix.controller((cp) => {
                         type: Chartist.FixedScaleAxis,
                         divisor: 12,
                         labelInterpolationFnc: function(value) {
-                            return dayjs(value).format('DD / HH');
+                            const d = dayjs(value);
+                            const day = d.format('DD');
+                            let format = 'HH (ddd DD)';
+                            if (previousDayLabel === day) format = 'HH';
+                            previousDayLabel = day;
+                            return d.format(format);
                         }
                     }, /*
                     axisY: {
@@ -149,7 +158,20 @@ zuix.controller((cp) => {
                         right: 8
                     }
                 });
+                startUpdateInterval();
             }
         });
+    }
+    function startUpdateInterval() {
+        stopUpdateInterval();
+        // refresh chart data ever second
+        chartUpdateInterval = setInterval(()=>{
+            if (chartView != null) chartView.update();
+        } ,1000);
+    }
+    function stopUpdateInterval() {
+        if (chartUpdateInterval != null) {
+            clearInterval(chartUpdateInterval);
+        }
     }
 });

@@ -7,16 +7,32 @@ a {
     text-transform: uppercase;
     padding: 4px;
     margin-right: 8px;
+    color: darkblue;
 }
 .mo-item-mdl span:first-child {
     padding: 8px 8px;
     margin-right: 4px;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,255,0.35);
     border-radius: 6px;
-    font-size: 80%;
+    font-size: 90%;
     font-weight: 600;
     color: white;
 }
 .mo-item-mdl span {
-    margin-right: 8px;
+    margin-right: 14px;
+}
+.mo-item-mdl i {
+    margin-left: 6px;
+    font-size: 28px;
+    color: blue;
+}
+
+.floating-action-button {
+    width: 56px;
+    height: 56px;
+    border-radius: 56px;
+    background: deeppink;
+    color:white;
+    font-weight: 700;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .35);
 }

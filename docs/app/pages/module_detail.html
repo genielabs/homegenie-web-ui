@@ -2,12 +2,27 @@
     <em data-ui-field="btn-back" class="material-icons">arrow_back</em>
     <h1>Module detail</h1>
 </div>
+
 <div data-ui-field="detail-page" layout="rows top-center" self="stretch-stretch">
 
-    <div data-ui-field="chart"
-         class="animated fadeIn char-view" self="size-x1"></div>
+    <div class="data-box container-small">
+        <label>Module ID</label>
+        <div data-ui-field="data-id">light-1</div>
+        <label>Type</label>
+        <div data-ui-field="data-type">switch</div>
+        <label>Connection adapter</label>
+        <div data-ui-field="data-adapter">demo-adapter</div>
+        <div layout="row center-center">
+            <button class="hgui-button">Properties</button>
+            <button class="hgui-button">Activity log</button>
+        </div>
+    </div>
 
 </div>
+
+<div data-ui-field="chart"
+     class="animated fadeIn char-view" self="size-x1"></div>
+
 <div class="wip-note">
     <p>
         This page will host charts, logs, module configuration options and automation options.

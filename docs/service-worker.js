@@ -29,7 +29,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/adapters/demo/data.groups.json",
-    "revision": "4dd36412c12931d77d2b93188510b326"
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "app/adapters/demo/data.modules.json",
@@ -161,15 +161,19 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/module_detail.js",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "72e6959c4202b1dac52311cd16ced9fc"
   },
   {
     "url": "app/pages/setup.css",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "fb0da108f43f82585e6063536433e183"
   },
   {
     "url": "app/pages/setup.html",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "e07addc15b5c57c1801557dda7e5ee79"
+  },
+  {
+    "url": "app/pages/setup.js",
+    "revision": "663d5314da5ac52091f831f241863f1a"
   },
   {
     "url": "app/pages/setup/module_item.css",
@@ -188,6 +192,10 @@ self.__precacheManifest = [
     "revision": "c2213112ee667e664cdd7ddae1c3342f"
   },
   {
+    "url": "app/pages/splash.css",
+    "revision": "3571d2801983548d806fa30f14982372"
+  },
+  {
     "url": "app/pages/splash.html",
     "revision": "d0e1361433abf430dc2ce032209c940c"
   },
@@ -197,27 +205,27 @@ self.__precacheManifest = [
   },
   {
     "url": "app/shared/button_menu.css",
-    "revision": "fe34504c045cca13ffa4ced9489f427c"
+    "revision": "1f7fcd16336c680ff28b6af8a69f613e"
   },
   {
     "url": "app/shared/button_menu.html",
-    "revision": "dbc20df3662083e442e41ab541f1c137"
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "app/shared/button_menu.js",
-    "revision": "43c46366aa989104f8dabee90a2b1685"
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "app/shared/main_menu.css",
-    "revision": "6426486699a406ededcd7ff37f5524e2"
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "app/shared/main_menu.html",
-    "revision": "cdfedd9ac560bfcaabdc83d45e29d63f"
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "app/shared/main_menu.js",
-    "revision": "c8ac3289305cc673e7bee5366da19d04"
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "app/templates/README.html",
@@ -229,7 +237,7 @@ self.__precacheManifest = [
   },
   {
     "url": "cli/ws.html",
-    "revision": "29b6c8b95ef24b884c9319ad47d1be61"
+    "revision": "c3d32c893f59e0e5a4879b06978e1de5"
   },
   {
     "url": "config.js",
@@ -237,11 +245,11 @@ self.__precacheManifest = [
   },
   {
     "url": "css/common/base.css",
-    "revision": "0e49a0b3ca52fc8173a8691514daf81c"
+    "revision": "c48108c43d0600aec3fc20efe83c0000"
   },
   {
     "url": "css/common/layout.css",
-    "revision": "ba043b1550921afb72f5f0d709766c1a"
+    "revision": "4aa577896944c1c1ead6c8986981b642"
   },
   {
     "url": "css/common/text.css",
@@ -265,7 +273,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "9e2a8a1e4465030df2f0ea687c52d4f4"
+    "revision": "250f7060191165c6b90b072faee23176"
   },
   {
     "url": "index.js",
@@ -285,7 +293,7 @@ self.__precacheManifest = [
   },
   {
     "url": "js/hgui.js",
-    "revision": "64966074deb734d3a5dbfe0ad1803c64"
+    "revision": "838840acfcee57dc508be9f4227555eb"
   },
   {
     "url": "js/mqttws31.js",
@@ -305,7 +313,7 @@ self.__precacheManifest = [
   },
   {
     "url": "js/zuix/zuix.js",
-    "revision": "8a17441713a3009ccd759fa3e4b43c7b"
+    "revision": "e6fe7cc04393f3306cfe054889e6f838"
   },
   {
     "url": "js/zuix/zuix.min.js",
@@ -340,15 +348,7 @@ self.__precacheManifest = [
     "revision": "d311329f6b7f6588be49094a592492c9"
   },
   {
-    "url": "images/icons/desktop/android-chrome-192x192.png",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
-  },
-  {
     "url": "images/icons/desktop/android-chrome-512x512.png",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
-  },
-  {
-    "url": "images/icons/desktop/apple-touch-icon.png",
     "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {

@@ -16,12 +16,7 @@ zuix.controller((cp) => {
 
     // {ContextControllerHandler} interface methods
     cp.init = () => {
-        zuix.using('style', 'https://cdnjs.cloudflare.com/ajax/libs/flex-layout-attribute/1.0.3/css/flex-layout-attribute.min.css');
-        zuix.using('style', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css');
-        zuix.using('script', 'https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.12/dayjs.min.js');
-        zuix.using('script', 'https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.12/plugin/relativeTime.js', ()=>{
-            dayjs.extend(dayjs_plugin_relativeTime);
-        });
+        hgui.widgetIncludes();
         exposePublicMethods();
     };
     cp.create = () => {

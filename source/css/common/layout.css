@@ -1,6 +1,11 @@
 
 /* Containers layout */
 
+.container-small {
+  min-width: 280px;
+  max-width: 300px;
+}
+
 .container-height-80 {
   min-width: 280px;
   height: 80px;

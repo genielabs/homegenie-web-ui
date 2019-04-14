@@ -8,17 +8,6 @@
     overflow-y: scroll;
     z-index: 1000;
 }
-button {
-    margin: 24px 24px;
-    padding: 12px;
-    border: 1px solid rgba(0,0,0,.3);
-    border-radius: 8px;
-    background: transparent;
-    font-weight: 200;
-    font-size: 100%;
-    text-transform: uppercase;
-    color: rgba(0,0,0,0.5);
-}
 .page {
     width: 100vw;
     height: 100vh;
@@ -29,7 +18,7 @@ button {
     font-size: 180%;
     font-weight: 300;
 }
-.title em {
+.title i {
     cursor: pointer;
     padding: 16px;
 }
@@ -53,22 +42,26 @@ button {
     font-size: 120%;
     font-weight: 300;
 }
-.connection-button {
-    cursor: pointer;
+.connection-item {
     margin: 8px;
     padding-left: 16px;
     padding-right: 16px;
 }
-.connection-button a {
-    text-decoration: none;
-}
-.connection-button p {
+.connection-item p {
     margin-left: 24px;
 }
-.connection-button h3 {
+.connection-item h3 {
     margin: 0;
     font-size: 150%;
 }
 div[data-ui-field="page-adapters"] {
     padding-bottom: 56px;
+}
+
+.disabled, .disabled a {
+    color: gray;
+    opacity: 0.5;
+}
+input[data-ui-field="server-address"] {
+    width: 100%;
 }

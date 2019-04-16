@@ -29,7 +29,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/adapters/demo/data.groups.json",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "4dd36412c12931d77d2b93188510b326"
   },
   {
     "url": "app/adapters/demo/data.modules.json",
@@ -57,19 +57,19 @@ self.__precacheManifest = [
   },
   {
     "url": "app/components/sensor.css",
-    "revision": "0906b20d6fa5ba1d74b8987fe6b0dab1"
+    "revision": "4c0c4a2ce596e9033d984b06e83a7735"
   },
   {
     "url": "app/components/sensor.html",
-    "revision": "67ae0255e3501131d89efd6426e21c39"
+    "revision": "073d29b7be3b2b799374edfaef2f91e4"
   },
   {
     "url": "app/components/sensor.js",
-    "revision": "ebd7a47f92a5f071fac3d14acf0a44e2"
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "app/components/switch.css",
-    "revision": "b1d24762f3c82bf1b509a55ae228c463"
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "app/components/switch.html",
@@ -78,6 +78,10 @@ self.__precacheManifest = [
   {
     "url": "app/components/switch.js",
     "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "app/controllers/paged_view.js",
+    "revision": "62ba8f50a938bd48a0f0186e64d3713f"
   },
   {
     "url": "app/controllers/README.html",
@@ -108,12 +112,8 @@ self.__precacheManifest = [
     "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
-    "url": "app/pages/home.css",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
-  },
-  {
     "url": "app/pages/home.html",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "d7a0d744f3e936879d6a51a6deb6bc8e"
   },
   {
     "url": "app/pages/home/items_list.css",
@@ -153,15 +153,15 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/module_detail.css",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "b3cd7f71a6ca7f936d2a1dea8e5b5ef0"
   },
   {
     "url": "app/pages/module_detail.html",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "cc9a152e20fa6778789a63c5dfdc141e"
   },
   {
     "url": "app/pages/module_detail.js",
-    "revision": "72e6959c4202b1dac52311cd16ced9fc"
+    "revision": "8902ba8719bf3e88166031c649ffd236"
   },
   {
     "url": "app/pages/setup.css",
@@ -232,6 +232,54 @@ self.__precacheManifest = [
     "revision": "77ba01864c4060ecb2d03ca6ee381178"
   },
   {
+    "url": "app/tools/zuix_editor.css",
+    "revision": "0cfe56022fd7c64f9771a6d8730df42a"
+  },
+  {
+    "url": "app/tools/zuix_editor.html",
+    "revision": "06835aa40756d2ee5a43626e6dff2d74"
+  },
+  {
+    "url": "app/tools/zuix_editor.js",
+    "revision": "6c3727c57418a5e6f52f06228bc6c58a"
+  },
+  {
+    "url": "app/tools/zuix_editor/bundle_item.css",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "app/tools/zuix_editor/bundle_item.html",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  {
+    "url": "app/tools/zuix_editor/bundle_item.js",
+    "revision": "2d8a04755212a67643094a7f54125cc0"
+  },
+  {
+    "url": "app/tools/zuix_hackbox.css",
+    "revision": "8a2976ba4c9ef3cbcf9b44a271d76390"
+  },
+  {
+    "url": "app/tools/zuix_hackbox.html",
+    "revision": "3ab0350f75d531c384d032bd72c2a984"
+  },
+  {
+    "url": "app/tools/zuix_hackbox.js",
+    "revision": "5ad98f342e41673b38d59d9477baacbf"
+  },
+  {
+    "url": "app/tools/zuix_hackbox/log_item.css",
+    "revision": "12d9f88050479e9fa8eec4c6b71fa4a6"
+  },
+  {
+    "url": "app/tools/zuix_hackbox/log_item.html",
+    "revision": "8886c2a2c482015b5898088c6de81534"
+  },
+  {
+    "url": "app/tools/zuix_hackbox/log_item.js",
+    "revision": "a5db9403d8de8722159f40df0cc7c833"
+  },
+  {
     "url": "cli/mqtt.html",
     "revision": "dc77b01fd5a2f7ffb2797bc594b5f399"
   },
@@ -273,11 +321,11 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "250f7060191165c6b90b072faee23176"
+    "revision": "2c17b349b790ba2a27bc5e74563523fa"
   },
   {
     "url": "index.js",
-    "revision": "63dae8f6e89c8c969853488ad0de58c0"
+    "revision": "a8908d1da2cd75e7af113516a76d297c"
   },
   {
     "url": "index.options.js",
@@ -336,6 +384,14 @@ self.__precacheManifest = [
     "revision": "4dca54a739d44089ae998e47093d120e"
   },
   {
+    "url": "images/devices/drop.png",
+    "revision": "51b1e6166978eb61414f764248ac1eb8"
+  },
+  {
+    "url": "images/devices/power.png",
+    "revision": "a4671d72ab9965f1ab9e3544e3fad717"
+  },
+  {
     "url": "images/devices/sensor.png",
     "revision": "3e7483846a3995d549271a11deac33a2"
   },
@@ -344,8 +400,16 @@ self.__precacheManifest = [
     "revision": "44fe5ded79bf5a25914d0b2c66396c96"
   },
   {
+    "url": "images/devices/temperature.png",
+    "revision": "4c85b9c79c7395bda77f82b63c245119"
+  },
+  {
     "url": "images/genie.png",
     "revision": "d311329f6b7f6588be49094a592492c9"
+  },
+  {
+    "url": "images/icons/desktop/android-chrome-192x192.png",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "images/icons/desktop/android-chrome-512x512.png",
@@ -353,18 +417,6 @@ self.__precacheManifest = [
   },
   {
     "url": "images/icons/desktop/favicon-16x16.png",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
-  },
-  {
-    "url": "images/icons/desktop/favicon-32x32.png",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
-  },
-  {
-    "url": "images/icons/desktop/mstile-150x150.png",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
-  },
-  {
-    "url": "images/icons/desktop/safari-pinned-tab.svg",
     "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {

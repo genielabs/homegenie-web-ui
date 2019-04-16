@@ -2,17 +2,33 @@
 zuix.controller((cp) => {
     // ui fields
     let statusLed;
+    let headerBar;
+    let alternate = false;
+    let alternateTimeout;
+    let p1;
+    let p2;
 
     // {ContextControllerHandler} interface methods
     cp.init = () => {
-        zuix.using('style', 'https://cdnjs.cloudflare.com/ajax/libs/flex-layout-attribute/1.0.3/css/flex-layout-attribute.min.css');
-        zuix.using('style', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css');
+        hgui.widgetIncludes();
         exposePublicMethods();
     };
     cp.create = () => {
         const module = cp.model();
         hgui.observeModule(module, cp.context); // listen for model updates
+        // get a reference to the UI fields of the view
         statusLed = cp.field('status-led');
+        headerBar = cp.view().find('header');
+        // UI events listeners
+        headerBar.on('click', () => {
+            zuix.context('module-detail')
+                .open(cp.view());
+        });
+        const container = cp.view('.debossed');
+        p1 = cp.field('field-a');
+        p2 = cp.field('field-b');
+        container.on('click', showNext);
+        showNext();
         cp.update();
     };
 
@@ -21,6 +37,21 @@ zuix.controller((cp) => {
     };
 
     // private methods
+
+    function showNext() {
+        if (alternate) {
+            p1.show().animateCss('fadeOutUp', function(){ this.hide(); });
+            p2.animateCss('fadeInUp').show();
+        } else {
+            p2.show().animateCss('fadeOutUp', function(){ this.hide(); });
+            p1.animateCss('fadeInUp').show();
+        }
+        alternate = !alternate;
+        if (alternateTimeout != null) {
+            clearTimeout(alternateTimeout);
+        }
+        alternateTimeout = setTimeout(showNext, 5000);
+    }
 
     function command(apiCommand, options, callback) {
         blink();
@@ -42,7 +73,8 @@ zuix.controller((cp) => {
     }
     function exposePublicMethods() {
         cp.expose('blink', blink)
-            // Observable interface method
-            .expose('update', (field, oldValue) => cp.update(field, oldValue));
+          .expose('command', ()=>{})
+          // Observable interface method
+          .expose('update', (field, oldValue) => cp.update(field, oldValue));
     }
 });

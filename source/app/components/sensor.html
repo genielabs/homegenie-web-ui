@@ -7,7 +7,21 @@
         <img data-ui-field="icon" class="icon" src="images/devices/sensor.png">
     </header>
 
-    <div class="debossed" layout="column stretch-stretch" self="size-x1">
+    <div class="debossed" layout="column center-center" self="size-x1">
+        <div data-ui-field="field-a" layout="column center-center">
+            <div layout="row center-center">
+                <img class="field-icon" src="images/devices/temperature.png">
+                <div class="field-value">21.5°</div>
+            </div>
+            <label>Sensor.Temperature</label>
+        </div>
+        <div data-ui-field="field-b" layout="column center-center">
+            <div layout="row center-center">
+                <img class="field-icon" src="images/devices/drop.png">
+                <div class="field-value">65%</div>
+            </div>
+            <label>Sensor.Humidity</label>
+        </div>
     </div>
 
     <div layout="row center-right" class="status-bar">

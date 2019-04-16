@@ -5,6 +5,7 @@
     top:0; left:0; right:0; bottom:0;
     z-index: 2000;
     tab-index: 0;
+    overflow-y: auto;
 }
 
 p {
@@ -61,4 +62,8 @@ p {
 
 .wip-note {
     padding-top: 24px;
+}
+
+.box-shadow-heavy {
+    box-shadow: 0 0 32px 0 rgba(0, 0, 0, 0.4), 0 0 32px 0 rgba(0, 0, 0, 0.75);
 }

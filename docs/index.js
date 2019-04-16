@@ -11,7 +11,7 @@ zuix.lazyLoad(true, -20);
 // Turn off debug output
 window.zuixNoConsoleOutput = true;
 // This is sort of forward declaration to prevent errors while AnimateCSS extension is not yet ready
-zuix.$.ZxQuery.prototype.animateCss = (animationName, param1, param2) => {};
+zuix.$.ZxQuery.prototype.animateCss = function(animationName, param1, param2) { return this; };
 
 const splashScreen = zuix.field('splash-screen');
 let configLoadTimeout = null; let initialized = false;

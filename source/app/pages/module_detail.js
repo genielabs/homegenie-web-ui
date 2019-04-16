@@ -51,7 +51,8 @@ zuix.controller((cp) => {
             'height': oldPosition.rect.height+'px'
         }).detach();
         // detach the targetView and put a placeholder in place of it
-        targetView.detach();
+        targetView.addClass('box-shadow-heavy')
+            .detach();
         // TODO: think about something to avoid the use of zuix's internal variables
         parent.insert(targetView.get().__zuix_oldIndex, placeHolder.get());
         // attach the targetView to its new parent
@@ -59,7 +60,7 @@ zuix.controller((cp) => {
         detailPage.insert(0, targetView.get());
         // show this page with a fade-in effect
         cp.view().display('block')
-            .animateCss('fadeIn', {duration: '0.25s'});
+            .animateCss('fadeIn', {duration: '0.5s'});
         // animate the targetView with a translate transform from old location to the new location
         newPosition = targetView.position();
         removeTransition(targetView);
@@ -81,7 +82,8 @@ zuix.controller((cp) => {
         // animate targetView to the original position
         removeTransition();
         // current position
-        targetView.css('transform', 'translate('+(newPosition.rect.x-oldPosition.rect.x)+'px,'+(newPosition.rect.y-oldPosition.rect.y)+'px)');
+        targetView //.removeClass('box-shadow-heavy')
+            .css('transform', 'translate('+(newPosition.rect.x-oldPosition.rect.x)+'px,'+(newPosition.rect.y-oldPosition.rect.y)+'px)');
         cp.view().animateCss('fadeOut', {duration: '0.25s'}, ()=> {
             cp.view().hide();
             targetView.css('z-index', 0);

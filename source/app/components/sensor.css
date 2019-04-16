@@ -20,6 +20,7 @@
 }
 
 header{
+    cursor: pointer;
     height: 48px;
 }
 h1 {
@@ -74,4 +75,30 @@ h1[data-ui-field=name] {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.field-value {
+    font-size: 350%;
+    font-weight: 800;
+    opacity: 0.5;
+    color: black;
+    -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
+.field-icon {
+    height: 38px;
+    opacity: 0.5;
+}
+
+label {
+    color: deeppink;
+}
+
+div[data-ui-field="field-b"] {
+    position: absolute;
+}
+.debossed {
+    position: relative;
+    overflow: hidden;
 }

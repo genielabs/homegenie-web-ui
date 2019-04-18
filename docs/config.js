@@ -8,10 +8,6 @@
         "zuixjs.github.io": {
                 "resourcePath": "/zuix-web-starter/app",
                 "libraryPath": "https://zuixjs.github.io/zkit/lib/"
-        },
-        "genielabs.github.io": {
-                "resourcePath": "/homegenie-web-ui/app/",
-                "libraryPath": "https://zuixjs.github.io/zkit/lib/"
         }
 });
 

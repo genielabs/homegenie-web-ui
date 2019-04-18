@@ -4,23 +4,30 @@
     <header layout="row center-right">
         <h1 data-ui-field="name" self="size-x1 center-left">Device name</h1>
         <!-- TODO: settings button (gear icon) -->
-        <img data-ui-field="icon" class="icon" src="images/devices/sensor.png">
+        <img data-ui-field="icon" class="icon" src="images/widgets/sensor.png">
     </header>
 
     <div class="debossed" layout="column center-center" self="size-x1">
         <div data-ui-field="field-a" layout="column center-center">
             <div layout="row center-center">
-                <img class="field-icon" src="images/devices/temperature.png">
+                <img class="field-icon" src="images/widgets/temperature.png">
                 <div class="field-value">21.5°</div>
             </div>
             <label>Sensor.Temperature</label>
         </div>
         <div data-ui-field="field-b" layout="column center-center">
             <div layout="row center-center">
-                <img class="field-icon" src="images/devices/drop.png">
+                <img class="field-icon" src="images/widgets/drop.png">
                 <div class="field-value">65%</div>
             </div>
             <label>Sensor.Humidity</label>
+        </div>
+        <div data-ui-field="field-c" layout="column center-center">
+            <div layout="row center-center">
+                <img class="field-icon" src="images/widgets/sun.png">
+                <div class="field-value">650</div>
+            </div>
+            <label>Sensor.Luminance</label>
         </div>
     </div>
 

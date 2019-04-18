@@ -78,7 +78,7 @@ h1[data-ui-field=name] {
 }
 
 .field-value {
-    font-size: 350%;
+    font-size: 300%;
     font-weight: 800;
     opacity: 0.5;
     color: black;
@@ -87,6 +87,7 @@ h1[data-ui-field=name] {
     -webkit-text-stroke-color: black;
 }
 .field-icon {
+    margin-right: 8px;
     height: 38px;
     opacity: 0.5;
 }
@@ -95,7 +96,7 @@ label {
     color: deeppink;
 }
 
-div[data-ui-field="field-b"] {
+div[data-ui-field="field-b"],div[data-ui-field="field-c"] {
     position: absolute;
 }
 .debossed {

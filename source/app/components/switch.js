@@ -117,10 +117,10 @@ zuix.controller((cp) => {
     // private methods
 
     function setType(type) {
-        let typeIcon = 'images/devices/bulb.png';
+        let typeIcon = 'images/widgets/bulb.png';
         switch (type.toLowerCase()) {
             case 'switch':
-                typeIcon = 'images/devices/socket.png';
+                typeIcon = 'images/widgets/socket.png';
             case 'light':
                 levelView.hide();
                 break;

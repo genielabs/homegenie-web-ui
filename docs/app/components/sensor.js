@@ -7,6 +7,8 @@ zuix.controller((cp) => {
     let alternateTimeout;
     let p1;
     let p2;
+    let p3; let currentIndex = 0;
+    let container;
 
     // {ContextControllerHandler} interface methods
     cp.init = () => {
@@ -24,9 +26,10 @@ zuix.controller((cp) => {
             zuix.context('module-detail')
                 .open(cp.view());
         });
-        const container = cp.view('.debossed');
+        container = cp.view('.debossed');
         p1 = cp.field('field-a');
         p2 = cp.field('field-b');
+        p3 = cp.field('field-c');
         container.on('click', showNext);
         showNext();
         cp.update();
@@ -39,6 +42,12 @@ zuix.controller((cp) => {
     // private methods
 
     function showNext() {
+        const parameters = container.children();
+        parameters.hide();
+        parameters.eq(currentIndex).show().animateCss('fadeOutUp', function(){ this.hide(); });
+        currentIndex++; if (currentIndex == 3) currentIndex = 0;
+        parameters.eq(currentIndex).animateCss('fadeInUp').show();
+        /*
         if (alternate) {
             p1.show().animateCss('fadeOutUp', function(){ this.hide(); });
             p2.animateCss('fadeInUp').show();
@@ -47,6 +56,7 @@ zuix.controller((cp) => {
             p1.animateCss('fadeInUp').show();
         }
         alternate = !alternate;
+        */
         if (alternateTimeout != null) {
             clearTimeout(alternateTimeout);
         }
@@ -61,7 +71,7 @@ zuix.controller((cp) => {
         }
     }
     function setType(type) {
-        let typeIcon = 'images/devices/sensor.png';
+        let typeIcon = 'images/widgets/sensor.png';
         cp.field('icon').attr('src', typeIcon);
         return cp.context;
     }

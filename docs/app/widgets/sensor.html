@@ -1,5 +1,11 @@
-{% extends "_inc/standard_widget.html" %}
-{% block content %}
+<div layout="columns top-stretch">
+
+    <header layout="row center-right">
+        <h1 data-ui-field="name" self="size-x1 center-left">Device name</h1>
+        <img data-ui-field="icon" class="icon" src="images/widgets/bulb.png">
+    </header>
+
+
     <div class="debossed" layout="column center-center" self="size-x1">
         <div data-ui-field="field-a" layout="column center-center">
             <div layout="row center-center">
@@ -16,4 +22,13 @@
             <label data-ui-field="label">Sensor.Humidity</label>
         </div>
     </div>
-{% endblock %}
+
+
+    <div layout="row center-right" class="status-bar">
+        <div data-ui-field="status-message" self="size-x1">12/12/2019 15:15:15</div>
+        <div data-ui-field="meter-watts" class="text-bold"></div>
+        <div data-ui-field="activity-led" class="activity-led"></div>
+    </div>
+
+</div>
+<!-- zUIx inline resource resourceBundle -->

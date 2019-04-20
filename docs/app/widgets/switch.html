@@ -1,5 +1,11 @@
-{% extends "_inc/standard_widget.html" %}
-{% block content %}
+<div layout="columns top-stretch">
+
+    <header layout="row center-right">
+        <h1 data-ui-field="name" self="size-x1 center-left">Device name</h1>
+        <img data-ui-field="icon" class="icon" src="images/widgets/bulb.png">
+    </header>
+
+
     <div class="debossed" layout="column stretch-stretch" self="size-x1">
         <div class="actions" self="size-x1 stretch-stretch" layout="row stretch-stretch">
             <button data-ui-field="control.off" class="flat-56">Off</button>
@@ -24,24 +30,13 @@
             <div data-ui-field="level-bar" class="level-bar"></div>
         </div>
     </div>
-{% endblock %}
 
-<div data-ui-field="context-menu-view" class="hidden">
-    <h1 data-ui-field="menu-title">ModuleName</h1>
-    <button layout="row center-left">
-        <i class="material-icons">timer</i>
-        <span>Automatic turn off timer</span>
-    </button>
-    <button layout="row center-left" class="disabled">
-        <i class="material-icons">show_chart</i>
-        <span>Show metering graph</span>
-    </button>
-    <button layout="row center-left" class="disabled">
-        <i class="material-icons">settings</i>
-        <span>Settings</span>
-    </button>
-    <button layout="row center-left" class="disabled">
-        <i class="material-icons">check_box</i>
-        <span>Enable voice control</span>
-    </button>
+
+    <div layout="row center-right" class="status-bar">
+        <div data-ui-field="status-message" self="size-x1">12/12/2019 15:15:15</div>
+        <div data-ui-field="meter-watts" class="text-bold"></div>
+        <div data-ui-field="activity-led" class="activity-led"></div>
+    </div>
+
 </div>
+<!-- zUIx inline resource resourceBundle -->

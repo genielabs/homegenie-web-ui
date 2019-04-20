@@ -57,7 +57,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/layout/footer.html",
-    "revision": "3df24ae9b0550c27d08287310fd5e3fc"
+    "revision": "d394cc04cde033753a888184e834d1e0"
   },
   {
     "url": "app/layout/header.css",
@@ -65,7 +65,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/layout/header.html",
-    "revision": "cd7f61abedf1547138f081917b48af42"
+    "revision": "f593c409c4f6965126ba17d9bf0bfa99"
   },
   {
     "url": "app/pages/eventslog.css",
@@ -73,15 +73,15 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/eventslog.html",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "d84787dba4ba300b89bf84914a036746"
   },
   {
     "url": "app/pages/home.css",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "5c6654ca279b2fee102084f341fbfbcf"
   },
   {
     "url": "app/pages/home.html",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "745a16081bb296c95262aad7d12e05d3"
   },
   {
     "url": "app/pages/home/items_list.css",
@@ -89,7 +89,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home/items_list.html",
-    "revision": "d0d4934489c35e5222568546f6eed050"
+    "revision": "e9494e2a3c2f0d0da1118d8d28291fe6"
   },
   {
     "url": "app/pages/home/items_list.js",
@@ -101,7 +101,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home/items_list/item_mini.html",
-    "revision": "141886ab37324985e54ddb1d1f63635a"
+    "revision": "e4297b8cc469b04a28fe0e261a00309e"
   },
   {
     "url": "app/pages/home/items_list/item_mini.js",
@@ -113,7 +113,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home/items_list/item.html",
-    "revision": "e179930ea08a54520b436e684fcd35b7"
+    "revision": "91edcf820671aa65316a9e30d82027d1"
   },
   {
     "url": "app/pages/home/items_list/item.js",
@@ -121,7 +121,11 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/module_detail.css",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "b3cd7f71a6ca7f936d2a1dea8e5b5ef0"
+  },
+  {
+    "url": "app/pages/module_detail.html",
+    "revision": "2bd6d08b1dfa1c90fcd521d9b568bbc3"
   },
   {
     "url": "app/pages/module_detail.js",
@@ -133,7 +137,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/setup.html",
-    "revision": "1c8f727178f121ea76780848b155cea1"
+    "revision": "b3c79d8a3d13d7581a913461452e8355"
   },
   {
     "url": "app/pages/setup.js",
@@ -145,7 +149,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/setup/module_item.html",
-    "revision": "b0abaa634c20bdba7e681c9958706100"
+    "revision": "35dc27bd559b7bd8e6688cac5ecb8409"
   },
   {
     "url": "app/pages/setup/module_item.js",
@@ -161,7 +165,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/splash.html",
-    "revision": "d0e1361433abf430dc2ce032209c940c"
+    "revision": "500c2f0f961f833d9206a5eda2fa0317"
   },
   {
     "url": "app/README.html",
@@ -173,23 +177,23 @@ self.__precacheManifest = [
   },
   {
     "url": "app/shared/button_menu.html",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "602ca4bae9b8b3d03e90ade2b6fa61e0"
   },
   {
     "url": "app/shared/button_menu.js",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "43c46366aa989104f8dabee90a2b1685"
   },
   {
     "url": "app/shared/main_menu.css",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "6426486699a406ededcd7ff37f5524e2"
   },
   {
     "url": "app/shared/main_menu.html",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "0ebca2a3f90cbc09b8710236c0f50e23"
   },
   {
     "url": "app/shared/main_menu.js",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "c8ac3289305cc673e7bee5366da19d04"
   },
   {
     "url": "app/templates/README.html",
@@ -201,15 +205,19 @@ self.__precacheManifest = [
   },
   {
     "url": "app/tools/zuix_editor.html",
-    "revision": "994691076c41e3fdc270ba388df4f4d3"
+    "revision": "13786cde7540823548ca80cf1805eacb"
   },
   {
     "url": "app/tools/zuix_editor.js",
     "revision": "6c3727c57418a5e6f52f06228bc6c58a"
   },
   {
+    "url": "app/tools/zuix_editor/bundle_item.css",
+    "revision": "321bb67d53b889b8b7ff1c42e8c3a796"
+  },
+  {
     "url": "app/tools/zuix_editor/bundle_item.html",
-    "revision": "27de88164db79540a734a4520adf4714"
+    "revision": "435a56f0d185cffe995c28a512e38f32"
   },
   {
     "url": "app/tools/zuix_editor/bundle_item.js",
@@ -221,7 +229,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/tools/zuix_hackbox.html",
-    "revision": "71df2f6a7d5ccf0af59e184f45157784"
+    "revision": "4fcee871a909807f82e7e41ead61c242"
   },
   {
     "url": "app/tools/zuix_hackbox.js",
@@ -233,11 +241,23 @@ self.__precacheManifest = [
   },
   {
     "url": "app/tools/zuix_hackbox/log_item.html",
-    "revision": "8886c2a2c482015b5898088c6de81534"
+    "revision": "98b9be27f0de7161a8b9a237a05954f1"
   },
   {
     "url": "app/tools/zuix_hackbox/log_item.js",
     "revision": "a5db9403d8de8722159f40df0cc7c833"
+  },
+  {
+    "url": "app/widgets/_inc/standard_widget.css",
+    "revision": "706418714729b1745c7ea73463f535e1"
+  },
+  {
+    "url": "app/widgets/_inc/standard_widget.html",
+    "revision": "83d2da4d9d133c8c2ef48a38ed9bed72"
+  },
+  {
+    "url": "app/widgets/_inc/standard_widget.js",
+    "revision": "6d320d701084125fbcd77bb62462855e"
   },
   {
     "url": "app/widgets/program.css",
@@ -245,7 +265,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/program.html",
-    "revision": "fc28ecaa8d589080f53b60f06240d204"
+    "revision": "49fc19b5fc0a351aaf2d3bee140acb45"
   },
   {
     "url": "app/widgets/program.js",
@@ -257,7 +277,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/sensor.html",
-    "revision": "02aa76ab82f4cf1cb45cdf7efd022424"
+    "revision": "f45b3a32f1e21db80a9a614859978b96"
   },
   {
     "url": "app/widgets/sensor.js",
@@ -269,7 +289,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/switch.html",
-    "revision": "d18f9ab22bf447ee3cdba567c5eff809"
+    "revision": "df399a22172733bf2b050d3b91098891"
   },
   {
     "url": "app/widgets/switch.js",
@@ -281,7 +301,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/timeclock.html",
-    "revision": "b4eb850cd5d8f47f548779446d4023a5"
+    "revision": "596e494d6365e6838f7ee63d321ed3df"
   },
   {
     "url": "app/widgets/timeclock.js",
@@ -369,7 +389,7 @@ self.__precacheManifest = [
   },
   {
     "url": "js/zuix/zuix.js",
-    "revision": "8a17441713a3009ccd759fa3e4b43c7b"
+    "revision": "7c7f3872662444b6e66eb312e180295f"
   },
   {
     "url": "js/zuix/zuix.min.js",
@@ -389,31 +409,31 @@ self.__precacheManifest = [
   },
   {
     "url": "images/icons/desktop/android-chrome-192x192.png",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "93d5e77e9ee1e9c6975f3c0bd1a21574"
   },
   {
     "url": "images/icons/desktop/android-chrome-512x512.png",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "6df83c6c13be17a2ea70d29e340c5ddb"
   },
   {
     "url": "images/icons/desktop/apple-touch-icon.png",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "2b78ed332644d19d9779c069c5842538"
   },
   {
     "url": "images/icons/desktop/favicon-16x16.png",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "6c047cdbd3d5c4c962a3a692a5025d27"
   },
   {
     "url": "images/icons/desktop/favicon-32x32.png",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "7413528d5e59c22af1ccf38187bc950b"
   },
   {
     "url": "images/icons/desktop/mstile-150x150.png",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "540caa78f56655281b2d4b17ad52f2ce"
   },
   {
     "url": "images/icons/desktop/safari-pinned-tab.svg",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "a0ab2c612c6a5019b3e4ae7c38043b98"
   },
   {
     "url": "images/icons/icon-128x128.png",
@@ -477,7 +497,7 @@ self.__precacheManifest = [
   },
   {
     "url": "images/widgets/temperature.png",
-    "revision": "d41d8cd98f00b204e9800998ecf8427e"
+    "revision": "4c85b9c79c7395bda77f82b63c245119"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();

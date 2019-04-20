@@ -7,33 +7,24 @@ zuix.controller((cp) => {
     let controlOff;
     let controlLevel;
     let controlToggle;
-    let activityLed;
     let statusLed;
     let levelBar;
     let levelView;
-    let headerBar;
-    let updateStatusInterval;
 
     // {ContextControllerHandler} interface methods
     cp.init = () => {
-        hgui.widgetIncludes();
-        exposePublicMethods();
+        cp.expose('setLevel', setLevel);
     };
     cp.create = () => {
-        // HGUI module bound to this widget is stored in the data model
-        const module = cp.model();
-        // listen for model updates
-        hgui.observeModule(module, cp.context);
         // get a reference to the UI fields of the view
+        initWidget();
         controlOn = cp.field('control.on');
         controlOff = cp.field('control.off');
         controlLevel = cp.field('control.level');
         controlToggle = cp.field('control.toggle');
-        activityLed = cp.field('activity-led');
         statusLed = cp.field('status-led');
         levelBar = cp.field('level-bar');
         levelView = cp.field('level-view');
-        headerBar = cp.view().find('header');
         // UI events listeners
         headerBar.on('click', () => {
             zuix.context('module-detail')
@@ -71,14 +62,13 @@ zuix.controller((cp) => {
         });
         */
         // update aspect of this widget according to the module type (switch, light or dimmer)
-        if (module != null && module.type != null) {
-            setType(module.type);
+        if (cp.model() != null && cp.model().type != null) {
+            setType(cp.model().type);
         }
         // this delay is due to the animation, we must wait the animation
         // to end in order to measure the level bar width consistently
         setTimeout(cp.update, 500);
     };
-
     cp.update = (field, oldValue) => {
         // TODO: handle other fields like 'Meter.Watts' and most recent fields 'timestamp'
         if (field != null) {
@@ -100,21 +90,92 @@ zuix.controller((cp) => {
         }
         // if no field is given then update all fields bound to the view
         const module = cp.model();
-        const level = module.fields.find((f) => f.key === FLD.Status.Level);
-        if (level != null) {
-            actualLevel = parseFloat(level.value);
-            setLevel(actualLevel);
-            showUpdateTime(level);
+        if (module.fields != null) {
+            const level = module.fields.find((f) => f.key === FLD.Status.Level);
+            if (level != null) {
+                actualLevel = parseFloat(level.value);
+                setLevel(actualLevel);
+                showUpdateTime(level);
+            }
         }
     };
-
     cp.destroy = () => {
-        if (updateStatusInterval != null) {
-            clearInterval(updateStatusInterval);
-        }
+        disposeWidget();
     };
 
     // private methods
+
+// // BEGIN standard_widget.js
+    /** @member {ContextController} cp */
+    let headerBar;
+    let activityLed;
+    let updateStatusInterval;
+
+    function initWidget() {
+        zuix.using('script', 'js/widgets.js');
+        zuix.using('script', '@cdnjs/dayjs/1.8.12/dayjs.min.js', ()=>{
+            zuix.using('script', '@cdnjs/dayjs/1.8.12/plugin/relativeTime.js', ()=>{
+                dayjs.extend(dayjs_plugin_relativeTime);
+            });
+        });
+        zuix.using('style', '@cdnjs/flex-layout-attribute/1.0.3/css/flex-layout-attribute.min.css');
+        zuix.using('style', '@cdnjs/animate.css/3.7.0/animate.min.css');
+        //
+        if (window.hgui) {
+            hgui.observeModule(cp.model(), cp.context); // listen for model updates
+        }
+        //
+        activityLed = cp.field('activity-led');
+        headerBar = cp.view().find('header');
+        exposePublicMethods();
+    }
+
+    function disposeWidget() {
+        if (updateStatusInterval != null) {
+            clearInterval(updateStatusInterval);
+        }
+    }
+
+    function blink() {
+        activityLed.addClass('on');
+        setTimeout(()=>{
+            activityLed.removeClass('on');
+        }, 200);
+    }
+    function showUpdateTime(field) {
+        const u = () => {
+            const relativeDate = dayjs(field.timestamp).fromNow();
+            cp.field('status-message').html(relativeDate);
+        };
+        u();
+        if (updateStatusInterval != null) clearInterval(updateStatusInterval);
+        updateStatusInterval = setInterval(u, 30000);
+    }
+    function toggleClass(element, statusIn, statusOut) {
+        if (element.hasClass(statusOut)) {
+            element
+                .removeClass(statusOut)
+                .addClass(statusIn);
+        }
+    }
+
+    // HGUI widget interface methods
+
+    function command(apiCommand, options, callback) {
+        blink();
+        const handler = cp.options().control;
+        if (handler != null) {
+            handler(apiCommand, options, callback);
+        }
+    }
+    function exposePublicMethods() {
+        cp.expose('blink', blink)
+            .expose('command', command)
+            // Observable interface method
+            .expose('update', (field, oldValue) => cp.update(field, oldValue));
+    }
+// // END standard_widget.js
+
 
     function setType(type) {
         let typeIcon = 'images/widgets/bulb.png';
@@ -157,43 +218,5 @@ zuix.controller((cp) => {
         displayLevel = actualLevel = level;
         setLevel(displayLevel);
         command(CMD.Control.Level + '/' + (Math.round(actualLevel * 100)));
-    }
-
-    // Common functions
-    // TODO: these functions could be placed
-    //       in a separate file (eg. _inc/widgets) and
-    //       included with  include "_inc/widgets/common.js"
-
-    function blink() {
-        activityLed.addClass('on');
-        setTimeout(()=>{
-            activityLed.removeClass('on');
-        }, 200);
-    }
-    function showUpdateTime(field) {
-        const u = () => {
-            const relativeDate = dayjs(field.timestamp).fromNow();
-            cp.field('status-message').html(relativeDate);
-        };
-        u();
-        if (updateStatusInterval != null) clearInterval(updateStatusInterval);
-        updateStatusInterval = setInterval(u, 30000);
-    }
-
-    // HGUI widget interface methods
-
-    function command(apiCommand, options, callback) {
-        blink();
-        const handler = cp.options().control;
-        if (handler != null) {
-            handler(apiCommand, options, callback);
-        }
-    }
-    function exposePublicMethods() {
-        cp.expose('setLevel', setLevel)
-          .expose('blink', blink)
-          .expose('command', command)
-          // Observable interface method
-          .expose('update', (field, oldValue) => cp.update(field, oldValue));
     }
 });

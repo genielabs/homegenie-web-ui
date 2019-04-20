@@ -1279,7 +1279,7 @@ z$.ajax = function(opt) {
     };
     xhr.onerror = function(xhr, textStatus, errorThrown) {
         if (util.isFunction(opt.error)) opt.error(xhr, textStatus, errorThrown);
-    }
+    };
     if (typeof opt.beforeSend == 'function') {
         opt.beforeSend(xhr);
     }
@@ -2806,13 +2806,29 @@ function loadInline(element) {
 }
 
 function resolvePath(path) {
-    let config = zuix.store('config');
-    if (config != null && config[location.host] != null) {
-        config = config[location.host];
-    }
-    const libraryPath = config != null && config.libraryPath != null ? config.libraryPath : LIBRARY_PATH_DEFAULT;
-    if (path.startsWith('@lib/')) {
-        path = libraryPath+path.substring(5);
+    if (path[0] === '@') {
+        let config = zuix.store('config');
+        let libraryPath = LIBRARY_PATH_DEFAULT;
+        if (config != null && config[location.host] != null) {
+            config = config[location.host];
+        }
+        if (config != null) {
+            switch (typeof config.libraryPath) {
+                case 'object':
+                    z$.each(config.libraryPath, function(k, v) {
+                        if (path.startsWith(k + '/')) {
+                            libraryPath = v;
+                            return false;
+                        }
+                        return true;
+                    });
+                    break;
+                case 'string':
+                    libraryPath = config.libraryPath;
+                    break;
+            }
+        }
+        path = libraryPath + path.substring(path.indexOf('/') + 1);
     }
     return path;
 }
@@ -4619,7 +4635,7 @@ Zuix.prototype.using = function(resourceType, resourcePath, callback) {
             }
         } else {
             // TODO: add logging
-            console.log('Resource already added ' + hashId + '(' + resourcePath + ')');
+            // _log('Resource already added ' + hashId + '(' + resourcePath + ')');
             if (callback) {
                 callback(resourcePath, hashId);
             }

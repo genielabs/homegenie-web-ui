@@ -19,56 +19,6 @@
     padding: 8px;
 }
 
-header{
-    cursor: pointer;
-    height: 48px;
-}
-h1 {
-    margin: 8px 0 10px;
-    padding-left: 8px;
-    padding-right: 8px;
-    opacity: 0.5;
-    font-size: 140%;
-}
-
-label {
-    margin-left: 12px;
-    margin-right: 12px;
-    font-size: 80%;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-button {
-    outline: none;
-    border: rgba(0,0,0,0.25);
-    background: rgba(255,255,255,0.5);
-    text-transform: uppercase;
-    transition: all ease-in 100ms;
-}
-button:hover {
-    background: rgba(255,255,255,0.65);
-    font-weight: bold;
-}
-
-.icon {
-    opacity: 0.5;
-    width: 36px;
-    height: 36px;
-    margin-left: 8px;
-    margin-right: 8px;
-}
-
-.status-bar {
-    height: 24px;
-}
-label {
-    color: deeppink;
-}
-.debossed {
-    position: relative;
-    overflow: hidden;
-}
 .time {
     font-size: 300%;
     font-weight: 800;
@@ -87,4 +37,8 @@ label {
     font-size: 120%;
     font-weight: 400;
     opacity: 0.75;
+}
+
+.clock-content {
+    min-height: 140px;
 }

@@ -53,6 +53,13 @@ button:hover {
     font-weight: bold;
 }
 
+h1[data-ui-field=name] {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .icon {
     opacity: 0.5;
     width: 36px;
@@ -65,20 +72,78 @@ button:hover {
     height: 24px;
 }
 
+.status-bar {
+    height: 24px;
+    font-size: 12px;
+    color: darkgray;
+}
+.status-bar div {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.activity-led {
+    height: 8px;
+    width: 8px;
+    margin-right: 8px;
+    background: blue;
+    opacity: 0.2;
+    border: solid 1px rgba(10,10,10,0.5);
+    border-radius: 6px;
+    -webkit-transition: opacity .05s ease-in-out; /* Safari */
+    transition: opacity .05s ease-in-out;
+}
+.activity-led.on {
+    opacity: 1;
+    box-shadow: 0 0 5px rgba(200, 200, 255, 1);
+    border: solid 1px rgba(255,255,255,0.5);
+}
+
 .debossed {
     background: rgba(0, 0, 0, 0.25) linear-gradient(rgba(0, 0, 0, 0.75), rgba(255, 255, 255, 0.5) 2%, rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0.8) 98%, rgba(0, 0, 0, 0.5));
     position: relative;
-    overflow: hidden;
 }
 
-h1[data-ui-field=name] {
-    width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
 /* END standard_widget.css */
 
+/* BEGIN status_led.css */
+.status-led {
+    width: 24px;
+    height: 24px;
+    border-radius: 24px;
+    border: solid 2px gray;
+    -webkit-transition: background-color .2s ease-in-out, opacity .2s ease-in-out; /* Safari */
+    transition: background-color .2s ease-in-out, opacity .2s ease-in-out;
+}
+.status-led.on {
+    opacity: 0.8;
+    background-color: #d7ff00;
+    box-shadow: 0 0 8px rgba(100, 255, 50, 0.75);
+}
+.status-led.off {
+    opacity: 0.6;
+    background-color: #28701b;
+}
+.status-led.error {
+    opacity: 0.7;
+    background-color: #ff2222;
+    box-shadow: 0 0 8px rgba(255, 100, 50, 0.75);
+}
+.status-led.idle {
+    opacity: 0.8;
+    background-color: #aaaa00;
+    box-shadow: 0 0 8px rgba(103, 100, 44, 0.5);
+}
+.status-led.disabled {
+    opacity: 0.6;
+    background-color: #444444;
+}
+/* END status_led.css */
+
+
+div[data-ui-field="control.level"] {
+    cursor: pointer;
+}
 
 .level-step {
     height: 24px;
@@ -99,6 +164,10 @@ h1[data-ui-field=name] {
     transition: width .2s ease-out;
 }
 
-div[data-ui-field="control.level"] {
-    cursor: pointer;
+.flat-56 {
+    border: none;
+    min-width: 56px;
+    min-height: 56px;
+    font-size: 120%;
+    padding: 16px;
 }

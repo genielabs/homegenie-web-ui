@@ -129,7 +129,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/module_detail.js",
-    "revision": "8981470774142a47dbb900a6ba067325"
+    "revision": "5ff3a16f4f0184928c737aa67fa2d298"
   },
   {
     "url": "app/pages/setup.css",
@@ -261,7 +261,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/program.css",
-    "revision": "5d7a7322b6cbe5871d30e812edcbd190"
+    "revision": "f804fcfca36be282d98ff794ea704317"
   },
   {
     "url": "app/widgets/program.html",
@@ -273,7 +273,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/sensor.css",
-    "revision": "42d45f1d5efbb6cf368f90c482f70449"
+    "revision": "a2af3858106dfd906b898d2b4bb1d89a"
   },
   {
     "url": "app/widgets/sensor.html",
@@ -281,11 +281,11 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/sensor.js",
-    "revision": "4d4d27033dacf6a0a2c845070cfa8e7e"
+    "revision": "80ba2a653b854e52f82311aad2b13cef"
   },
   {
     "url": "app/widgets/switch.css",
-    "revision": "2d20f3dafb2d137d13ba987f9b96abc6"
+    "revision": "4f144cd7d8d954d1d01575436b38bcb1"
   },
   {
     "url": "app/widgets/switch.html",
@@ -293,19 +293,19 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/switch.js",
-    "revision": "ed673ebf393ec306f3cc855cdd64e78c"
+    "revision": "e1ec967c8a92228c9fc54e4da5e98ded"
   },
   {
     "url": "app/widgets/timeclock.css",
-    "revision": "d663fd7c2f139a73f1767cd5793710ea"
+    "revision": "d08ccc0e2d609eecf405383dd2cf9ac3"
   },
   {
     "url": "app/widgets/timeclock.html",
-    "revision": "596e494d6365e6838f7ee63d321ed3df"
+    "revision": "b723cfad159ec78657f04d047fbc6827"
   },
   {
     "url": "app/widgets/timeclock.js",
-    "revision": "41e4d5fdaaa451e63d07ae10d4dc173a"
+    "revision": "89ab6cc41599b019668f089c0d0e303b"
   },
   {
     "url": "cli/mqtt.html",
@@ -317,7 +317,7 @@ self.__precacheManifest = [
   },
   {
     "url": "config.js",
-    "revision": "b5fb62e9e34bf05f99a048d03105e34c"
+    "revision": "35a9fbc9313bf9db5d8fe465bb7aa266"
   },
   {
     "url": "css/common/base.css",
@@ -333,7 +333,7 @@ self.__precacheManifest = [
   },
   {
     "url": "css/common/widgets.css",
-    "revision": "0432a14035ef7a883795aa9cc8a73558"
+    "revision": "4da280277b90afaf4e13b618c2afe4eb"
   },
   {
     "url": "css/README.html",
@@ -349,11 +349,11 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "45f9167bb0cf7063d0ec831fdf9311d4"
+    "revision": "cc87afdbc169c4a6ac2f32c3056032f0"
   },
   {
     "url": "index.js",
-    "revision": "a8908d1da2cd75e7af113516a76d297c"
+    "revision": "306685b7a77f15701eaf80b975ee0771"
   },
   {
     "url": "index.options.js",
@@ -369,7 +369,7 @@ self.__precacheManifest = [
   },
   {
     "url": "js/hgui.js",
-    "revision": "838840acfcee57dc508be9f4227555eb"
+    "revision": "111d7ff92ef17da5d7b60105f8c12a56"
   },
   {
     "url": "js/mqttws31.js",
@@ -378,6 +378,10 @@ self.__precacheManifest = [
   {
     "url": "js/pouchdb-7.0.0.min.js",
     "revision": "12d23e3295590b71657939cdb7aba451"
+  },
+  {
+    "url": "js/widgets.js",
+    "revision": "ac165a4723537b80c8480abccd92863b"
   },
   {
     "url": "js/zuix/zuix-bundler.js",
@@ -389,7 +393,7 @@ self.__precacheManifest = [
   },
   {
     "url": "js/zuix/zuix.js",
-    "revision": "7c7f3872662444b6e66eb312e180295f"
+    "revision": "8a7ede3a46887e81cc30997afdc8c42c"
   },
   {
     "url": "js/zuix/zuix.min.js",
@@ -402,6 +406,10 @@ self.__precacheManifest = [
   {
     "url": "offline.html",
     "revision": "72257b195d4eb39cc00cbdcf3463f77e"
+  },
+  {
+    "url": "test.html",
+    "revision": "ce359be612ca61c3154c5d442500e79f"
   },
   {
     "url": "images/genie.png",

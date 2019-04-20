@@ -4,6 +4,10 @@ This is the home of the new [HomeGenie](https://github.com/genielabs/HomeGenie)
 server user interface, based on [zuixjs.org](https://zuixjs.org) library and its
 [web-starter](https://github.com/zuixjs/zuix-web-starter) project.
 
+## Purpose of this project
+
+`// TODO: ....`
+
 
 ## Prerequisites
 

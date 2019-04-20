@@ -8,8 +8,13 @@
         let _configRevision;
         let currentGroup = 0;
         let listener;
-        const db = new PouchDB('hgui_data');
+        // Data persistence: PouchDB
+        let db;
         const dbConfigurationId = 'hgui:configuration';
+        zuix.using('script', 'js/pouchdb-7.0.0.min.js', ()=>{
+            db = new PouchDB('hgui_data');
+        });
+        // hgui object
         const _hgui = {
             load: (callback) => {
                 db.get(dbConfigurationId)
@@ -216,14 +221,6 @@
                     observers[module.id].map((observer) => observer.update(field, old));
                 }
             },
-            widgetIncludes: () => {
-                zuix.using('style', 'https://cdnjs.cloudflare.com/ajax/libs/flex-layout-attribute/1.0.3/css/flex-layout-attribute.min.css');
-                zuix.using('style', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css');
-                zuix.using('script', 'https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.12/dayjs.min.js');
-                zuix.using('script', 'https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.12/plugin/relativeTime.js', ()=>{
-                    dayjs.extend(dayjs_plugin_relativeTime);
-                });
-            },
             setListener: (l) => listener = l,
             showLoader: () => {
                 splashScreen.show().animateCss('fadeIn');
@@ -241,33 +238,3 @@
         window.hgui = new HGUI();
     }
 })(window);
-
-// HG commands enum
-var CMD = {
-    Control: {
-        On: 'Control.On',
-        Off: 'Control.Off',
-        Level: 'Control.Level',
-        Toggle: 'Control.Toggle'
-    },
-    Programs: {
-        Toggle: 'Programs.Toggle'
-    }
-};
-var FLD = {
-    Meter: {
-        Watts: 'Meter.Watts'
-    },
-    Sensor: {
-        Humidity: 'Sensor.Humidity',
-        Luminance: 'Sensor.Luminance',
-        Temperature: 'Sensor.Temperature'
-    },
-    Status: {
-        Level: 'Status.Level'
-    },
-    Program: {
-        Status: 'Program.Status',
-        Error: 'Program.Error'
-    }
-};

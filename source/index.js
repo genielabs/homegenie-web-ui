@@ -54,12 +54,3 @@ function showSetupPage() {
     zuix.field('page-homegenie-adapter').hide();
     showPage(2);
 }
-// Utility Functions
-
-function toggleClass(element, statusIn, statusOut) {
-    if (element.hasClass(statusOut)) {
-        element
-            .removeClass(statusOut)
-            .addClass(statusIn);
-    }
-}

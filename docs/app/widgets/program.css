@@ -1,3 +1,38 @@
+/* BEGIN status_led.css */
+.status-led {
+    width: 24px;
+    height: 24px;
+    border-radius: 24px;
+    border: solid 2px gray;
+    -webkit-transition: background-color .2s ease-in-out, opacity .2s ease-in-out; /* Safari */
+    transition: background-color .2s ease-in-out, opacity .2s ease-in-out;
+}
+.status-led.on {
+    opacity: 0.8;
+    background-color: #d7ff00;
+    box-shadow: 0 0 8px rgba(100, 255, 50, 0.75);
+}
+.status-led.off {
+    opacity: 0.6;
+    background-color: #28701b;
+}
+.status-led.error {
+    opacity: 0.7;
+    background-color: #ff2222;
+    box-shadow: 0 0 8px rgba(255, 100, 50, 0.75);
+}
+.status-led.idle {
+    opacity: 0.8;
+    background-color: #aaaa00;
+    box-shadow: 0 0 8px rgba(103, 100, 44, 0.5);
+}
+.status-led.disabled {
+    opacity: 0.6;
+    background-color: #444444;
+}
+/* END status_led.css */
+
+
 . {
     background: rgba(255,255,255,0.75);
     min-width: 280px;
@@ -33,12 +68,11 @@ h1[data-ui-field=name] {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.status-led.idle {
-    opacity: 0.8;
-    background-color: #aaaa00;
-    box-shadow: 0 0 8px rgba(103, 100, 44, 0.5);
-}
 
 div[data-ui-field="status-led"].status-led {
     margin-left: 16px;
+}
+
+.pressed {
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2), 0 0 3px 0 rgba(0, 0, 0, 0.19) !important;
 }

@@ -1,4 +1,9 @@
 {% include "_inc/standard_widget.css" %}
+{% include "_inc/status_led.css" %}
+
+div[data-ui-field="control.level"] {
+    cursor: pointer;
+}
 
 .level-step {
     height: 24px;
@@ -19,6 +24,10 @@
     transition: width .2s ease-out;
 }
 
-div[data-ui-field="control.level"] {
-    cursor: pointer;
+.flat-56 {
+    border: none;
+    min-width: 56px;
+    min-height: 56px;
+    font-size: 120%;
+    padding: 16px;
 }

@@ -5,12 +5,14 @@ zuix.controller(function(cp) {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     let updateTimeout = null;
 
+    cp.init = () => {
+        zuix.using('style', '@cdnjs/flex-layout-attribute/1.0.3/css/flex-layout-attribute.min.css');
+    };
     // This is called once the
     // component is loaded and ready
     cp.create = function() {
         refresh();
     };
-
     // This is called when eventually
     // the component is disposed
     cp.destroy = function() {

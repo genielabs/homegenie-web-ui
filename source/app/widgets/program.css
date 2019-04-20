@@ -1,3 +1,5 @@
+{% include "_inc/status_led.css" %}
+
 . {
     background: rgba(255,255,255,0.75);
     min-width: 280px;
@@ -33,12 +35,11 @@ h1[data-ui-field=name] {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.status-led.idle {
-    opacity: 0.8;
-    background-color: #aaaa00;
-    box-shadow: 0 0 8px rgba(103, 100, 44, 0.5);
-}
 
 div[data-ui-field="status-led"].status-led {
     margin-left: 16px;
+}
+
+.pressed {
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2), 0 0 3px 0 rgba(0, 0, 0, 0.19) !important;
 }

@@ -9,8 +9,12 @@ zuix.controller((cp) => {
     let chartView;
     let chartUpdateInterval;
 
+    cp.init = () => {
+        // Chartist.js
+        zuix.using('style', 'js/chartist/chartist.min.css');
+        zuix.using('script', 'js/chartist/chartist.min.js');
+    };
     cp.create = () => {
-        hgui.widgetIncludes();
         detailPage = cp.field('detail-page');
         placeHolder = zuix.$(document.createElement('div'));
         // Expose public methods

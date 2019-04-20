@@ -78,7 +78,7 @@ function createBundle(sourceFolder, page) {
                     return;
                 }
                 const resourcePath = el.getAttribute('src');
-                let scriptText = fetchResource(resolveResourcePath(page.file, resourcePath), null, false);
+                let scriptText = fetchResource(resolveResourcePath(page.file, resourcePath), false);
                 if (scriptText != null) {
                     scriptText = '//{% raw %}\n' + scriptText + '\n//{% endraw %}';
                     el.innerHTML = scriptText;
@@ -96,7 +96,7 @@ function createBundle(sourceFolder, page) {
         if (styleList != null) {
             styleList.forEach(function(el) {
                 const resourcePath = el.getAttribute('href');
-                let cssText = fetchResource(resolveResourcePath(page.file, resourcePath), null, false);
+                let cssText = fetchResource(resolveResourcePath(page.file, resourcePath), false);
                 if (cssText != null) {
                     el.outerHTML = '<style>\n/*{% raw %}*/\n'+cssText+'\n/*{% endraw %}*/\n</style>';
                     zuixBundle.assetList.push({path: resourcePath, content: cssText, type: 'style'});
@@ -134,13 +134,15 @@ function createBundle(sourceFolder, page) {
                     return;
                 }
 
+                const filePath = resolveAppPath(sourceFolder, resourcePath).path;
                 let content;
                 if (hasJsFile) {
                     if (isBundled(zuixBundle.controllerList, resourcePath)) {
                         return;
                     }
-                    content = fetchResource(resourcePath + '.js', sourceFolder, true);
+                    content = fetchResource(filePath + '.js', true);
                     if (content != null) {
+                        content = staticSite.swig({file: filePath + '.js', content: content}, localVars)._result.contents;
                         zuixBundle.controllerList.push({path: resourcePath, content: content});
                     }
                 }
@@ -150,10 +152,10 @@ function createBundle(sourceFolder, page) {
                     item.count++;
                     return;
                 }
-                content = fetchResource(resourcePath + '.html', sourceFolder, !hasJsFile);
+                content = fetchResource(filePath + '.html', !hasJsFile);
                 if (content != null) {
                     // Run static-site processing
-                    content = staticSite.swig({file: resourcePath + '.html', content: content}, localVars)._result.contents;
+                    content = staticSite.swig({file: filePath + '.html', content: content}, localVars)._result.contents;
                     // check markdown option
                     const md = el.getAttribute('data-o-markdown');
                     if (md != null && md.trim() === 'true') {
@@ -161,7 +163,7 @@ function createBundle(sourceFolder, page) {
                         el.removeAttribute('data-o-markdown');
                     }
                     const d = {
-                        file: sourceFolder + '/' + zuixConfig.app.resourcePath + '/' + resourcePath + '.html',
+                        file: sourceFolder + '/' + zuixConfig.app.resourcePath + '/' + filePath + '.html',
                         content: content
                     };
                     const dm = createBundle(sourceFolder, d);
@@ -174,8 +176,9 @@ function createBundle(sourceFolder, page) {
                     }
                 }
                 // CSS
-                content = fetchResource(resourcePath + '.css', sourceFolder);
+                content = fetchResource(filePath + '.css');
                 if (content != null) {
+                    content = staticSite.swig({file: filePath + '.css', content: content}, localVars)._result.contents;
                     if (el.getAttribute('data-ui-mode') === 'unwrap') {
                         // TODO: add // comment with file info
                         content = util.format('\n<style id="%s">\n%s\n</style>\n', resourcePath, content);
@@ -193,17 +196,29 @@ function createBundle(sourceFolder, page) {
 function resolveAppPath(sourceFolder, filePath) {
     let isLibraryPath = false;
     if (!isUrl(filePath)) {
-        if (filePath.startsWith('@lib/')) {
-            const relPath = filePath.substring(5);
-            // resolve components library path
-            if (zuixConfig.app.libraryPath != null) {
-                if (isUrl(zuixConfig.app.libraryPath)) {
-                    filePath = url.resolve(zuixConfig.app.libraryPath, relPath);
-                } else {
-                    filePath = path.join(sourceFolder, zuixConfig.app.libraryPath, relPath);
+        if (filePath[0] === '@') {
+            let libraryPath = LIBRARY_PATH_DEFAULT;
+            let config = zuixConfig.app;
+            if (config != null) {
+                switch (typeof config.libraryPath) {
+                    case 'object':
+                        for (let k in config.libraryPath) {
+                            if (filePath === k || filePath.startsWith(k + '/')) {
+                                libraryPath = config.libraryPath[k];
+                                break;
+                            }
+                        }
+                        break;
+                    case 'string':
+                        libraryPath = config.libraryPath;
+                        break;
                 }
+            }
+            if (filePath.indexOf('/') < 0) {
+                filePath = libraryPath;
             } else {
-                filePath = url.resolve(LIBRARY_PATH_DEFAULT, relPath);
+                const relPath = filePath.substring(filePath.indexOf('/') + 1);
+                filePath = url.resolve(libraryPath, relPath);
             }
             isLibraryPath = true;
         }
@@ -233,11 +248,8 @@ function isUrl(path) {
     return path.indexOf('://') > 0 || path.startsWith('//');
 }
 
-function fetchResource(path, sourceFolder, reportError) {
+function fetchResource(path, reportError) {
     let content = null;
-    if (sourceFolder != null) {
-        path = resolveAppPath(sourceFolder, path).path;
-    }
     const error = '   ^#^R^W[%s]^:';
     if (isUrl(path)) {
         if (path.startsWith('//')) {

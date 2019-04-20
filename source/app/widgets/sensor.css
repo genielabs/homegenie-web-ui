@@ -1,10 +1,15 @@
 {% include "_inc/standard_widget.css" %}
 
-h1[data-ui-field=name] {
-    width: 100%;
-    white-space: nowrap;
+.debossed {
     overflow: hidden;
-    text-overflow: ellipsis;
+}
+
+label {
+    color: deeppink;
+}
+
+div[data-ui-field="field-b"],div[data-ui-field="field-c"] {
+    position: absolute;
 }
 
 .field-value {
@@ -21,12 +26,4 @@ h1[data-ui-field=name] {
     margin-right: 8px;
     height: 38px;
     opacity: 0.5;
-}
-
-label {
-    color: deeppink;
-}
-
-div[data-ui-field="field-b"],div[data-ui-field="field-c"] {
-    position: absolute;
 }

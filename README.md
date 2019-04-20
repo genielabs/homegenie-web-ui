@@ -13,7 +13,7 @@ Based on [zuixjs.org](https://zuixjs.org) library and its
 - component based
 - modern and mobile-first UI design
 - integration of multiple and heterogeneous data sources
-through the implementation of connections adapter
+through the implementation of connection adapters
 - integrated build tool to generate as SPA+PWA
 - self contained widgets that can be embedded as stand-alone
 components into any web page with just one line of code

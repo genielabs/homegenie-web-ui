@@ -25,8 +25,8 @@ components into any web page with just one line of code
 - **HomeGenie** adapter to connect to [HomeGenie Server](https://github.com/genielabs/HomeGenie)
 and [HomeGenie Mini](https://github.com/genielabs/homegenie-mini)
 
-Other connection adapters might also be implemented. Contribution on this
-area is very welcome :)
+Other connection adapters might also be implemented.
+Contributors in this area are very welcome :)
 
 
 ## Prerequisites

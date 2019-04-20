@@ -2,6 +2,7 @@
   {
     "name": "Dashboard",
     "modules": [
+      { "moduleId": "time-clock" },
       { "moduleId": "light-1" },
       { "moduleId": "sensor-1" },
       { "moduleId": "light-2" },

@@ -1,0 +1,80 @@
+/* BEGIN standard_widget.css */
+. {
+    background: rgba(255,255,255,0.75);
+    min-width: 280px;
+    max-width: 300px;
+    min-height: 164px;
+    border: solid 1px whitesmoke;
+    border-radius: 6px;
+    font-family: Helvetica, serif;
+    font-weight: 400;
+    font-size: 14px;
+    padding-bottom: 0px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2), 0 0 4px 0 rgba(0, 0, 0, 0.19);
+    margin: 8px;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+    opacity: 1;
+}
+
+header{
+    cursor: pointer;
+    height: 48px;
+}
+h1 {
+    margin: 8px 0 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+    opacity: 0.5;
+    font-size: 140%;
+}
+
+label {
+    margin-left: 12px;
+    margin-right: 12px;
+    font-size: 80%;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+button {
+    cursor: pointer;
+    outline: none;
+    border: rgba(0,0,0,0.25);
+    background: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    transition: all ease-in 100ms;
+}
+button:hover {
+    background: rgba(255,255,255,0.65);
+    font-weight: bold;
+}
+
+.icon {
+    opacity: 0.5;
+    width: 36px;
+    height: 36px;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.status-bar {
+    height: 24px;
+}
+
+.debossed {
+    background: rgba(0, 0, 0, 0.25) linear-gradient(rgba(0, 0, 0, 0.75), rgba(255, 255, 255, 0.5) 2%, rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0.8) 98%, rgba(0, 0, 0, 0.5));
+    position: relative;
+    overflow: hidden;
+}
+
+h1[data-ui-field=name] {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* END standard_widget.css */

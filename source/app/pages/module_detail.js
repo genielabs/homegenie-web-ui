@@ -117,7 +117,7 @@ zuix.controller((cp) => {
             '-moz-transition': 'none',
             '-ms-transition': 'none',
             '-o-transition': 'none',
-            'transition:': 'none',
+            'transition:': 'none'
         });
     }
 

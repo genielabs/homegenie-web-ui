@@ -40,17 +40,19 @@ hgui.setListener({
             }
         };
         // TODO: add utility function to get the widget from the module type
-        let widgetId;
+        let widgetId = m.widgetId;
+        // auto-select widget based on type
+        if (widgetId == null)
         switch (m.type) {
             case 'program':
-                widgetId = 'components/program';
+                widgetId = 'widgets/program';
                 break;
             case 'sensor':
             case 'doorwindow':
-                widgetId = 'components/sensor';
+                widgetId = 'widgets/sensor';
                 break;
             default:
-                widgetId = 'components/switch';
+                widgetId = 'widgets/switch';
                 break;
         }
         // call global function `addWidget` to create a new widget
@@ -97,6 +99,7 @@ function setupDemoAdapter() {
                         id: moduleId,
                         type: module.type,
                         name: module.name,
+                        widgetId: module.widgetId,
                         description: module.description,
                         fields: module.fields,
                         adapterId: adapterId

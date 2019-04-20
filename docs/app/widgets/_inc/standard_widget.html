@@ -1,0 +1,17 @@
+<!-- icon set: http://designbeep.com/2015/05/30/free-download-smart-house-icon-set-svg-eps-png-sketch/ -->
+<div layout="columns top-stretch">
+
+    <header layout="row center-right">
+        <h1 data-ui-field="name" self="size-x1 center-left">Device name</h1>
+        <img data-ui-field="icon" class="icon" src="images/widgets/bulb.png">
+    </header>
+
+{% block content %}{% endblock %}
+
+    <div layout="row center-right" class="status-bar">
+        <div data-ui-field="status-message" self="size-x1">12/12/2019 15:15:15</div>
+        <div data-ui-field="meter-watts" class="text-bold"></div>
+        <div data-ui-field="activity-led" class="activity-led"></div>
+    </div>
+
+</div>

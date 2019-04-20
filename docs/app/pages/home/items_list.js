@@ -57,11 +57,11 @@ console.log(item);
         const widgetType = item.Properties.find((item) => item.Name === 'Widget.DisplayModule');
         console.log(deviceType, widgetType != null ? widgetType.Value : '-');
         // TODO: load a specific component based on `widgetType` or `deviceType`
-        //       (now just loading the same widget for all: `components/switch`)
-        let componentId = 'components/switch';
+        //       (now just loading the same widget for all: `widgets/switch`)
+        let componentId = 'widgets/switch';
         if (widgetType != null) {
           if (widgetType.Value === 'homegenie/generic/program') {
-            componentId = 'components/program';
+            componentId = 'widgets/program';
           } //else return true;
         }
         el = zx.createComponent(componentId, options).container();

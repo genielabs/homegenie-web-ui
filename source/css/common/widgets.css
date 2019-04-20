@@ -14,11 +14,6 @@
   padding: 16px;
 }
 
-.debossed {
-  background: rgba(0,0,0,0.25);
-  background-image: linear-gradient(rgba(0,0,0,0.75), rgba(255,255,255,0.5) 2%, rgba(255,255,255,0.75) 50%, rgba(255,255,255,0.8) 98%, rgba(0,0,0,0.5))
-}
-
 .status-led {
   width: 24px;
   height: 24px;

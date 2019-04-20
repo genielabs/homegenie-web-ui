@@ -1,0 +1,32 @@
+{% include "_inc/standard_widget.css" %}
+
+h1[data-ui-field=name] {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.field-value {
+    font-size: 300%;
+    font-weight: 800;
+    margin-right: 36px;
+    opacity: 0.5;
+    color: black;
+    -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
+.field-icon {
+    margin-right: 8px;
+    height: 38px;
+    opacity: 0.5;
+}
+
+label {
+    color: deeppink;
+}
+
+div[data-ui-field="field-b"],div[data-ui-field="field-c"] {
+    position: absolute;
+}

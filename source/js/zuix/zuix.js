@@ -3618,9 +3618,8 @@ function field(fieldName, container, context) {
             context._fieldCache[fieldName] = el;
             // extend the returned `ZxQuery` object adding the `field` method
             if (el.length() === 1 && util.isNoU(el.field)) {
-                const that = this;
                 el.field = function(name) {
-                    return that.field(name, el, el);
+                    return field(name, el, el);
                 };
             }
         }

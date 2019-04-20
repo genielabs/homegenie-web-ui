@@ -65,7 +65,9 @@ let localVars;
 function createBundle(sourceFolder, page) {
     const virtualConsole = new jsdom.VirtualConsole();
     const dom = new JSDOM(page.content, {virtualConsole});
-
+    if (page.content.indexOf('<html') < 0 && page.content.indexOf('<HTML') < 0 ) {
+        dom.unwrap = true;
+    }
     // JavaScript resources
     if (zuixConfig.build.bundle && zuixConfig.build.bundle.js) {
         // TODO: check/parse scripts
@@ -364,7 +366,7 @@ function generateApp(sourceFolder, page) {
             });
         }
 
-        page.content = dom.serialize();
+        page.content = dom.unwrap ? dom.window.document.body.innerHTML : dom.serialize();
     }
 }
 

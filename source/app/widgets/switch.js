@@ -162,7 +162,7 @@ zuix.controller((cp) => {
     // Common functions
     // TODO: these functions could be placed
     //       in a separate file (eg. _inc/widgets) and
-    //       included with {% include "_inc/widgets/common.js" %}
+    //       included with  include "_inc/widgets/common.js"
 
     function blink() {
         activityLed.addClass('on');

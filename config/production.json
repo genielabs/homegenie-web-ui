@@ -4,7 +4,7 @@
       "input": "./source",
       "output": "./docs",
       "copy": [
-        "app",
+        "app/adapters/demo",
         "images",
         "js",
         ".nojekyll",
@@ -16,6 +16,7 @@
       ],
       "ignore": [
         "_inc",
+        "app/widgets/_inc",
         "css/_inc"
       ],
       "compile": [

@@ -1,12 +1,32 @@
-# HomeGenie UI and PWA
+# What is HGUI ?
 
-This is the home of the new [HomeGenie](https://github.com/genielabs/HomeGenie)
-server user interface, based on [zuixjs.org](https://zuixjs.org) library and its
+Is a dashboard and control panel but also a set of reusable
+components for web based *Smart Home* and *IoT* applications.
+
+Based on [zuixjs.org](https://zuixjs.org) library and its
 [web-starter](https://github.com/zuixjs/zuix-web-starter) project.
 
-## Purpose of this project
+#### **[ONLINE DEMO](https://genielabs.github.io/homegenie-web-ui)**
 
-`// TODO: ....`
+### Features
+
+- component based
+- modern and mobile-first UI design
+- integration of multiple and heterogeneous data sources
+through the implementation of connections adapter
+- integrated build tool to generate as SPA+PWA
+- self contained widgets that can be embedded as stand-alone
+components into any web page with just one line of code
+- reactive design with real time event stream
+
+### Currently implemented connection adapters
+
+- **Demo** adapter based on simple [JSON data files](https://github.com/genielabs/homegenie-web-ui/tree/master/source/app/adapters/demo)
+- **HomeGenie** adapter to connect to [HomeGenie Server](https://github.com/genielabs/HomeGenie)
+and [HomeGenie Mini](https://github.com/genielabs/homegenie-mini)
+
+Other connection adapters might also be implemented. Contribution on this
+area is very welcome :)
 
 
 ## Prerequisites
@@ -53,13 +73,14 @@ The following are just guide-lines for app structuring.
 │   ├── _inc/              # Static-Site includes (eg. header.html, footer.html)
 │   ├── app/               # app folder
 │   ├────── adapters/      # - data adapters and providers
-│   ├────── components/    # - components / widgets
+│   ├────── components/    # - components
 │   ├────── controllers/   # - controllers
 │   ├────── layout/        # - layout files (header, footer, ...) 
 │   ├────── pages/         # - page fragments conveniently
 │   │                      #   organized into subfolders
 │   ├────── shared/        # - other bits shared across the whole app
 │   ├────── templates/     # - templates
+│   ├────── widgets/       # - widgets
 │   ├── images/            # Images (generic/shared)
 │   └── ...                # Landing/Home and other entry pages,
 .   .                      #  PWA service worker, SEO, etc.

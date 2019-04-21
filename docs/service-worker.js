@@ -21,7 +21,7 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox
 self.__precacheManifest = [
   {
     "url": "404.html",
-    "revision": "3065ad87c133096dbba38b6e7895afc7"
+    "revision": "920911e362a3d5549a818dc606c6d758"
   },
   {
     "url": "app/adapters/demo.js",
@@ -57,7 +57,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/layout/footer.html",
-    "revision": "d394cc04cde033753a888184e834d1e0"
+    "revision": "3df24ae9b0550c27d08287310fd5e3fc"
   },
   {
     "url": "app/layout/header.css",
@@ -65,7 +65,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/layout/header.html",
-    "revision": "f593c409c4f6965126ba17d9bf0bfa99"
+    "revision": "b3bf5c13663cd85fc779487f0eecc142"
   },
   {
     "url": "app/pages/eventslog.css",
@@ -73,7 +73,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/eventslog.html",
-    "revision": "d84787dba4ba300b89bf84914a036746"
+    "revision": "2cbc84c36eb5ce6ae0cb00659e964fef"
   },
   {
     "url": "app/pages/home.css",
@@ -81,7 +81,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home.html",
-    "revision": "745a16081bb296c95262aad7d12e05d3"
+    "revision": "56d1860d92c055ad084585146adc0547"
   },
   {
     "url": "app/pages/home/items_list.css",
@@ -89,7 +89,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home/items_list.html",
-    "revision": "e9494e2a3c2f0d0da1118d8d28291fe6"
+    "revision": "d0d4934489c35e5222568546f6eed050"
   },
   {
     "url": "app/pages/home/items_list.js",
@@ -101,7 +101,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home/items_list/item_mini.html",
-    "revision": "e4297b8cc469b04a28fe0e261a00309e"
+    "revision": "141886ab37324985e54ddb1d1f63635a"
   },
   {
     "url": "app/pages/home/items_list/item_mini.js",
@@ -113,7 +113,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home/items_list/item.html",
-    "revision": "91edcf820671aa65316a9e30d82027d1"
+    "revision": "e179930ea08a54520b436e684fcd35b7"
   },
   {
     "url": "app/pages/home/items_list/item.js",
@@ -125,7 +125,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/module_detail.html",
-    "revision": "2bd6d08b1dfa1c90fcd521d9b568bbc3"
+    "revision": "aacd8c6b8b719dc762418b7f6d180787"
   },
   {
     "url": "app/pages/module_detail.js",
@@ -137,7 +137,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/setup.html",
-    "revision": "b3c79d8a3d13d7581a913461452e8355"
+    "revision": "1c8f727178f121ea76780848b155cea1"
   },
   {
     "url": "app/pages/setup.js",
@@ -149,7 +149,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/setup/module_item.html",
-    "revision": "35dc27bd559b7bd8e6688cac5ecb8409"
+    "revision": "b0abaa634c20bdba7e681c9958706100"
   },
   {
     "url": "app/pages/setup/module_item.js",
@@ -165,7 +165,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/splash.html",
-    "revision": "500c2f0f961f833d9206a5eda2fa0317"
+    "revision": "d0e1361433abf430dc2ce032209c940c"
   },
   {
     "url": "app/README.html",
@@ -177,7 +177,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/shared/button_menu.html",
-    "revision": "602ca4bae9b8b3d03e90ade2b6fa61e0"
+    "revision": "1b87ea675429868168ad70c2bcb2eb5a"
   },
   {
     "url": "app/shared/button_menu.js",
@@ -189,7 +189,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/shared/main_menu.html",
-    "revision": "0ebca2a3f90cbc09b8710236c0f50e23"
+    "revision": "4627d8ab67c451408436b54a11f37d65"
   },
   {
     "url": "app/shared/main_menu.js",
@@ -205,7 +205,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/tools/zuix_editor.html",
-    "revision": "13786cde7540823548ca80cf1805eacb"
+    "revision": "994691076c41e3fdc270ba388df4f4d3"
   },
   {
     "url": "app/tools/zuix_editor.js",
@@ -217,7 +217,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/tools/zuix_editor/bundle_item.html",
-    "revision": "435a56f0d185cffe995c28a512e38f32"
+    "revision": "27de88164db79540a734a4520adf4714"
   },
   {
     "url": "app/tools/zuix_editor/bundle_item.js",
@@ -229,7 +229,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/tools/zuix_hackbox.html",
-    "revision": "4fcee871a909807f82e7e41ead61c242"
+    "revision": "71df2f6a7d5ccf0af59e184f45157784"
   },
   {
     "url": "app/tools/zuix_hackbox.js",
@@ -241,7 +241,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/tools/zuix_hackbox/log_item.html",
-    "revision": "98b9be27f0de7161a8b9a237a05954f1"
+    "revision": "8886c2a2c482015b5898088c6de81534"
   },
   {
     "url": "app/tools/zuix_hackbox/log_item.js",
@@ -265,7 +265,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/program.html",
-    "revision": "49fc19b5fc0a351aaf2d3bee140acb45"
+    "revision": "fc28ecaa8d589080f53b60f06240d204"
   },
   {
     "url": "app/widgets/program.js",
@@ -277,23 +277,23 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/sensor.html",
-    "revision": "f63b323995b3238fbe022b0308c7e589"
+    "revision": "ce84e17672603428e33f546cf792d99a"
   },
   {
     "url": "app/widgets/sensor.js",
-    "revision": "f5f08d09ea6af5cc7957e5d324430afb"
+    "revision": "ccdb45a6d8313ef866eace61cf11f8ea"
   },
   {
     "url": "app/widgets/switch.css",
-    "revision": "e86a7dd04a729852a10d202bfdf5e620"
+    "revision": "5e4361aa9c2fdeb040e2b76f611eb4a2"
   },
   {
     "url": "app/widgets/switch.html",
-    "revision": "1038b5aaddc73cc28cb928fe80b7d307"
+    "revision": "aa35b66fc834b2beabaaeff025103b6f"
   },
   {
     "url": "app/widgets/switch.js",
-    "revision": "760fc5affa92d3dfd060022b3d82304a"
+    "revision": "32dde9624b032eac4180d8a595060248"
   },
   {
     "url": "app/widgets/timeclock.css",
@@ -301,7 +301,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/timeclock.html",
-    "revision": "b723cfad159ec78657f04d047fbc6827"
+    "revision": "e05f7e84f1c3acf2e9a29e424aa33067"
   },
   {
     "url": "app/widgets/timeclock.js",
@@ -309,15 +309,15 @@ self.__precacheManifest = [
   },
   {
     "url": "cli/mqtt.html",
-    "revision": "dc77b01fd5a2f7ffb2797bc594b5f399"
+    "revision": "d2dcf920fc9967e7563504d4c8d60069"
   },
   {
     "url": "cli/ws.html",
-    "revision": "c3d32c893f59e0e5a4879b06978e1de5"
+    "revision": "14002d432b5c5d0de43ab611c9362aa5"
   },
   {
     "url": "config.js",
-    "revision": "78e0970dacda9eb851258bd642217625"
+    "revision": "36a7fed5af8ea36e40e43a7c1beba361"
   },
   {
     "url": "css/common/base.css",
@@ -349,7 +349,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "6b8788c77eb2792f26dd0c814e89cc6d"
+    "revision": "142cb9a8ee29ceaad288bcc36673111f"
   },
   {
     "url": "index.js",
@@ -405,11 +405,11 @@ self.__precacheManifest = [
   },
   {
     "url": "offline.html",
-    "revision": "72257b195d4eb39cc00cbdcf3463f77e"
+    "revision": "02ddb6a753b7c1e733b7cadc0fc4b109"
   },
   {
     "url": "test.html",
-    "revision": "bf73e331bc7a066a118472490cda527e"
+    "revision": "934975b02d51e9aaca9334f9b784b697"
   },
   {
     "url": "images/genie.png",

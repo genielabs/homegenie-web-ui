@@ -111,9 +111,11 @@ zuix.controller((cp) => {
             case 'switch':
                 typeIcon = '{{app.urlRoot}}images/widgets/socket.png';
             case 'light':
+                controlOn.parent().addClass('switch');
                 levelView.hide();
                 break;
             default:
+                controlOn.parent().removeClass('switch');
                 levelView.show();
         }
         cp.field('icon').attr('src', typeIcon);

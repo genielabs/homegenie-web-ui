@@ -110,7 +110,7 @@ zuix.controller((cp) => {
     let updateStatusInterval;
 
     function initWidget() {
-        zuix.using('script', 'https://genielabs.github.io/homegenie-web-ui/js/widgets.js');
+        zuix.using('script', '/js/widgets.js');
         zuix.using('script', '@cdnjs/dayjs/1.8.12/dayjs.min.js', ()=>{
             zuix.using('script', '@cdnjs/dayjs/1.8.12/plugin/relativeTime.js', ()=>{
                 // wait until dayjs is ready
@@ -188,14 +188,16 @@ zuix.controller((cp) => {
 
 
     function setType(type) {
-        let typeIcon = 'https://genielabs.github.io/homegenie-web-ui/images/widgets/bulb.png';
+        let typeIcon = '/images/widgets/bulb.png';
         switch (type.toLowerCase()) {
             case 'switch':
-                typeIcon = 'https://genielabs.github.io/homegenie-web-ui/images/widgets/socket.png';
+                typeIcon = '/images/widgets/socket.png';
             case 'light':
+                controlOn.parent().addClass('switch');
                 levelView.hide();
                 break;
             default:
+                controlOn.parent().removeClass('switch');
                 levelView.show();
         }
         cp.field('icon').attr('src', typeIcon);

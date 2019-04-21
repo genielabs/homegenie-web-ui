@@ -5,12 +5,14 @@
         "googleSiteId": "UA-123-456",
         "resourcePath": "/app/",
         "libraryPath": {
+                "@hgui": "https://genielabs.github.io/homegenie-web-ui/",
                 "@lib": "https://zuixjs.github.io/zkit/lib/",
                 "@cdnjs": "https://cdnjs.cloudflare.com/ajax/libs/"
         },
         "zuixjs.github.io": {
                 "resourcePath": "/zuix-web-starter/app",
                 "libraryPath": {
+                        "@hgui": "",
                         "@lib": "https://zuixjs.github.io/zkit/lib/",
                         "@cdnjs": "https://cdnjs.cloudflare.com/ajax/libs/"
                 }
@@ -18,6 +20,7 @@
         "genielabs.github.io": {
                 "resourcePath": "/homegenie-web-ui/app/",
                 "libraryPath": {
+                        "@hgui": "https://genielabs.github.io/homegenie-web-ui/",
                         "@lib": "https://zuixjs.github.io/zkit/lib/",
                         "@cdnjs": "https://cdnjs.cloudflare.com/ajax/libs/"
                 }

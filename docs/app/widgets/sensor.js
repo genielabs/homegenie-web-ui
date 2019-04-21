@@ -22,6 +22,7 @@ zuix.controller((cp) => {
         showNext();
     };
     cp.update = (field, oldValue) => {
+        setType('sensor');
         blink();
         if (field == null) showNext();
     };
@@ -170,5 +171,12 @@ zuix.controller((cp) => {
         el.field('icon').attr('src', icon).show();
         el.field('value').html(field.value);
         el.field('label').html(field.key.replace('Sensor.', ''));
+    }
+
+    function setType(type) {
+        let typeIcon = 'https://genielabs.github.io/homegenie-web-ui/images/widgets/sensor.png';
+        // TODO: select different sensor icons based on 'type'
+        cp.field('icon').attr('src', typeIcon);
+        return cp.context;
     }
 });

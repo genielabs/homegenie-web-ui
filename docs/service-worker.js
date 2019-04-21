@@ -277,11 +277,11 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/sensor.html",
-    "revision": "2e7965694babdbb4c9e8b4cc84259d64"
+    "revision": "f63b323995b3238fbe022b0308c7e589"
   },
   {
     "url": "app/widgets/sensor.js",
-    "revision": "35ab268eac36da506a797825f4bf5bbd"
+    "revision": "f5f08d09ea6af5cc7957e5d324430afb"
   },
   {
     "url": "app/widgets/switch.css",
@@ -293,7 +293,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/switch.js",
-    "revision": "6d616dc9ef9c53f9fa29451fda63a425"
+    "revision": "760fc5affa92d3dfd060022b3d82304a"
   },
   {
     "url": "app/widgets/timeclock.css",
@@ -409,7 +409,7 @@ self.__precacheManifest = [
   },
   {
     "url": "test.html",
-    "revision": "2487ce414f37849f9724742af8eab1e1"
+    "revision": "bf73e331bc7a066a118472490cda527e"
   },
   {
     "url": "images/genie.png",

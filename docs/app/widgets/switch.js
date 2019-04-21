@@ -13,7 +13,8 @@ zuix.controller((cp) => {
 
     // {ContextControllerHandler} interface methods
     cp.init = () => {
-        cp.expose('setLevel', setLevel);
+        cp.expose('setLevel', setLevel)
+          .expose('setType', setType);
     };
     cp.create = () => {
         // get a reference to the UI fields of the view
@@ -69,10 +70,8 @@ zuix.controller((cp) => {
         setTimeout(cp.update, 500);
     };
     cp.update = (field, oldValue) => {
-        // TODO: handle other fields like 'Meter.Watts' and most recent fields 'timestamp'
-        if (field != null) {
-            // console.log(field, field.key, field.value);
-            blink();
+        blink();
+        if (field != null && FLD != null) {
             switch (field.key) {
                 case FLD.Status.Level:
                     actualLevel = parseFloat(field.value);

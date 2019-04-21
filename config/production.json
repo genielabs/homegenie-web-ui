@@ -53,14 +53,13 @@
     "app": {
       "title": "HomeGenie web UI",
       "googleSiteId": "UA-123-456",
-      "urlRoot": "/",
+      "urlRoot": "https://genielabs.github.io/homegenie-web-ui/",
       "resourcePath": "/app/",
       "libraryPath": {
         "@lib": "https://zuixjs.github.io/zkit/lib/",
         "@cdnjs": "https://cdnjs.cloudflare.com/ajax/libs/"
       },
       "genielabs.github.io": {
-        "urlRoot": "https://genielabs.github.io/homegenie-web-ui/",
         "resourcePath": "https://genielabs.github.io/homegenie-web-ui/app/",
         "libraryPath": {
           "@lib": "https://zuixjs.github.io/zkit/lib/",

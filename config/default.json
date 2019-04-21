@@ -60,7 +60,6 @@
         "@cdnjs": "https://cdnjs.cloudflare.com/ajax/libs/"
       },
       "genielabs.github.io": {
-        "urlRoot": "https://genielabs.github.io/homegenie-web-ui/",
         "resourcePath": "https://genielabs.github.io/homegenie-web-ui/app/",
         "libraryPath": {
           "@lib": "https://zuixjs.github.io/zkit/lib/",

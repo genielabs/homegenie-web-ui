@@ -27,8 +27,7 @@ zuix.controller((cp) => {
         levelView = cp.field('level-view');
         // UI events listeners
         headerBar.on('click', () => {
-            zuix.context('module-detail')
-                .open(cp.view());
+            command(CMD.Options.Show, {view: cp.view()});
         });
         // actions to perform upon user interaction on UI fields
         controlOn.on('click', ()=>{
@@ -123,6 +122,7 @@ zuix.controller((cp) => {
     }
     function setLevel(level) {
         displayLevel = parseFloat(level);
+        showUpdateTime({key: FLD.Status.Level, value: displayLevel});
         if (displayLevel === 0) {
             toggleClass(statusLed, 'off', 'on');
             cp.field('level-bar')

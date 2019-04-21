@@ -56,6 +56,13 @@ zuix.controller((cp) => {
     }
     function control(m, command, options, callback) {
         // adapter-specific implementation
+        if (command === CMD.Options.Show) {
+            // show module options and statistics page
+            zuix.context('module-detail')
+                .open(options.view);
+            if (callback) callback();
+            return;
+        }
         if (m.type === 'program') {
             hgui.updateModuleField(m, FLD.Program.Status, 'Running', new Date().getTime());
             const currentGroup = hgui.getCurrentGroup();

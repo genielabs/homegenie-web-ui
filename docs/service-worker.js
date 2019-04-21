@@ -25,7 +25,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/adapters/demo.js",
-    "revision": "f2e790bdc002d2d87bdb2dbf39c1303e"
+    "revision": "915325646b32f486118441cda2d98082"
   },
   {
     "url": "app/adapters/demo/data.groups.json",
@@ -37,7 +37,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/adapters/homegenie.js",
-    "revision": "e0c87801497184f6f16dcebce8fd4e28"
+    "revision": "874c00641a8f1cbdd3a8342e224b6d63"
   },
   {
     "url": "app/components/README.html",
@@ -277,11 +277,11 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/sensor.html",
-    "revision": "f45b3a32f1e21db80a9a614859978b96"
+    "revision": "5a000be9ff9dca4013454968c3a8b7ff"
   },
   {
     "url": "app/widgets/sensor.js",
-    "revision": "80ba2a653b854e52f82311aad2b13cef"
+    "revision": "9ca7251b3ef7974b433942a15a60cfbc"
   },
   {
     "url": "app/widgets/switch.css",
@@ -289,11 +289,11 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/switch.html",
-    "revision": "df399a22172733bf2b050d3b91098891"
+    "revision": "5ba114678b798b1cf624f1d740e8444e"
   },
   {
     "url": "app/widgets/switch.js",
-    "revision": "e1ec967c8a92228c9fc54e4da5e98ded"
+    "revision": "ce723e274f7ab320b4bb1b3785686bc6"
   },
   {
     "url": "app/widgets/timeclock.css",
@@ -381,7 +381,7 @@ self.__precacheManifest = [
   },
   {
     "url": "js/widgets.js",
-    "revision": "ac165a4723537b80c8480abccd92863b"
+    "revision": "d717a64d34f7afb6f0e0ba995334c84e"
   },
   {
     "url": "js/zuix/zuix-bundler.js",
@@ -409,7 +409,7 @@ self.__precacheManifest = [
   },
   {
     "url": "test.html",
-    "revision": "ce359be612ca61c3154c5d442500e79f"
+    "revision": "1cfe0edb075553a4cafb6388bd17bf59"
   },
   {
     "url": "images/genie.png",

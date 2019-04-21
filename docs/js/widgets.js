@@ -6,6 +6,9 @@ var CMD = {
         Level: 'Control.Level',
         Toggle: 'Control.Toggle'
     },
+    Options: {
+        Show: 'Options.Show'
+    },
     Programs: {
         Toggle: 'Programs.Toggle'
     }

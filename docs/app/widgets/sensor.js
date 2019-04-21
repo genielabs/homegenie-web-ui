@@ -43,7 +43,12 @@ zuix.controller((cp) => {
         zuix.using('script', 'js/widgets.js');
         zuix.using('script', '@cdnjs/dayjs/1.8.12/dayjs.min.js', ()=>{
             zuix.using('script', '@cdnjs/dayjs/1.8.12/plugin/relativeTime.js', ()=>{
-                dayjs.extend(dayjs_plugin_relativeTime);
+                // wait until dayjs is ready
+                const extend = () => {
+                    if (dayjs) dayjs.extend(dayjs_plugin_relativeTime);
+                    else setTimeout(extend, 100);
+                };
+                setTimeout(extend, 100);
             });
         });
         zuix.using('style', '@cdnjs/flex-layout-attribute/1.0.3/css/flex-layout-attribute.min.css');
@@ -72,8 +77,11 @@ zuix.controller((cp) => {
     }
     function showUpdateTime(field) {
         const u = () => {
-            const relativeDate = dayjs(field.timestamp).fromNow();
-            cp.field('status-message').html(relativeDate);
+            // dayjs might not be yet loaded at startup
+            if (window.dayjs != null) {
+                const relativeDate = dayjs(field.timestamp).fromNow();
+                cp.field('status-message').html(relativeDate);
+            }
         };
         u();
         if (updateStatusInterval != null) clearInterval(updateStatusInterval);

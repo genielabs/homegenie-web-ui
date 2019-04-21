@@ -281,7 +281,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/sensor.js",
-    "revision": "52c11f02acd861748e164772966e5216"
+    "revision": "35ab268eac36da506a797825f4bf5bbd"
   },
   {
     "url": "app/widgets/switch.css",
@@ -409,7 +409,7 @@ self.__precacheManifest = [
   },
   {
     "url": "test.html",
-    "revision": "0ce133df204b24e0f0f302acbefb8d8a"
+    "revision": "2487ce414f37849f9724742af8eab1e1"
   },
   {
     "url": "images/genie.png",

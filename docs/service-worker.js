@@ -77,7 +77,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home.css",
-    "revision": "5c6654ca279b2fee102084f341fbfbcf"
+    "revision": "2b19b5eaea3999ac80f4438639e6487f"
   },
   {
     "url": "app/pages/home.html",
@@ -273,15 +273,15 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/sensor.css",
-    "revision": "a2af3858106dfd906b898d2b4bb1d89a"
+    "revision": "0751de095f7be48262bd60f38d81cf9e"
   },
   {
     "url": "app/widgets/sensor.html",
-    "revision": "ac93cb275057baa027a34ba73e41ba45"
+    "revision": "2e7965694babdbb4c9e8b4cc84259d64"
   },
   {
     "url": "app/widgets/sensor.js",
-    "revision": "978ac4ab4c54fc0824790eab807787dd"
+    "revision": "c138d256de5e418f4553ac7fe0498f46"
   },
   {
     "url": "app/widgets/switch.css",
@@ -293,7 +293,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/switch.js",
-    "revision": "a227004393c070a1cb953c973be05819"
+    "revision": "6d616dc9ef9c53f9fa29451fda63a425"
   },
   {
     "url": "app/widgets/timeclock.css",
@@ -349,11 +349,11 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "cc87afdbc169c4a6ac2f32c3056032f0"
+    "revision": "6b8788c77eb2792f26dd0c814e89cc6d"
   },
   {
     "url": "index.js",
-    "revision": "306685b7a77f15701eaf80b975ee0771"
+    "revision": "fb45aefcda9e4ec6c47a94219d5c3f32"
   },
   {
     "url": "index.options.js",
@@ -409,7 +409,7 @@ self.__precacheManifest = [
   },
   {
     "url": "test.html",
-    "revision": "38bdf94cbdce5ac31ba4cd2709c5bbaf"
+    "revision": "ae9292aa60e3d9654e35e7b2a344a1f5"
   },
   {
     "url": "images/genie.png",

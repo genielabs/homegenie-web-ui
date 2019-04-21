@@ -123,10 +123,14 @@ zuix.controller((cp) => {
             });
         });
         zuix.using('style', '@cdnjs/flex-layout-attribute/1.0.3/css/flex-layout-attribute.min.css');
-        zuix.using('style', '@cdnjs/animate.css/3.7.0/animate.min.css');
-        //
+        if (zuix.$.ZxQuery.prototype.animateCss == null) {
+            // This is sort of forward declaration to prevent errors while AnimateCSS extension is not yet ready
+            zuix.$.ZxQuery.prototype.animateCss = function(animationName, param1, param2) { return this; };
+        }
+        zuix.using('component', '@lib/extensions/animate_css');
+        // listen for model updates
         if (window.hgui) {
-            hgui.observeModule(cp.model(), cp.context); // listen for model updates
+            hgui.observeModule(cp.model(), cp.context);
         }
         //
         activityLed = cp.field('activity-led');

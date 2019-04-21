@@ -109,6 +109,7 @@ h1[data-ui-field=name] {
 
 .debossed {
     overflow: hidden;
+    height: 86px;
 }
 
 label {

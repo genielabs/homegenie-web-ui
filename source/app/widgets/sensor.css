@@ -2,6 +2,7 @@
 
 .debossed {
     overflow: hidden;
+    height: 86px;
 }
 
 label {

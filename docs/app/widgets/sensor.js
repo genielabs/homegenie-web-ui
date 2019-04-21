@@ -8,7 +8,6 @@ zuix.controller((cp) => {
     let p2;
 
     // BEGIN {ContextControllerHandler} interface methods
-
     cp.create = () => {
         // get a reference to the UI fields of the view
         initWidget();
@@ -52,10 +51,14 @@ zuix.controller((cp) => {
             });
         });
         zuix.using('style', '@cdnjs/flex-layout-attribute/1.0.3/css/flex-layout-attribute.min.css');
-        zuix.using('style', '@cdnjs/animate.css/3.7.0/animate.min.css');
-        //
+        if (zuix.$.ZxQuery.prototype.animateCss == null) {
+            // This is sort of forward declaration to prevent errors while AnimateCSS extension is not yet ready
+            zuix.$.ZxQuery.prototype.animateCss = function(animationName, param1, param2) { return this; };
+        }
+        zuix.using('component', '@lib/extensions/animate_css');
+        // listen for model updates
         if (window.hgui) {
-            hgui.observeModule(cp.model(), cp.context); // listen for model updates
+            hgui.observeModule(cp.model(), cp.context);
         }
         //
         activityLed = cp.field('activity-led');
@@ -115,6 +118,10 @@ zuix.controller((cp) => {
 
     function showNext() {
         const module = cp.model();
+        if (module.fields == null) {
+            p1.hide(); p2.hide();
+            return;
+        }
         const sensorFields = module.fields.filter((f) => f.key.startsWith('Sensor.'));
         if (sensorFields.length <= 1) {
             if (sensorFields.length === 0) p1.hide();

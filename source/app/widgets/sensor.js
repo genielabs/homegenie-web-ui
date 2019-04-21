@@ -8,7 +8,6 @@ zuix.controller((cp) => {
     let p2;
 
     // BEGIN {ContextControllerHandler} interface methods
-
     cp.create = () => {
         // get a reference to the UI fields of the view
         initWidget();
@@ -37,6 +36,10 @@ zuix.controller((cp) => {
 
     function showNext() {
         const module = cp.model();
+        if (module.fields == null) {
+            p1.hide(); p2.hide();
+            return;
+        }
         const sensorFields = module.fields.filter((f) => f.key.startsWith('Sensor.'));
         if (sensorFields.length <= 1) {
             if (sensorFields.length === 0) p1.hide();

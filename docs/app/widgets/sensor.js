@@ -20,8 +20,8 @@ zuix.controller((cp) => {
         p1 = cp.field('field-a');
         p2 = cp.field('field-b');
         cp.view('.debossed').on('click', showNext);
-        showNext();
         cp.update();
+        showNext();
     };
     cp.update = (field, oldValue) => {
         setType('sensor');
@@ -40,7 +40,7 @@ zuix.controller((cp) => {
     let updateStatusInterval;
 
     function initWidget() {
-        zuix.using('script', '@hgui/js/widgets.js');
+        zuix.using('script', '/js/widgets.js');
         zuix.using('script', '@cdnjs/dayjs/1.8.12/dayjs.min.js', ()=>{
             zuix.using('script', '@cdnjs/dayjs/1.8.12/plugin/relativeTime.js', ()=>{
                 // wait until dayjs is ready
@@ -149,16 +149,16 @@ zuix.controller((cp) => {
     }
 
     function updateField(el, field) {
-        let icon = 'images/widgets/empty.svg';
+        let icon = '/images/widgets/empty.svg';
         switch (field.key) {
             case FLD.Sensor.Temperature:
-                icon = 'images/widgets/temperature.png';
+                icon = '/images/widgets/temperature.png';
                 break;
             case FLD.Sensor.Luminance:
-                icon = 'images/widgets/sun.png';
+                icon = '/images/widgets/sun.png';
                 break;
             case FLD.Sensor.Humidity:
-                icon = 'images/widgets/drop.png';
+                icon = '/images/widgets/drop.png';
                 break;
         }
         el.field('icon').attr('src', icon).show();

@@ -107,10 +107,10 @@ zuix.controller((cp) => {
 // {% include "_inc/standard_widget.js" %}
 
     function setType(type) {
-        let typeIcon = 'images/widgets/bulb.png';
+        let typeIcon = '{{app.urlRoot}}images/widgets/bulb.png';
         switch (type.toLowerCase()) {
             case 'switch':
-                typeIcon = 'images/widgets/socket.png';
+                typeIcon = '{{app.urlRoot}}images/widgets/socket.png';
             case 'light':
                 levelView.hide();
                 break;

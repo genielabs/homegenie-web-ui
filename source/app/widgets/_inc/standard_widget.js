@@ -5,7 +5,7 @@
     let updateStatusInterval;
 
     function initWidget() {
-        zuix.using('script', '@hgui/js/widgets.js');
+        zuix.using('script', '{{app.urlRoot}}js/widgets.js');
         zuix.using('script', '@cdnjs/dayjs/1.8.12/dayjs.min.js', ()=>{
             zuix.using('script', '@cdnjs/dayjs/1.8.12/plugin/relativeTime.js', ()=>{
                 // wait until dayjs is ready

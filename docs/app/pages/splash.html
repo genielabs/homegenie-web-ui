@@ -3,3 +3,17 @@
     <div data-ui-include="@lib/templates/spinkit/spinner_cubes"></div>
 
 </div>
+<!-- zUIx inline resource resourceBundle -->
+<!--{[@lib/templates/spinkit/spinner_cubes]}-->
+<div data-ui-view="https://zuixjs.github.io/zkit/lib/templates/spinkit/spinner_cubes">
+<div class="spinner">
+    <div class="cube1"></div>
+    <div class="cube2"></div>
+</div>
+</div>
+<script>zuix.bundle([
+  {
+    "componentId": "https://zuixjs.github.io/zkit/lib/templates/spinkit/spinner_cubes",
+    "css": ".spinner {\n    margin: 100px auto;\n    width: 40px;\n    height: 40px;\n    position: relative;\n}\n\n.cube1, .cube2 {\n    background-color: #333;\n    width: 15px;\n    height: 15px;\n    position: absolute;\n    top: 0;\n    left: 0;\n\n    -webkit-animation: sk-cubemove 1.8s infinite ease-in-out;\n    animation: sk-cubemove 1.8s infinite ease-in-out;\n}\n\n.cube2 {\n    -webkit-animation-delay: -0.9s;\n    animation-delay: -0.9s;\n}\n\n@-webkit-keyframes sk-cubemove {\n    25% { -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5) }\n    50% { -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg) }\n    75% { -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5) }\n    100% { -webkit-transform: rotate(-360deg) }\n}\n\n@keyframes sk-cubemove {\n    25% {\n        transform: translateX(42px) rotate(-90deg) scale(0.5);\n        -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);\n    } 50% {\n          transform: translateX(42px) translateY(42px) rotate(-179deg);\n          -webkit-transform: translateX(42px) translateY(42px) rotate(-179deg);\n      } 50.1% {\n            transform: translateX(42px) translateY(42px) rotate(-180deg);\n            -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg);\n        } 75% {\n              transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);\n              -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);\n          } 100% {\n                transform: rotate(-360deg);\n                -webkit-transform: rotate(-360deg);\n            }\n}"
+  }
+])</script>

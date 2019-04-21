@@ -273,7 +273,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/sensor.css",
-    "revision": "0751de095f7be48262bd60f38d81cf9e"
+    "revision": "c0fba1110ffd0ec5dccb2534ddb16295"
   },
   {
     "url": "app/widgets/sensor.html",
@@ -281,11 +281,11 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/sensor.js",
-    "revision": "c138d256de5e418f4553ac7fe0498f46"
+    "revision": "52c11f02acd861748e164772966e5216"
   },
   {
     "url": "app/widgets/switch.css",
-    "revision": "4f144cd7d8d954d1d01575436b38bcb1"
+    "revision": "e86a7dd04a729852a10d202bfdf5e620"
   },
   {
     "url": "app/widgets/switch.html",
@@ -409,7 +409,7 @@ self.__precacheManifest = [
   },
   {
     "url": "test.html",
-    "revision": "ae9292aa60e3d9654e35e7b2a344a1f5"
+    "revision": "0ce133df204b24e0f0f302acbefb8d8a"
   },
   {
     "url": "images/genie.png",

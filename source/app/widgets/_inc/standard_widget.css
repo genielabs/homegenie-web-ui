@@ -100,8 +100,10 @@ h1[data-ui-field=name] {
 }
 
 .debossed {
-    background: rgba(0, 0, 0, 0.25) linear-gradient(rgba(0, 0, 0, 0.75), rgba(255, 255, 255, 0.5) 2%, rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0.8) 98%, rgba(0, 0, 0, 0.5));
     position: relative;
+    display: grid;
+    height: 90px;
+    background: rgba(0, 0, 0, 0.25) linear-gradient(rgba(0, 0, 0, 0.75), rgba(255, 255, 255, 0.5) 2%, rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0.8) 98%, rgba(0, 0, 0, 0.5));
 }
 
 /* END standard_widget.css */

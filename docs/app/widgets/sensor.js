@@ -13,8 +13,7 @@ zuix.controller((cp) => {
         initWidget();
         // UI events listeners
         headerBar.on('click', () => {
-            zuix.context('module-detail')
-                .open(cp.view());
+            command(CMD.Options.Show, {view: cp.view()});
         });
         p1 = cp.field('field-a');
         p2 = cp.field('field-b');
@@ -118,9 +117,9 @@ zuix.controller((cp) => {
 
     function showNext() {
         const module = cp.model();
-        if (module.fields == null) {
+        if (module.fields == null || module.fields.length === 0) {
             p1.hide(); p2.hide();
-            return;
+            module.fields = [];
         }
         const sensorFields = module.fields.filter((f) => f.key.startsWith('Sensor.'));
         if (sensorFields.length <= 1) {
@@ -174,7 +173,7 @@ zuix.controller((cp) => {
     }
 
     function setType(type) {
-        let typeIcon = 'images/widgets/sensor.png';
+        let typeIcon = 'https://genielabs.github.io/homegenie-web-ui/images/widgets/sensor.png';
         // TODO: select different sensor icons based on 'type'
         cp.field('icon').attr('src', typeIcon);
         return cp.context;

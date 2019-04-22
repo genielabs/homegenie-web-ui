@@ -152,7 +152,8 @@ zuix.controller((cp) => {
     function showUpdateTime(field) {
         const u = () => {
             // dayjs might not be yet loaded at startup
-            if (window.dayjs != null) {
+            if (window.dayjs != null && dayjs().fromNow != null) {
+                if (field.timestamp == null) field.timestamp = new Date().getTime();
                 const relativeDate = dayjs(field.timestamp).fromNow();
                 cp.field('status-message').html(relativeDate);
             }

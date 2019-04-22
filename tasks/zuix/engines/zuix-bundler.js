@@ -1,5 +1,5 @@
 /*
- * Copyright 2017-2018 G-Labs. All Rights Reserved.
+ * Copyright 2017-2019 G-Labs. All Rights Reserved.
  *         https://zuixjs.github.io/zuix
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -62,6 +62,19 @@ let stats;
 let hasErrors;
 let localVars;
 
+// TODO: implement embedding of resources loaded with `zuix.using(..)` and `zuix.load(..)`
+/*
+let reg = /zuix.load\(([^\)]+)\)/g;
+let result;
+while ((result = reg.exec(scriptText)) !== null) {
+    // ....
+}
+// ...
+reg = /zuix.using\(([^\)]+)\)/g;
+while ((result = reg.exec(scriptText)) !== null) {
+    // ....
+}
+ */
 function createBundle(sourceFolder, page) {
     const virtualConsole = new jsdom.VirtualConsole();
     const dom = new JSDOM(page.content, {virtualConsole});

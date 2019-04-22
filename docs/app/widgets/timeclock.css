@@ -5,7 +5,6 @@
     min-height: 164px;
     border: solid 1px whitesmoke;
     border-radius: 6px;
-    font-family: Helvetica, serif;
     font-weight: 400;
     font-size: 14px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2), 0 0 4px 0 rgba(0, 0, 0, 0.19);
@@ -25,8 +24,12 @@
     opacity: 0.5;
     color: black;
     -webkit-text-fill-color: white; /* Will override color (regardless of order) */
-    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
+    border: solid 2px gray;
+    border-radius: 32px;
+    margin: 16px;
+    background: rgba(0,0,0,0.1);
 }
 .date {
     text-align: right;

@@ -48,6 +48,6 @@
     "sync-request": "^6.1.0",
     "terminal-kit": "^1.27.2",
     "workbox-build": "^3.6.3",
-    "zuix-dist": "^1.0.2"
+    "zuix-dist": "^1.0.3"
   }
 }

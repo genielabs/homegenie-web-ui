@@ -6,7 +6,6 @@
     min-height: 164px;
     border: solid 1px whitesmoke;
     border-radius: 6px;
-    font-family: Helvetica, serif;
     font-weight: 400;
     font-size: 14px;
     padding-bottom: 0px;
@@ -25,7 +24,7 @@ header{
     height: 48px;
 }
 h1 {
-    margin: 8px 0 10px;
+    margin: 6px 0 6px;
     padding-left: 8px;
     padding-right: 8px;
     opacity: 0.5;
@@ -128,7 +127,7 @@ div[data-ui-field="field-b"],div[data-ui-field="field-c"] {
     opacity: 0.5;
     color: black;
     -webkit-text-fill-color: white; /* Will override color (regardless of order) */
-    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
 }
 .field-icon {

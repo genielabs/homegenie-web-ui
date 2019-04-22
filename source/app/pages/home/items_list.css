@@ -9,7 +9,6 @@
   max-width: 100%;
   /* min-height: 100px; this is causing strange behavior on mobile, like delayed loading?!? */
   overflow: hidden;
-  font-family: Helvetica, sans-serif !important;
 }
 
 .info {

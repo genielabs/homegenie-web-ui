@@ -40,7 +40,6 @@
     height: 56px;
     border: solid 1px whitesmoke;
     border-radius: 6px;
-    font-family: Helvetica, serif;
     font-weight: 400;
     font-size: 14px;
     padding-bottom: 0px;
@@ -58,8 +57,13 @@ h1 {
     margin: 12px;
     padding-left: 8px;
     padding-right: 8px;
-    opacity: 0.35;
+    opacity: 0.75;
     font-size: 140%;
+    font-weight: 400;
+    color: deeppink;
+    -webkit-text-fill-color: deeppink; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: gray;
 }
 
 h1[data-ui-field=name] {

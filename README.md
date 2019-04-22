@@ -3,12 +3,17 @@
 Is a dashboard and control panel but also a set of reusable
 components for web based *Smart Home* and *IoT* applications.
 
-Based on [zuixjs.org](https://zuixjs.org) library and its
+Based on [zuixjs](https://zuixjs.org) library and its
 [web-starter](https://github.com/zuixjs/zuix-web-starter) project.
 
-#### **[ONLINE DEMO](https://genielabs.github.io/homegenie-web-ui)**
+#### **[Online DEMO](https://genielabs.github.io/homegenie-web-ui)**
 
-### Features
+Components from this project can also be embedded as stand-alone components
+in any web page.
+
+#### **[CodePen EXAMPLE](https://codepen.io/genielabs/pen/EJRZoa)**
+
+## Features
 
 - component based
 - modern and mobile-first UI design
@@ -39,11 +44,11 @@ This project requires [Node.js/npm](https://www.npmjs.com/get-npm) to be install
 Download or clone this repository
 
      git clone https://github.com/genielabs/homegenie-web-ui.git
-     cd homegenie-web-ui.git
+     cd homegenie-web-ui
 
-Install development dependencies
+Install development dependencies and run initial build
 
-    npm install
+    npm install && npm run build
 
 ## Usage
 
@@ -53,7 +58,7 @@ Start local web server
 
 Start auto-build script (watch file tree for changes and auto-rebuild)
 
-    npm run watch
+    npm run build && npm run watch
 
 Or manual building
 

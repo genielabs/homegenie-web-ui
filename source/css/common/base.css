@@ -1,8 +1,11 @@
 body {
     font-size: 14px;
+    font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+}
+h1,h2,h3,h4,h5,h6 {
+    font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
 }
 h1 {
-    font-family: "Roboto","Helvetica","Arial",sans-serif;
     font-size: 280%;
     font-weight: 400;
 }

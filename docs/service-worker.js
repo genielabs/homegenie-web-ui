@@ -77,7 +77,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home.css",
-    "revision": "2b19b5eaea3999ac80f4438639e6487f"
+    "revision": "8d6b0a51942db448f36a102e124cf9b3"
   },
   {
     "url": "app/pages/home.html",
@@ -85,7 +85,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home/items_list.css",
-    "revision": "eec8f80db4742f2559a5e824774f562c"
+    "revision": "ee093796cb85cd92ca287ef67496c2c3"
   },
   {
     "url": "app/pages/home/items_list.html",
@@ -248,24 +248,12 @@ self.__precacheManifest = [
     "revision": "a5db9403d8de8722159f40df0cc7c833"
   },
   {
-    "url": "app/widgets/_inc/standard_widget.css",
-    "revision": "706418714729b1745c7ea73463f535e1"
-  },
-  {
-    "url": "app/widgets/_inc/standard_widget.html",
-    "revision": "83d2da4d9d133c8c2ef48a38ed9bed72"
-  },
-  {
-    "url": "app/widgets/_inc/standard_widget.js",
-    "revision": "6d320d701084125fbcd77bb62462855e"
-  },
-  {
     "url": "app/widgets/program.css",
-    "revision": "f804fcfca36be282d98ff794ea704317"
+    "revision": "ac26b3b5d7cd229986db28bb7c6b5789"
   },
   {
     "url": "app/widgets/program.html",
-    "revision": "49fc19b5fc0a351aaf2d3bee140acb45"
+    "revision": "ab832e0f5ca3fe1516716f35be40115d"
   },
   {
     "url": "app/widgets/program.js",
@@ -273,31 +261,31 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/sensor.css",
-    "revision": "c0fba1110ffd0ec5dccb2534ddb16295"
+    "revision": "7f0357e798fff14ac34b61e75e0d0413"
   },
   {
     "url": "app/widgets/sensor.html",
-    "revision": "f63b323995b3238fbe022b0308c7e589"
+    "revision": "a21222cde6dbdc7a7cb24e3c75bf962b"
   },
   {
     "url": "app/widgets/sensor.js",
-    "revision": "f5f08d09ea6af5cc7957e5d324430afb"
+    "revision": "95625713101778f79e90f2580078ad99"
   },
   {
     "url": "app/widgets/switch.css",
-    "revision": "5e4361aa9c2fdeb040e2b76f611eb4a2"
+    "revision": "b1f41109d83f99d0ff7eb27f37e759c6"
   },
   {
     "url": "app/widgets/switch.html",
-    "revision": "1038b5aaddc73cc28cb928fe80b7d307"
+    "revision": "816de9773dc0cf396feb1b3f72f77d03"
   },
   {
     "url": "app/widgets/switch.js",
-    "revision": "61fee8e3977c64d2e588ae74b70552af"
+    "revision": "3251938b4b07fe24666ca4199835a039"
   },
   {
     "url": "app/widgets/timeclock.css",
-    "revision": "d08ccc0e2d609eecf405383dd2cf9ac3"
+    "revision": "3547977dda2efa110ca2366cdea20329"
   },
   {
     "url": "app/widgets/timeclock.html",
@@ -313,7 +301,7 @@ self.__precacheManifest = [
   },
   {
     "url": "cli/ws.html",
-    "revision": "c3d32c893f59e0e5a4879b06978e1de5"
+    "revision": "33bc120e2566eb4fff4428ca9eb55124"
   },
   {
     "url": "config.js",
@@ -321,7 +309,7 @@ self.__precacheManifest = [
   },
   {
     "url": "css/common/base.css",
-    "revision": "c48108c43d0600aec3fc20efe83c0000"
+    "revision": "f959f3e1771216f16eade9b090e6b794"
   },
   {
     "url": "css/common/layout.css",
@@ -332,16 +320,12 @@ self.__precacheManifest = [
     "revision": "3dd02835d964bc6c577d2680c1ae7577"
   },
   {
-    "url": "css/common/widgets.css",
-    "revision": "4da280277b90afaf4e13b618c2afe4eb"
-  },
-  {
     "url": "css/README.html",
     "revision": "6a4fe1ff92acfccf5d3e40f0f81fb427"
   },
   {
     "url": "index.css",
-    "revision": "40e887d590a280938f5740dfb9e943a7"
+    "revision": "dfbda19f9f05da247c1d9759f237e35b"
   },
   {
     "url": "index.hgui.js",
@@ -349,7 +333,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "6b8788c77eb2792f26dd0c814e89cc6d"
+    "revision": "a78973bf061531a9e79508afd218669a"
   },
   {
     "url": "index.js",
@@ -385,19 +369,19 @@ self.__precacheManifest = [
   },
   {
     "url": "js/zuix/zuix-bundler.js",
-    "revision": "2bb68a5874f617a868f6a96e83431df7"
+    "revision": "8b00aac205b038970fafeb3e429fa388"
   },
   {
     "url": "js/zuix/zuix-bundler.min.js",
-    "revision": "6a73edc276475e9a405bfd5006cd8cc5"
+    "revision": "b2b1f6b259eb52ac69d3e488aeed3320"
   },
   {
     "url": "js/zuix/zuix.js",
-    "revision": "8a7ede3a46887e81cc30997afdc8c42c"
+    "revision": "3202373641c577975e90463ad06274b4"
   },
   {
     "url": "js/zuix/zuix.min.js",
-    "revision": "4ddd90baebdb28b031c6c3df58e51fea"
+    "revision": "f472d9cd35c4867242d8a79f5ed4382d"
   },
   {
     "url": "manifest.json",
@@ -409,7 +393,7 @@ self.__precacheManifest = [
   },
   {
     "url": "test.html",
-    "revision": "c491d21fd21b42969c85c9a090a56fee"
+    "revision": "50a1cdf1c166c4544b0bf1ede267e3c5"
   },
   {
     "url": "images/genie.png",

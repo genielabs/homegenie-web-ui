@@ -1,5 +1,5 @@
 'use strict';
-zuix.controller((cp) => {
+zuix.controller(function(cp) {
     let detailPage;
     let placeHolder;
     let targetView;
@@ -8,6 +8,7 @@ zuix.controller((cp) => {
     let isOpen;
     let chartView;
     let chartUpdateInterval;
+    let headerAutoHide;
 
     cp.init = () => {
         // Chartist.js
@@ -17,9 +18,6 @@ zuix.controller((cp) => {
     cp.create = () => {
         detailPage = cp.field('detail-page');
         placeHolder = zuix.$(document.createElement('div'));
-        // Expose public methods
-        cp.expose('open', open)
-          .expose('close', close);
         // UI event handlers
         cp.view().on('keydown', (e) => {
             if (!isOpen) return;
@@ -29,6 +27,16 @@ zuix.controller((cp) => {
         });
         cp.field('btn-back')
           .on('click', close);
+        // load header-auto-hide controller
+        headerAutoHide = zuix.load('@lib/controllers/header_auto_hide', {
+            view: cp.view(),
+            css: false,
+            header: 'module-detail-header',
+            height: '56px'
+        });
+        // Expose public methods
+        cp.expose('open', open)
+            .expose('close', close);
     };
     cp.destroy = () => {
         stopUpdateInterval();
@@ -40,7 +48,11 @@ zuix.controller((cp) => {
             return;
         }
         isOpen = true;
-        cp.view().get().focus();
+        // this setTimeout is needed otherwise the enclosed code will have no effect
+        setTimeout(()=>{
+            cp.view().get().focus();
+            cp.view().get().scrollTop = 0;
+        });
         targetView = view;
         oldPosition = targetView.position();
         const parent = targetView.parent();
@@ -75,10 +87,12 @@ zuix.controller((cp) => {
             // new position
             targetView.css('transform', 'translate(0,0)');
         });
+        updateInfo();
         updateChart();
     }
     function close() {
         isOpen = false;
+        headerAutoHide.show();
         // detach placeHolder and reattach targetView to the original parent
         placeHolder.detach();
         detailPage.insert(0, placeHolder.get());
@@ -86,7 +100,7 @@ zuix.controller((cp) => {
         // animate targetView to the original position
         removeTransition();
         // current position
-        targetView //.removeClass('box-shadow-heavy')
+        targetView // .removeClass('box-shadow-heavy')
             .css('transform', 'translate('+(newPosition.rect.x-oldPosition.rect.x)+'px,'+(newPosition.rect.y-oldPosition.rect.y)+'px)');
         cp.view().animateCss('fadeOut', {duration: '0.25s'}, ()=> {
             cp.view().hide();
@@ -123,6 +137,15 @@ zuix.controller((cp) => {
             '-o-transition': 'none',
             'transition:': 'none'
         });
+    }
+
+    function updateInfo() {
+        const module = zuix.context(targetView).model();
+        if (module.id) {
+            cp.field('info-id').html(module.id);
+            cp.field('info-type').html(module.type);
+            cp.field('info-adapter').html(module.adapterId);
+        }
     }
 
     function updateChart() {
@@ -173,7 +196,7 @@ zuix.controller((cp) => {
         // refresh chart data ever second
         chartUpdateInterval = setInterval(()=>{
             if (chartView != null) chartView.update();
-        } ,1000);
+        }, 1000);
     }
     function stopUpdateInterval() {
         if (chartUpdateInterval != null) {

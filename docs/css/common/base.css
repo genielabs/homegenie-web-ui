@@ -53,8 +53,11 @@ label {
     position: relative;
 
     display: block;
-    margin: 8px auto;
-    padding: 8px;
+    margin: 8px;
+    padding: 8px 16px;
+
+    min-width: 48px;
+    min-height: 48px;
 
     overflow: hidden;
 

@@ -1,24 +1,30 @@
-<div class="header" layout="row center-left">
+<div data-ui-field="module-detail-header" class="header" layout="row center-left">
     <em data-ui-field="btn-back" class="material-icons">arrow_back</em>
     <h1>Module detail</h1>
 </div>
 
 <div data-ui-field="detail-page" layout="rows top-center" self="stretch-stretch">
 
-    <div class="data-box container-small">
-        <label>Module ID</label>
-        <div data-ui-field="data-id">light-1</div>
-        <label>Type</label>
-        <div data-ui-field="data-type">switch</div>
-        <label>Connection adapter</label>
-        <div data-ui-field="data-adapter">demo-adapter</div>
-        <div layout="row center-center">
-            <button class="hgui-button">Properties</button>
-            <button class="hgui-button">Activity log</button>
+    <!-- here will be automatically added the module widget -->
+
+    <div class="data-box container-small" layout="row top-stretch" self="center">
+        <div self="size-full">
+            <label>Module ID</label>
+            <div data-ui-field="info-id">light-1</div>
+            <label>Type</label>
+            <div data-ui-field="info-type">switch</div>
+            <label>Connection adapter</label>
+            <div data-ui-field="info-adapter">demo-adapter</div>
+        </div>
+        <div layout="column center-right">
+            <button class="hgui-button"><i class="material-icons">view_list</i></button>
+            <button class="hgui-button"><i class="material-icons">comment</i></button>
         </div>
     </div>
 
 </div>
+
+<h2>Statistics</h2>
 
 <div data-ui-field="chart" class="animated fadeIn char-view" self="size-x1"></div>
 

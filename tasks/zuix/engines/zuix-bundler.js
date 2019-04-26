@@ -232,6 +232,10 @@ function resolveAppPath(sourceFolder, filePath) {
             } else {
                 const relPath = filePath.substring(filePath.indexOf('/') + 1);
                 filePath = url.resolve(libraryPath, relPath);
+                if (filePath.startsWith('/')) {
+                    while (filePath.startsWith('/')) filePath = filePath.substring(1);
+                    filePath = path.join(sourceFolder, filePath);
+                }
             }
             isLibraryPath = true;
         }

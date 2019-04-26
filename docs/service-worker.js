@@ -121,15 +121,15 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/module_detail.css",
-    "revision": "b3cd7f71a6ca7f936d2a1dea8e5b5ef0"
+    "revision": "0164a977574e60c2abc1f70f119e294c"
   },
   {
     "url": "app/pages/module_detail.html",
-    "revision": "2bd6d08b1dfa1c90fcd521d9b568bbc3"
+    "revision": "e18d9576ecae0fbc58e8340d8b8e2e7e"
   },
   {
     "url": "app/pages/module_detail.js",
-    "revision": "5ff3a16f4f0184928c737aa67fa2d298"
+    "revision": "2d0ff736f02eefc68faee2de95373f01"
   },
   {
     "url": "app/pages/setup.css",
@@ -309,7 +309,7 @@ self.__precacheManifest = [
   },
   {
     "url": "css/common/base.css",
-    "revision": "f959f3e1771216f16eade9b090e6b794"
+    "revision": "b87812aada256a0ba4df49ad401e9af9"
   },
   {
     "url": "css/common/layout.css",
@@ -333,7 +333,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "a78973bf061531a9e79508afd218669a"
+    "revision": "2137bb2f01d7864aefca88116fae19e7"
   },
   {
     "url": "index.js",

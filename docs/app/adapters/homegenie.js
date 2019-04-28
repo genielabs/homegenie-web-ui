@@ -4,7 +4,7 @@ zuix.controller((cp) => {
     const ImplementedWidgets = ['Dimmer', 'Switch', 'Light', 'Siren', 'Program', 'Sensor', 'DoorWindow'];
     let eventSource;
     let webSocket;
-    let moduleList = []; let groupList = [];
+    let moduleList = []; let groupList = []; let programsList = [];
     // this method is called when the component is ready
     cp.create = ()=> {
         // expose public methods required for implementing the HGUI Adapter interface
@@ -124,10 +124,38 @@ zuix.controller((cp) => {
     function control(m, command, options, callback) {
         // adapter-specific implementation
         if (command === CMD.Options.Show) {
-            // show module options and statistics page
-            zuix.context('module-detail')
-                .open(options.view);
-            if (callback) callback();
+            let module = moduleList.filter((i)=>i.Domain+'/'+i.Address === m.id);
+            if (module.length === 1) module = module[0];
+            apiCall('HomeAutomation.HomeGenie/Automation/Programs.List', (status, res)=>{
+                programsList = res;
+                res.map((p) => {
+                    if (p.IsEnabled && p.Features != null) {
+                        for (let i = 0; i < p.Features.length; i++) {
+                            const f = p.Features[i];
+                            f.ForTypes = f.ForTypes.replace('|', ',');
+                            f.ForDomains = f.ForDomains.replace('|', ',');
+                            let matchFeature = (f.ForTypes.length === 0 || (','+f.ForTypes+',').indexOf(','+module.DeviceType+',') >= 0);
+                            matchFeature = matchFeature && (f.ForDomains.length === 0 || (','+f.ForDomains+',').indexOf(','+module.Domain+',') >= 0);
+                            if (matchFeature) {
+                                zuix.load('adapters/homegenie/options_view', {
+                                    model: {
+                                        name: p.Name,
+                                        description: p.Description
+                                    },
+                                    ready: (ctx) => {
+                                        zuix.context('module-detail').addOptionsView(ctx.view());
+                                    }
+                                });
+                                break;
+                            }
+                        }
+                    }
+                });
+                // show module options and statistics page
+                zuix.context('module-detail')
+                    .open(options.view);
+                if (callback) callback();
+            });
             return;
         }
         if (m.type === 'program') {

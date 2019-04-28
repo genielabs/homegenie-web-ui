@@ -9,6 +9,7 @@ zuix.controller(function(cp) {
     let chartView;
     let chartUpdateInterval;
     let headerAutoHide;
+    let optionsContainer;
 
     cp.init = () => {
         // Chartist.js
@@ -18,6 +19,7 @@ zuix.controller(function(cp) {
     cp.create = () => {
         detailPage = cp.field('detail-page');
         placeHolder = zuix.$(document.createElement('div'));
+        optionsContainer = cp.field('options');
         // UI event handlers
         cp.view().on('keydown', (e) => {
             if (!isOpen) return;
@@ -36,7 +38,8 @@ zuix.controller(function(cp) {
         });
         // Expose public methods
         cp.expose('open', open)
-            .expose('close', close);
+          .expose('close', close)
+          .expose('addOptionsView', addOptionsView);
     };
     cp.destroy = () => {
         stopUpdateInterval();
@@ -92,7 +95,7 @@ zuix.controller(function(cp) {
     }
     function close() {
         isOpen = false;
-        headerAutoHide.show();
+        setTimeout(reset, 500);
         // detach placeHolder and reattach targetView to the original parent
         placeHolder.detach();
         detailPage.insert(0, placeHolder.get());
@@ -117,14 +120,27 @@ zuix.controller(function(cp) {
             chartView = null;
         }
     }
+
+    function addOptionsView(view) {
+        optionsContainer.append(view);
+    }
+
+    function reset() {
+        optionsContainer.children().each((i, el, $el) => {
+            const ctx = zuix.context(el);
+            zuix.unload(ctx);
+        });
+        headerAutoHide.show();
+    }
+
     function addTransition() {
         // TODO: should restore original css states on close
         targetView.css({
-            '-webkit-transition': 'all .2s',
-            '-moz-transition': 'all .2s',
-            '-ms-transition': 'all .2s',
-            '-o-transition': 'all .2s',
-            'transition:': 'all .2s'
+            '-webkit-transition': 'all .3s',
+            '-moz-transition': 'all .3s',
+            '-ms-transition': 'all .3s',
+            '-o-transition': 'all .3s',
+            'transition:': 'all .3s'
         });
     }
     function removeTransition() {

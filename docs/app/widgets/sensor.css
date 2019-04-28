@@ -23,6 +23,9 @@ header{
     cursor: pointer;
     height: 48px;
 }
+header:active {
+    background: rgba(255,255,255,0.5);
+}
 h1 {
     margin: 6px 0 6px;
     padding-left: 8px;

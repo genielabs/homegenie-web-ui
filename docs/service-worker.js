@@ -37,7 +37,19 @@ self.__precacheManifest = [
   },
   {
     "url": "app/adapters/homegenie.js",
-    "revision": "874c00641a8f1cbdd3a8342e224b6d63"
+    "revision": "01bbc77496b0cf0b7a99262fcaf2e767"
+  },
+  {
+    "url": "app/adapters/homegenie/options_view.css",
+    "revision": "1b2038c3e4364669ca2ed86b0e187a84"
+  },
+  {
+    "url": "app/adapters/homegenie/options_view.html",
+    "revision": "748548275cb47503c05b328cd46a6761"
+  },
+  {
+    "url": "app/adapters/homegenie/options_view.js",
+    "revision": "c48a9d2d1014d32e9dc44a5aeab2ede6"
   },
   {
     "url": "app/components/README.html",
@@ -125,11 +137,11 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/module_detail.html",
-    "revision": "e18d9576ecae0fbc58e8340d8b8e2e7e"
+    "revision": "e8589d43135198f96a313f2418fbc370"
   },
   {
     "url": "app/pages/module_detail.js",
-    "revision": "2d0ff736f02eefc68faee2de95373f01"
+    "revision": "2b029915e62e3a927a4c0bd627c00a10"
   },
   {
     "url": "app/pages/setup.css",
@@ -261,7 +273,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/sensor.css",
-    "revision": "7f0357e798fff14ac34b61e75e0d0413"
+    "revision": "ceaf6173df86f6e850d91b8fbf574c34"
   },
   {
     "url": "app/widgets/sensor.html",
@@ -273,7 +285,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/switch.css",
-    "revision": "b1f41109d83f99d0ff7eb27f37e759c6"
+    "revision": "0c9d7c8ffbcc4c82795d7d233b8e8e70"
   },
   {
     "url": "app/widgets/switch.html",
@@ -313,7 +325,7 @@ self.__precacheManifest = [
   },
   {
     "url": "css/common/layout.css",
-    "revision": "4aa577896944c1c1ead6c8986981b642"
+    "revision": "43c3d3502ccbd8f1262702fe3daaf22f"
   },
   {
     "url": "css/common/text.css",
@@ -333,7 +345,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "2137bb2f01d7864aefca88116fae19e7"
+    "revision": "571b0bc1f96b42f5c27e4f064dfb46d4"
   },
   {
     "url": "index.js",
@@ -393,7 +405,7 @@ self.__precacheManifest = [
   },
   {
     "url": "test.html",
-    "revision": "50a1cdf1c166c4544b0bf1ede267e3c5"
+    "revision": "4706c6a53926aaa111722d0b2dcad1aa"
   },
   {
     "url": "images/genie.png",

@@ -21,3 +21,37 @@
   padding-bottom: 20px;
   overflow-y: scroll;
 }
+.padding-small {
+  padding: 8px;
+}
+.padding-medium {
+  padding: 16px;
+}
+.padding-large {
+  padding: 24px;
+}
+.delay-100 {
+  -webkit-animation-delay: 100ms;
+  -moz-animation-delay: 100ms;
+  animation-delay: 100ms;
+}
+.delay-150 {
+  -webkit-animation-delay: 150ms;
+  -moz-animation-delay: 150ms;
+  animation-delay: 150ms;
+}
+.delay-200 {
+  -webkit-animation-delay: 200ms;
+  -moz-animation-delay: 200ms;
+  animation-delay: 200ms;
+}
+.delay-250 {
+  -webkit-animation-delay: 250ms;
+  -moz-animation-delay: 250ms;
+  animation-delay: 250ms;
+}
+.delay-400 {
+  -webkit-animation-delay: 400ms;
+  -moz-animation-delay: 400ms;
+  animation-delay: 400ms;
+}

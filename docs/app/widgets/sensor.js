@@ -39,7 +39,7 @@ zuix.controller((cp) => {
     let updateStatusInterval;
 
     function initWidget() {
-        zuix.using('script', '/js/widgets.js');
+        zuix.using('script', 'https://genielabs.github.io/homegenie-web-ui/js/widgets.js');
         zuix.using('script', '@cdnjs/dayjs/1.8.12/dayjs.min.js', ()=>{
             zuix.using('script', '@cdnjs/dayjs/1.8.12/plugin/relativeTime.js', ()=>{
                 // wait until dayjs is ready
@@ -157,16 +157,16 @@ zuix.controller((cp) => {
     }
 
     function updateField(el, field) {
-        let icon = '/images/widgets/empty.svg';
+        let icon = 'https://genielabs.github.io/homegenie-web-ui/images/widgets/empty.svg';
         switch (field.key) {
             case FLD.Sensor.Temperature:
-                icon = '/images/widgets/temperature.svg';
+                icon = 'https://genielabs.github.io/homegenie-web-ui/images/widgets/temperature.svg';
                 break;
             case FLD.Sensor.Luminance:
-                icon = '/images/widgets/sun.svg';
+                icon = 'https://genielabs.github.io/homegenie-web-ui/images/widgets/sun.svg';
                 break;
             case FLD.Sensor.Humidity:
-                icon = '/images/widgets/drop.svg';
+                icon = 'https://genielabs.github.io/homegenie-web-ui/images/widgets/drop.svg';
                 break;
         }
         el.field('icon').attr('src', icon).show();
@@ -175,7 +175,7 @@ zuix.controller((cp) => {
     }
 
     function setType(type) {
-        let typeIcon = '/images/widgets/sensor.svg';
+        let typeIcon = 'https://genielabs.github.io/homegenie-web-ui/images/widgets/sensor.svg';
         // TODO: select different sensor icons based on 'type'
         cp.field('icon').attr('src', typeIcon);
         return cp.context;

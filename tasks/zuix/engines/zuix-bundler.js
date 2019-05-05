@@ -49,6 +49,8 @@ const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 // minifier
 const minify = require('html-minifier').minify;
+const mkdirp = require('mkdirp');
+const getDirName = require('path').dirname;
 
 const LIBRARY_PATH_DEFAULT = 'https://zuixjs.github.io/zkit/lib';
 
@@ -480,9 +482,12 @@ module.exports = function(options, template, page, cb) {
             tlog.info(' ^r*^: less');
             less.render(page.content, lessConfig, function(error, output) {
                 const baseName = page.dest.substring(0, page.dest.length - 5);
-                fs.writeFileSync(baseName + '.css', output.css);
-                // TODO: source map generation disabled
-                //fs.writeFileSync(baseName+'.css.map', output.map);
+                mkdirp(getDirName(baseName + '.css'), function(err) {
+                    if (err) return cb(err);
+                    fs.writeFileSync(baseName + '.css', output.css);
+                    // TODO: source map generation disabled
+                    //fs.writeFileSync(baseName+'.css.map', output.map);
+                });
                 tlog.overwrite(' ^G\u2713^: less');
             });
             tlog.info();

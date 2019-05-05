@@ -39,17 +39,22 @@ zuix.controller(function(cp) {
         // Expose public methods
         cp.expose('open', open)
           .expose('close', close)
+          .expose('toggle', toggle)
+          .expose('isOpen', () => isOpen)
           .expose('addOptionsView', addOptionsView);
     };
     cp.destroy = () => {
         stopUpdateInterval();
     };
 
+    function toggle(view) {
+        if (isOpen) close();
+        else open(view);
+        return isOpen;
+    }
+
     function open(view) {
-        if (isOpen) {
-            close();
-            return;
-        }
+        if (isOpen) return;
         isOpen = true;
         // this setTimeout is needed otherwise the enclosed code will have no effect
         setTimeout(()=>{
@@ -94,6 +99,7 @@ zuix.controller(function(cp) {
         updateChart();
     }
     function close() {
+        if (!isOpen) return;
         isOpen = false;
         setTimeout(reset, 500);
         // detach placeHolder and reattach targetView to the original parent
@@ -123,6 +129,7 @@ zuix.controller(function(cp) {
 
     function addOptionsView(view) {
         optionsContainer.append(view);
+        zuix.$(view).attr('self', 'size-1of2 sm-full');
     }
 
     function reset() {

@@ -3,34 +3,44 @@
     top:0;
     left:0;
     width:100vw;
-    height:100vh;
-    background-color: #fafafa;
+    min-height:100vh;
     overflow-y: scroll;
     z-index: 1000;
+    background: white;
+}
+.header {
+    position: fixed;
+    top: 0; left: 0;
+    height: 56px;
+    z-index: 2000;
+    margin-bottom: 8px;
+    padding: 8px;
+    background: white;
+}
+.header h1 {
+    color: #229553;
+    margin: 0;
+    font-size: 160%;
+}
+.header em {
+    opacity: 0.25;
+    font-size: 36px;
+    width: 48px;
+    text-align: center;
+    font-weight: 100;
+    margin-right: 8px;
+    cursor: pointer;
 }
 .page {
     width: 100vw;
     height: 100vh;
-    overflow-y: scroll;
-}
-.title {
-    margin: 0;
-    font-size: 180%;
-    font-weight: 300;
-}
-.title i {
-    cursor: pointer;
-    padding: 16px;
+    padding-top: 80px;
 }
 .title-logo {
     padding-right: 16px;
     font-size: 135%;
     font-weight: 600;
     color: red;
-}
-.img-logo {
-    margin-top: 8px;
-    height: 48px;
 }
 .logo {
     color: rgba(20,0,200,0.75);

@@ -122,8 +122,14 @@ zuix.controller((cp) => {
         };
     }
     function control(m, command, options, callback) {
+        const moduleDetailDialog = zuix.context('module-detail');
         // adapter-specific implementation
         if (command === CMD.Options.Show) {
+            if (moduleDetailDialog.isOpen()) {
+                moduleDetailDialog.close();
+                return;
+            }
+            hgui.showLoader(true);
             let module = moduleList.filter((i)=>i.Domain+'/'+i.Address === m.id);
             if (module.length === 1) module = module[0];
             apiCall('HomeAutomation.HomeGenie/Automation/Programs.List', (status, res)=>{
@@ -150,6 +156,7 @@ zuix.controller((cp) => {
                             }
                         }
                     }
+                    hgui.hideLoader();
                 });
                 // show module options and statistics page
                 zuix.context('module-detail')

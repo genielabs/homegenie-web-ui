@@ -77,13 +77,13 @@ zuix.controller((cp) => {
         let icon = '{{app.urlRoot}}images/widgets/empty.svg';
         switch (field.key) {
             case FLD.Sensor.Temperature:
-                icon = '{{app.urlRoot}}images/widgets/temperature.png';
+                icon = '{{app.urlRoot}}images/widgets/temperature.svg';
                 break;
             case FLD.Sensor.Luminance:
-                icon = '{{app.urlRoot}}images/widgets/sun.png';
+                icon = '{{app.urlRoot}}images/widgets/sun.svg';
                 break;
             case FLD.Sensor.Humidity:
-                icon = '{{app.urlRoot}}images/widgets/drop.png';
+                icon = '{{app.urlRoot}}images/widgets/drop.svg';
                 break;
         }
         el.field('icon').attr('src', icon).show();
@@ -92,7 +92,7 @@ zuix.controller((cp) => {
     }
 
     function setType(type) {
-        let typeIcon = '{{app.urlRoot}}images/widgets/sensor.png';
+        let typeIcon = '{{app.urlRoot}}images/widgets/sensor.svg';
         // TODO: select different sensor icons based on 'type'
         cp.field('icon').attr('src', typeIcon);
         return cp.context;

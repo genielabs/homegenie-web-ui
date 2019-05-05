@@ -1,24 +1,23 @@
 . {
     display: none;
     position: fixed;
+    /*
     background: rgba(250, 150, 50, 1) linear-gradient(rgba(40,40,40), lightblue);
+     */
+    background: #fff;
     top:0; left:0; right:0; bottom:0;
     z-index: 2000;
     tab-index: 0;
     overflow-y: auto;
-    padding-top: 64px;
+    padding-top: 72px;
 }
 h2 {
-    font-weight: 800;
     font-size: 260%;
-    color:white;
+    color: black;
     margin: 16px;
-    -webkit-text-fill-color: white; /* Will override color (regardless of order) */
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
 }
 p {
-    color: white;
+    color: black;
     text-align: center;
 }
 .header {
@@ -28,24 +27,42 @@ p {
     z-index: 2000;
     margin-bottom: 8px;
     padding: 8px;
-    background: black;
-    color: white;
+    background: white;
 }
 .header h1 {
+    color: #229553;
     margin: 0;
     font-size: 160%;
-    font-weight: 700;
 }
 .header em {
+    opacity: 0.25;
     font-size: 36px;
     width: 48px;
     text-align: center;
+    font-weight: 100;
     margin-right: 8px;
     cursor: pointer;
 }
 
+.title-logo {
+    padding-right: 16px;
+    font-size: 135%;
+    font-weight: 600;
+    color: red;
+}
+.img-logo {
+    margin-top: 8px;
+    height: 48px;
+}
+.logo {
+    color: rgba(20,0,200,0.75);
+    font-family: 'Lobster', cursive;
+    font-weight: 400;
+    font-size: 98%;
+}
+
 .char-view {
-    background: white linear-gradient(white, lightcyan);
+    background: white linear-gradient(white, #e5e5e5);
     min-width:280px;
     height:164px;
     margin:8px;
@@ -60,12 +77,8 @@ p {
 }
 
 .data-box {
-    margin: 8px;
-    color: white;
-}
-
-.data-box label {
-    color: yellow;
+    margin: 8px 8px 0;
+    color: black;
 }
 
 .data-box div {
@@ -77,5 +90,12 @@ p {
 }
 
 .box-shadow-heavy {
-    box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.35), 0 0 24px 0 rgba(0, 0, 0, 0.65);
+    box-shadow: 0 0 12px 0px rgba(0, 0, 0, 0.15), 0 0 12px 0 rgba(0, 0, 0, 0.25);
+}
+
+div[data-ui-field="options"] {
+    background: white;
+    color: black;
+    margin-top: 8px;
+    padding-top: 10px;
 }

@@ -21,11 +21,11 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox
 self.__precacheManifest = [
   {
     "url": "404.html",
-    "revision": "3065ad87c133096dbba38b6e7895afc7"
+    "revision": "920911e362a3d5549a818dc606c6d758"
   },
   {
     "url": "app/adapters/demo.js",
-    "revision": "915325646b32f486118441cda2d98082"
+    "revision": "d93d7c7cd1ea8473efbd94be2582d01c"
   },
   {
     "url": "app/adapters/demo/data.groups.json",
@@ -37,15 +37,15 @@ self.__precacheManifest = [
   },
   {
     "url": "app/adapters/homegenie.js",
-    "revision": "01bbc77496b0cf0b7a99262fcaf2e767"
+    "revision": "2a058632e7f24e871d37be6529147aa0"
   },
   {
     "url": "app/adapters/homegenie/options_view.css",
-    "revision": "1b2038c3e4364669ca2ed86b0e187a84"
+    "revision": "f0f31b28ddec9bdd15084156d8b96059"
   },
   {
     "url": "app/adapters/homegenie/options_view.html",
-    "revision": "748548275cb47503c05b328cd46a6761"
+    "revision": "a031f5a460db3a9adab7111a1089fe2b"
   },
   {
     "url": "app/adapters/homegenie/options_view.js",
@@ -69,7 +69,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/layout/footer.html",
-    "revision": "d394cc04cde033753a888184e834d1e0"
+    "revision": "3df24ae9b0550c27d08287310fd5e3fc"
   },
   {
     "url": "app/layout/header.css",
@@ -77,7 +77,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/layout/header.html",
-    "revision": "f593c409c4f6965126ba17d9bf0bfa99"
+    "revision": "b3bf5c13663cd85fc779487f0eecc142"
   },
   {
     "url": "app/pages/eventslog.css",
@@ -85,7 +85,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/eventslog.html",
-    "revision": "d84787dba4ba300b89bf84914a036746"
+    "revision": "2cbc84c36eb5ce6ae0cb00659e964fef"
   },
   {
     "url": "app/pages/home.css",
@@ -93,7 +93,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home.html",
-    "revision": "745a16081bb296c95262aad7d12e05d3"
+    "revision": "56d1860d92c055ad084585146adc0547"
   },
   {
     "url": "app/pages/home/items_list.css",
@@ -101,7 +101,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home/items_list.html",
-    "revision": "e9494e2a3c2f0d0da1118d8d28291fe6"
+    "revision": "d0d4934489c35e5222568546f6eed050"
   },
   {
     "url": "app/pages/home/items_list.js",
@@ -113,7 +113,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home/items_list/item_mini.html",
-    "revision": "e4297b8cc469b04a28fe0e261a00309e"
+    "revision": "141886ab37324985e54ddb1d1f63635a"
   },
   {
     "url": "app/pages/home/items_list/item_mini.js",
@@ -125,7 +125,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home/items_list/item.html",
-    "revision": "91edcf820671aa65316a9e30d82027d1"
+    "revision": "e179930ea08a54520b436e684fcd35b7"
   },
   {
     "url": "app/pages/home/items_list/item.js",
@@ -133,23 +133,23 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/module_detail.css",
-    "revision": "0164a977574e60c2abc1f70f119e294c"
+    "revision": "3824f5507b10042858c415729bf3826d"
   },
   {
     "url": "app/pages/module_detail.html",
-    "revision": "e8589d43135198f96a313f2418fbc370"
+    "revision": "99ff852f703595ce9f02460eaef5255b"
   },
   {
     "url": "app/pages/module_detail.js",
-    "revision": "2b029915e62e3a927a4c0bd627c00a10"
+    "revision": "b19a46cae4ef38e0a2a2e26accb298d8"
   },
   {
     "url": "app/pages/setup.css",
-    "revision": "fb0da108f43f82585e6063536433e183"
+    "revision": "d85f42cce978ae04de58cab484ee0fa0"
   },
   {
     "url": "app/pages/setup.html",
-    "revision": "b3c79d8a3d13d7581a913461452e8355"
+    "revision": "14a55271dee36d348adb3bbcfad41c6a"
   },
   {
     "url": "app/pages/setup.js",
@@ -161,7 +161,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/setup/module_item.html",
-    "revision": "35dc27bd559b7bd8e6688cac5ecb8409"
+    "revision": "b0abaa634c20bdba7e681c9958706100"
   },
   {
     "url": "app/pages/setup/module_item.js",
@@ -177,7 +177,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/splash.html",
-    "revision": "500c2f0f961f833d9206a5eda2fa0317"
+    "revision": "d0e1361433abf430dc2ce032209c940c"
   },
   {
     "url": "app/README.html",
@@ -189,7 +189,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/shared/button_menu.html",
-    "revision": "602ca4bae9b8b3d03e90ade2b6fa61e0"
+    "revision": "1b87ea675429868168ad70c2bcb2eb5a"
   },
   {
     "url": "app/shared/button_menu.js",
@@ -201,7 +201,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/shared/main_menu.html",
-    "revision": "0ebca2a3f90cbc09b8710236c0f50e23"
+    "revision": "4627d8ab67c451408436b54a11f37d65"
   },
   {
     "url": "app/shared/main_menu.js",
@@ -217,7 +217,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/tools/zuix_editor.html",
-    "revision": "13786cde7540823548ca80cf1805eacb"
+    "revision": "994691076c41e3fdc270ba388df4f4d3"
   },
   {
     "url": "app/tools/zuix_editor.js",
@@ -229,7 +229,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/tools/zuix_editor/bundle_item.html",
-    "revision": "435a56f0d185cffe995c28a512e38f32"
+    "revision": "27de88164db79540a734a4520adf4714"
   },
   {
     "url": "app/tools/zuix_editor/bundle_item.js",
@@ -241,7 +241,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/tools/zuix_hackbox.html",
-    "revision": "4fcee871a909807f82e7e41ead61c242"
+    "revision": "71df2f6a7d5ccf0af59e184f45157784"
   },
   {
     "url": "app/tools/zuix_hackbox.js",
@@ -253,7 +253,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/tools/zuix_hackbox/log_item.html",
-    "revision": "98b9be27f0de7161a8b9a237a05954f1"
+    "revision": "8886c2a2c482015b5898088c6de81534"
   },
   {
     "url": "app/tools/zuix_hackbox/log_item.js",
@@ -265,7 +265,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/program.html",
-    "revision": "ab832e0f5ca3fe1516716f35be40115d"
+    "revision": "c7e69a463a977f006688a0992129f184"
   },
   {
     "url": "app/widgets/program.js",
@@ -277,11 +277,11 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/sensor.html",
-    "revision": "a21222cde6dbdc7a7cb24e3c75bf962b"
+    "revision": "5ad3ffcf5056dfd8f75ac76f34d6400b"
   },
   {
     "url": "app/widgets/sensor.js",
-    "revision": "95625713101778f79e90f2580078ad99"
+    "revision": "08521c9fe5a3c0571ffbd75712924e38"
   },
   {
     "url": "app/widgets/switch.css",
@@ -289,11 +289,11 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/switch.html",
-    "revision": "816de9773dc0cf396feb1b3f72f77d03"
+    "revision": "611ffcbcca94770892c20612c78af55b"
   },
   {
     "url": "app/widgets/switch.js",
-    "revision": "3251938b4b07fe24666ca4199835a039"
+    "revision": "e86f47ba10f69af62ccb37b8cc167e38"
   },
   {
     "url": "app/widgets/timeclock.css",
@@ -301,7 +301,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/widgets/timeclock.html",
-    "revision": "b723cfad159ec78657f04d047fbc6827"
+    "revision": "e05f7e84f1c3acf2e9a29e424aa33067"
   },
   {
     "url": "app/widgets/timeclock.js",
@@ -309,19 +309,19 @@ self.__precacheManifest = [
   },
   {
     "url": "cli/mqtt.html",
-    "revision": "dc77b01fd5a2f7ffb2797bc594b5f399"
+    "revision": "d2dcf920fc9967e7563504d4c8d60069"
   },
   {
     "url": "cli/ws.html",
-    "revision": "33bc120e2566eb4fff4428ca9eb55124"
+    "revision": "14002d432b5c5d0de43ab611c9362aa5"
   },
   {
     "url": "config.js",
-    "revision": "78e0970dacda9eb851258bd642217625"
+    "revision": "36a7fed5af8ea36e40e43a7c1beba361"
   },
   {
     "url": "css/common/base.css",
-    "revision": "b87812aada256a0ba4df49ad401e9af9"
+    "revision": "b0fd639136a66685ff56528db5002921"
   },
   {
     "url": "css/common/layout.css",
@@ -330,6 +330,10 @@ self.__precacheManifest = [
   {
     "url": "css/common/text.css",
     "revision": "3dd02835d964bc6c577d2680c1ae7577"
+  },
+  {
+    "url": "css/common/theme.css",
+    "revision": "fe3a97164e79da0f5678c648f896c5ad"
   },
   {
     "url": "css/README.html",
@@ -345,7 +349,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "571b0bc1f96b42f5c27e4f064dfb46d4"
+    "revision": "d3bef98737526ddd64677e1d037e1838"
   },
   {
     "url": "index.js",
@@ -365,7 +369,7 @@ self.__precacheManifest = [
   },
   {
     "url": "js/hgui.js",
-    "revision": "111d7ff92ef17da5d7b60105f8c12a56"
+    "revision": "d304516320c19533b1aafed90c42ffc2"
   },
   {
     "url": "js/mqttws31.js",
@@ -401,11 +405,11 @@ self.__precacheManifest = [
   },
   {
     "url": "offline.html",
-    "revision": "72257b195d4eb39cc00cbdcf3463f77e"
+    "revision": "02ddb6a753b7c1e733b7cadc0fc4b109"
   },
   {
     "url": "test.html",
-    "revision": "4706c6a53926aaa111722d0b2dcad1aa"
+    "revision": "934975b02d51e9aaca9334f9b784b697"
   },
   {
     "url": "images/genie.png",
@@ -417,27 +421,27 @@ self.__precacheManifest = [
   },
   {
     "url": "images/icons/desktop/android-chrome-512x512.png",
-    "revision": "6df83c6c13be17a2ea70d29e340c5ddb"
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "images/icons/desktop/apple-touch-icon.png",
-    "revision": "2b78ed332644d19d9779c069c5842538"
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "images/icons/desktop/favicon-16x16.png",
-    "revision": "6c047cdbd3d5c4c962a3a692a5025d27"
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "images/icons/desktop/favicon-32x32.png",
-    "revision": "7413528d5e59c22af1ccf38187bc950b"
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "images/icons/desktop/mstile-150x150.png",
-    "revision": "540caa78f56655281b2d4b17ad52f2ce"
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "images/icons/desktop/safari-pinned-tab.svg",
-    "revision": "a0ab2c612c6a5019b3e4ae7c38043b98"
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "images/icons/icon-128x128.png",
@@ -461,47 +465,179 @@ self.__precacheManifest = [
   },
   {
     "url": "images/icons/icon-512x512.png",
-    "revision": "274298ed7162d12352fa836d3a2cb11e"
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "images/icons/icon-72x72.png",
-    "revision": "919cb6b3e8a1b5d0c963921dba0e4388"
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "images/icons/icon-96x96.png",
-    "revision": "5547ad1a33334c0f5c04f6de1f6d2c52"
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
-    "url": "images/widgets/bulb.png",
-    "revision": "4dca54a739d44089ae998e47093d120e"
+    "url": "images/widgets/air conditioning indoor.svg",
+    "revision": "2d11f05debcbd456ae7d07b74f6fb939"
   },
   {
-    "url": "images/widgets/drop.png",
-    "revision": "51b1e6166978eb61414f764248ac1eb8"
+    "url": "images/widgets/air conditioning outdoor.svg",
+    "revision": "67fac213de52eac62f14e74a199f8083"
+  },
+  {
+    "url": "images/widgets/bulb.svg",
+    "revision": "45c1e5b82bc61d4be1834c8a13c23fc7"
+  },
+  {
+    "url": "images/widgets/cold.svg",
+    "revision": "6be93ce6bd8c542e9af0cc97cad7704f"
+  },
+  {
+    "url": "images/widgets/dome camera.svg",
+    "revision": "e304c15ec19984523e941588d1cc3ede"
+  },
+  {
+    "url": "images/widgets/door handle.svg",
+    "revision": "7c1eff97a6403cc82adf51f41425c555"
+  },
+  {
+    "url": "images/widgets/doorbell.svg",
+    "revision": "2184896670e3d1cf36e8a236bb7c56fe"
+  },
+  {
+    "url": "images/widgets/drop.svg",
+    "revision": "7d1196d01f9c21058672824503a9581b"
+  },
+  {
+    "url": "images/widgets/electric range.svg",
+    "revision": "3a674bc61522411dcd45bc25e0f40e8e"
   },
   {
     "url": "images/widgets/empty.svg",
     "revision": "efd685f4843279556438eeb8eaa1f72c"
   },
   {
-    "url": "images/widgets/power.png",
-    "revision": "a4671d72ab9965f1ab9e3544e3fad717"
+    "url": "images/widgets/eye.svg",
+    "revision": "bab2f7af3be57fd54f8ef43cd67b447b"
   },
   {
-    "url": "images/widgets/sensor.png",
-    "revision": "3e7483846a3995d549271a11deac33a2"
+    "url": "images/widgets/garage.svg",
+    "revision": "709c492dc6372bddf18628e3efb1d77d"
   },
   {
-    "url": "images/widgets/socket.png",
-    "revision": "44fe5ded79bf5a25914d0b2c66396c96"
+    "url": "images/widgets/heater.svg",
+    "revision": "e1c983f6a9e8a2e5c51f3d544ae6a071"
   },
   {
-    "url": "images/widgets/sun.png",
-    "revision": "e708a9291c465df34b262ad06032403b"
+    "url": "images/widgets/houseplant.svg",
+    "revision": "5cd2ba7b0fcb95c6444e787de7ed3b39"
   },
   {
-    "url": "images/widgets/temperature.png",
-    "revision": "4c85b9c79c7395bda77f82b63c245119"
+    "url": "images/widgets/ip camera.svg",
+    "revision": "a328fe7000fc5eb702cd14c900699af6"
+  },
+  {
+    "url": "images/widgets/key.svg",
+    "revision": "08e2291f366771752ef3c6ce7a651234"
+  },
+  {
+    "url": "images/widgets/lock a.svg",
+    "revision": "5f9f5d98b32eb3c79ffed9fc0fb8300f"
+  },
+  {
+    "url": "images/widgets/lock b.svg",
+    "revision": "e32cd6c314d0362ee96a5da9f9ee835d"
+  },
+  {
+    "url": "images/widgets/loudspeakers.svg",
+    "revision": "de9e8b244027a9fd6af54fba117b47a6"
+  },
+  {
+    "url": "images/widgets/pet.svg",
+    "revision": "83afd1b90ec13d19a1f30f02fcf17e55"
+  },
+  {
+    "url": "images/widgets/plug.svg",
+    "revision": "ca9543cbde3ff328e8b97d9fc040bf02"
+  },
+  {
+    "url": "images/widgets/pool.svg",
+    "revision": "9a0fc408b1ff457249abf5d1c2631566"
+  },
+  {
+    "url": "images/widgets/power button.svg",
+    "revision": "897ac60c42c2b29f942ca2624dcb96bd"
+  },
+  {
+    "url": "images/widgets/power.svg",
+    "revision": "30725b2b912019737ec6a810b8813c91"
+  },
+  {
+    "url": "images/widgets/recycling.svg",
+    "revision": "774e777cf3afacbd821bd45e97b9da77"
+  },
+  {
+    "url": "images/widgets/remote control.svg",
+    "revision": "39fe37b965c20c8d8443bc566621f2eb"
+  },
+  {
+    "url": "images/widgets/router.svg",
+    "revision": "89dbdcb59cae8531604164fe1eba16a5"
+  },
+  {
+    "url": "images/widgets/sensor.svg",
+    "revision": "e36b8d99cb5410dce4005f77375316c2"
+  },
+  {
+    "url": "images/widgets/smartphone.svg",
+    "revision": "82eccdceb218fe26a29adf1b15db6b83"
+  },
+  {
+    "url": "images/widgets/socket f.svg",
+    "revision": "3cb0ca5f15537185fa98378e1ac49ae7"
+  },
+  {
+    "url": "images/widgets/socket i.svg",
+    "revision": "32007f4b64e792556c33f9878849aa36"
+  },
+  {
+    "url": "images/widgets/socket.svg",
+    "revision": "dc3d16667df6145350088e4c090d52da"
+  },
+  {
+    "url": "images/widgets/solar panel.svg",
+    "revision": "3998707052c0f5679beeb7f0f8f491c9"
+  },
+  {
+    "url": "images/widgets/sun.svg",
+    "revision": "bc7dce4e6166f043d99559182cc8e7ee"
+  },
+  {
+    "url": "images/widgets/temperature.svg",
+    "revision": "5f585a0b8df103c82ac0f9e7f70ea3db"
+  },
+  {
+    "url": "images/widgets/thermostat.svg",
+    "revision": "7c4a18e31facc516c285f9bba3cc06a0"
+  },
+  {
+    "url": "images/widgets/tv.svg",
+    "revision": "bc6fe4667b07b28de792b30787020384"
+  },
+  {
+    "url": "images/widgets/vacuum cleaning robot.svg",
+    "revision": "98aef983df55e355223bb9ab2806e467"
+  },
+  {
+    "url": "images/widgets/ventilation.svg",
+    "revision": "ce026cb36cb5a607146b28dc53251259"
+  },
+  {
+    "url": "images/widgets/washer.svg",
+    "revision": "a34e7571771340c74a7447bff212edb5"
+  },
+  {
+    "url": "images/widgets/weather.svg",
+    "revision": "c16be5c6256d7467fc685fe54a7d2173"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();

@@ -1,7 +1,12 @@
 . {
-    min-width: 280px;
-    max-width: 420px;
-    color: white;
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.container {
+    padding-left: 8px; padding-right: 8px;
+    height: 80px;
 }
 
 h2 {
@@ -9,13 +14,18 @@ h2 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 180%;
-    margin-top: 24px;
-    margin-bottom: 8px;
+    font-size: 160%;
+    padding: 0;
+    margin: 0;
 }
 div[data-ui-field="description"] {
-    padding: 8px;
-    margin-left: 8px;
-    margin-right: 8px;
+    color: rgba(0,0,0,0.5);
+    /* limit text to 2 lines */
     line-height: 180%;
+    max-height: 360%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
 }

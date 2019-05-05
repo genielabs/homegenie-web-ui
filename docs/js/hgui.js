@@ -222,11 +222,13 @@
                 }
             },
             setListener: (l) => listener = l,
-            showLoader: () => {
-                splashScreen.show().animateCss('fadeIn');
+            showLoader: (overlay) => {
+                if (overlay) splashScreen.css('background', 'rgba(255,255,255,0.25)');
+                else splashScreen.css('background', '');
+                splashScreen.animateCss('fadeIn').show();
             },
             hideLoader: () => {
-                splashScreen.animateCss('fadeOut', {delay: '.5s'}, () => {
+                splashScreen.animateCss('fadeOut', () => {
                     splashScreen.hide();
                 });
             }

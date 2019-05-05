@@ -3,11 +3,11 @@ body {
     font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
 }
 h1,h2,h3,h4,h5,h6 {
+    font-weight: 300;
     font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
 }
 h1 {
     font-size: 280%;
-    font-weight: 400;
 }
 
 /* INPUT TEXT AND TEXTAREA */
@@ -41,13 +41,18 @@ a,a:hover,a:visited {
 /* LABEL */
 
 label {
+    display:inline-block;
+    color: #229553;
     text-transform: uppercase;
-    padding: 4px;
-    font-size: 80%;
+    padding: 4px; margin-top: 8px;
     font-weight: 800;
 }
 
 /* BUTTON */
+
+.hgui-button.color-accent {
+    background-color: #229553;
+}
 
 .hgui-button {
     position: relative;
@@ -63,11 +68,11 @@ label {
 
     border-width: 0;
     outline: none;
-    border-radius: 2px;
+    border-radius: 4px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
 
-    background-color: #229553;
-    color: #ecf0f1;
+    background-color: rgba(240,240,240,0.8);
+    color: black;
 
     text-transform: uppercase;
     font-size: 90%;
@@ -76,7 +81,14 @@ label {
     transition: background-color .3s;
 }
 
-.hgui-button:hover, button:focus {
+.hgui-button:hover, .hgui-button:focus {
+    background-color: rgba(220,220,220,0.8);
+}
+.hgui-button:focus {
+    background-color: rgba(220,220,220,0.8);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+}
+.hgui-button:hover.color-accent, .hgui-button:focus.color-accent {
     background-color: #27ae60;
 }
 
@@ -102,7 +114,7 @@ label {
 
     border-radius: 100%;
 
-    background-color: rgba(236, 240, 241, .3);
+    background-color: rgba(255, 255, 255, .4);
 
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);

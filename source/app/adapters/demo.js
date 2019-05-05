@@ -59,7 +59,7 @@ zuix.controller((cp) => {
         if (command === CMD.Options.Show) {
             // show module options and statistics page
             zuix.context('module-detail')
-                .open(options.view);
+                .toggle(options.view);
             if (callback) callback();
             return;
         }

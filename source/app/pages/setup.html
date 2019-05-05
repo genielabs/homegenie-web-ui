@@ -1,105 +1,90 @@
-<div -data-ui-load="@lib/controllers/view_pager"
-     -data-o-paging="true"
-     layout="row stretch-stretch"
-     class="animated fadeIn">
-
-    <div class="page" layout="column top-center">
-        <div self="top" layout="row center-left">
-            <div self="size-x1">
-                <h1 class="title" layout="row center-left">
-                    <i data-ui-field="btn-close" class="material-icons">arrow_back</i>
-                    Setup
-                </h1>
-            </div>
-            <!--
+<div data-ui-field="module-detail-header" class="header" layout="row center-left">
+    <em data-ui-field="btn-close" class="material-icons">arrow_back</em>
+    <h1 self="size-x1">Setup</h1>
+    <a class="title-logo" href="https://github.com/genielabs/homegenie-web-ui" target="_blank">
+        <span class="logo">H</span>GUI
+    </a>
+</div>
+<div class="page" layout="column top-center">
+    <div data-ui-field="page-adapters" self="size-x1 stretch-stretch" layout="column center-center">
+        <!--
+        <h2 class="summary">Add a new connection...</h2>
+        -->
+        <div layout="column center-center">
             <div>
-                <img class="img-logo" alt="HomeGenie Icon" src="images/genie.png">
-            </div>
-            -->
-            <a class="title-logo" href="https://github.com/genielabs/homegenie-web-ui" target="_blank">
-                <span class="logo">H</span>GUI
-            </a>
-        </div>
-        <div data-ui-field="page-adapters" self="size-x1 stretch-stretch" layout="column center-center">
-            <!--
-            <h2 class="summary">Add a new connection...</h2>
-            -->
-            <div layout="column center-center">
-                <div>
-                    <div class="connection-item">
-                        <h3 layout="row center-left" onclick="setupDemoAdapter()" class="clickable">
-                            <i class="material-icons">arrow_right</i>
-                            <a>Demo</a>
-                        </h3>
-                        <p>Demo connection adapter based on JSON data files.</p>
-                    </div>
-                    <div class="connection-item disabled">
-                        <h3 layout="row center-left">
-                            <i class="material-icons">arrow_right</i>
-                            <a>Domoticz</a>
-                        </h3>
-                        <p>
-                            Connection adapter for Domoticz.
-                        </p>
-                    </div>
-                    <div class="connection-item">
-                        <h3 layout="row center-left" onclick="setupHomeGenieAdapter()" class="clickable">
-                            <i class="material-icons">arrow_right</i>
-                            <a>HomeGenie</a>
-                        </h3>
-                        <p>
-                            Connection adapter for <a href="https://genielabs.github.io/HomeGenie/" target="_blank">HomeGenie-server</a>
-                            and <a href="https://github.com/genielabs/homegenie-mini" target="_blank">HomeGenie-mini</a>.
-                        </p>
-                    </div>
-                    <div class="connection-item disabled">
-                        <h3 layout="row center-left">
-                            <i class="material-icons">arrow_right</i>
-                            <a>Home Assistant</a>
-                        </h3>
-                        <p>
-                            Connection adapter for Home Assistant.
-                        </p>
-                    </div>
-                    <div class="connection-item disabled">
-                        <h3 layout="row center-left">
-                            <i class="material-icons">arrow_right</i>
-                            <a>openHAB</a>
-                        </h3>
-                        <p>
-                            Connection adapter for openHAB.
-                        </p>
-                    </div>
+                <div class="connection-item">
+                    <h3 layout="row center-left" onclick="setupDemoAdapter()" class="clickable">
+                        <i class="material-icons">arrow_right</i>
+                        <a>Demo</a>
+                    </h3>
+                    <p>Demo connection adapter based on JSON data files.</p>
+                </div>
+                <div class="connection-item disabled">
+                    <h3 layout="row center-left">
+                        <i class="material-icons">arrow_right</i>
+                        <a>Domoticz</a>
+                    </h3>
+                    <p>
+                        Connection adapter for Domoticz.
+                    </p>
+                </div>
+                <div class="connection-item">
+                    <h3 layout="row center-left" onclick="setupHomeGenieAdapter()" class="clickable">
+                        <i class="material-icons">arrow_right</i>
+                        <a>HomeGenie</a>
+                    </h3>
+                    <p>
+                        Connection adapter for <a href="https://genielabs.github.io/HomeGenie/" target="_blank">HomeGenie-server</a>
+                        and <a href="https://github.com/genielabs/homegenie-mini" target="_blank">HomeGenie-mini</a>.
+                    </p>
+                </div>
+                <div class="connection-item disabled">
+                    <h3 layout="row center-left">
+                        <i class="material-icons">arrow_right</i>
+                        <a>Home Assistant</a>
+                    </h3>
+                    <p>
+                        Connection adapter for Home Assistant.
+                    </p>
+                </div>
+                <div class="connection-item disabled">
+                    <h3 layout="row center-left">
+                        <i class="material-icons">arrow_right</i>
+                        <a>openHAB</a>
+                    </h3>
+                    <p>
+                        Connection adapter for openHAB.
+                    </p>
                 </div>
             </div>
         </div>
-        <div data-ui-field="page-homegenie-adapter" class="hidden" self="size-x1 stretch-stretch" layout="column center-center">
-            <div>
-                <label>HomeGenie server address</label>
-                <br>
-                <input type="text" placeholder="host:port" data-ui-field="server-address">
-                <br>
-                <label class="hgui-checkbox">
-                    With credentials
-                    <input type="checkbox" data-ui-field="server-credentials">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-            <button data-ui-field="btn-connect" class="hgui-button">Connect</button>
+    </div>
+    <div data-ui-field="page-homegenie-adapter" class="hidden" self="size-x1 stretch-stretch" layout="column center-center">
+        <div>
+            <label>HomeGenie server address</label>
+            <br>
+            <input type="text" placeholder="host:port" data-ui-field="server-address">
+            <br>
+            <label class="hgui-checkbox">
+                With credentials
+                <input type="checkbox" data-ui-field="server-credentials">
+                <span class="checkmark"></span>
+            </label>
         </div>
+        <button data-ui-field="btn-connect" class="hgui-button">Connect</button>
     </div>
-    <!--
-    <div class="page scrollable" data-ui-load="@lib/controllers/list_view"
-         data-ui-context="module-list" onscroll="zuix.componentize(this)"
-         layout="rows stretch-stretch"><! --no-view-- ></div>
-    <div class="page" layout="column center-center">
-        page 3
-    </div>
-    <div class="page" layout="column center-center">
-        page 4
-    </div>
-    <div class="page" layout="column center-center">
-        page 5
-    </div>
-    -->
 </div>
+<!--
+<div class="page scrollable" data-ui-load="@lib/controllers/list_view"
+     data-ui-context="module-list" onscroll="zuix.componentize(this)"
+     layout="rows stretch-stretch"><! --no-view-- ></div>
+<div class="page" layout="column center-center">
+    page 3
+</div>
+<div class="page" layout="column center-center">
+    page 4
+</div>
+<div class="page" layout="column center-center">
+    page 5
+</div>
+-->

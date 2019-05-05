@@ -629,7 +629,7 @@ self.__precacheManifest = [
   },
   {
     "url": "images/widgets/ventilation.svg",
-    "revision": "ce026cb36cb5a607146b28dc53251259"
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
     "url": "images/widgets/washer.svg",

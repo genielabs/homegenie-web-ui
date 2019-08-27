@@ -2,22 +2,22 @@
 
     <header layout="row center-left">
         <div self="size-x1">
-            <h1 data-ui-field="name">Device name</h1>
+            <h1 z-field="name">Device name</h1>
         </div>
-        <img data-ui-field="icon" class="icon" src="https://genielabs.github.io/homegenie-web-ui/images/widgets/bulb.svg">
+        <img z-field="icon" class="icon" src="/images/widgets/bulb.svg">
     </header>
 
 
     <div class="debossed" layout="column stretch-stretch" self="size-x1">
         <div class="actions" self="size-x1 stretch-stretch" layout="row stretch-stretch">
-            <button data-ui-field="control.off" class="flat-56">Off</button>
-            <button data-ui-field="control.toggle" class="flat-56" layout="row center-center">
-                <div data-ui-field="status-led" class="status-led off"></div>
+            <button z-field="control.off" class="flat-56">Off</button>
+            <button z-field="control.toggle" class="flat-56" layout="row center-center">
+                <div z-field="status-led" class="status-led off"></div>
             </button>
-            <button data-ui-field="control.on" class="flat-56">On</button>
+            <button z-field="control.on" class="flat-56">On</button>
         </div>
-        <div data-ui-field="level-view" self="size-small bottom">
-            <div data-ui-field="control.level" self="stretch" layout="row stretch-stretch">
+        <div z-field="level-view" self="size-small bottom">
+            <div z-field="control.level" self="stretch" layout="row stretch-stretch">
                 <div class="level-step">1</div>
                 <div class="level-step">2</div>
                 <div class="level-step">3</div>
@@ -29,16 +29,15 @@
                 <div class="level-step">9</div>
                 <div class="level-step">10</div>
             </div>
-            <div data-ui-field="level-bar" class="level-bar"></div>
+            <div z-field="level-bar" class="level-bar"></div>
         </div>
     </div>
 
 
     <div layout="row center-right" class="status-bar">
-        <div data-ui-field="status-message" self="size-x1">Waiting for input...</div>
-        <div data-ui-field="meter-watts" class="text-bold"></div>
-        <div data-ui-field="activity-led" class="activity-led"></div>
+        <div z-field="status-message" self="size-x1">Waiting for input...</div>
+        <div z-field="meter-watts" class="text-bold"></div>
+        <div z-field="activity-led" class="activity-led"></div>
     </div>
 
 </div>
-<!-- zUIx inline resource resourceBundle -->

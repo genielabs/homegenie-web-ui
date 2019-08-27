@@ -21,13 +21,16 @@ zuix.controller((cp) => {
         cp.update();
         showNext();
     };
-    cp.update = (field, oldValue) => {
+    cp.update = (field, key, value, path, old) => {
         setType('sensor');
         blink();
         if (field == null) showNext();
     };
     cp.destroy = () => {
         disposeWidget();
+        if (alternateTimeout != null) {
+            clearTimeout(alternateTimeout);
+        }
     };
 
     // private methods

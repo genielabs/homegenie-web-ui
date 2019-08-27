@@ -22,10 +22,6 @@
             zuix.$.ZxQuery.prototype.animateCss = function(animationName, param1, param2) { return this; };
         }
         zuix.using('component', '@lib/extensions/animate_css');
-        // listen for model updates
-        if (window.hgui) {
-            hgui.observeModule(cp.model(), cp.context);
-        }
         //
         activityLed = cp.field('activity-led');
         headerBar = cp.view().find('header');

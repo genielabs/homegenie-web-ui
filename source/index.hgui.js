@@ -31,6 +31,7 @@ hgui.setListener({
     onGroupModuleAdded: (g, m) => {
         // Create widget associated with this module
         const options = {
+            encapsulation: true,
             lazyLoad: true,
             // data-bind model to view fields
             model: m,

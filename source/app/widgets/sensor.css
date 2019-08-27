@@ -8,7 +8,7 @@ label {
     color: deeppink;
 }
 
-div[data-ui-field="field-b"],div[data-ui-field="field-c"] {
+div[z-field="field-b"],div[z-field="field-c"] {
     position: absolute;
 }
 

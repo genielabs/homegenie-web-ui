@@ -1,7 +1,7 @@
 {% include "_inc/standard_widget.css" %}
 {% include "_inc/status_led.css" %}
 
-div[data-ui-field="control.level"] {
+div[z-field="control.level"] {
     cursor: pointer;
 }
 

@@ -2,14 +2,14 @@
 {% block content %}
     <div class="debossed" layout="column stretch-stretch" self="size-x1">
         <div class="actions" self="size-x1 stretch-stretch" layout="row stretch-stretch">
-            <button data-ui-field="control.off" class="flat-56">Off</button>
-            <button data-ui-field="control.toggle" class="flat-56" layout="row center-center">
-                <div data-ui-field="status-led" class="status-led off"></div>
+            <button z-field="control.off" class="flat-56">Off</button>
+            <button z-field="control.toggle" class="flat-56" layout="row center-center">
+                <div z-field="status-led" class="status-led off"></div>
             </button>
-            <button data-ui-field="control.on" class="flat-56">On</button>
+            <button z-field="control.on" class="flat-56">On</button>
         </div>
-        <div data-ui-field="level-view" self="size-small bottom">
-            <div data-ui-field="control.level" self="stretch" layout="row stretch-stretch">
+        <div z-field="level-view" self="size-small bottom">
+            <div z-field="control.level" self="stretch" layout="row stretch-stretch">
                 <div class="level-step">1</div>
                 <div class="level-step">2</div>
                 <div class="level-step">3</div>
@@ -21,13 +21,13 @@
                 <div class="level-step">9</div>
                 <div class="level-step">10</div>
             </div>
-            <div data-ui-field="level-bar" class="level-bar"></div>
+            <div z-field="level-bar" class="level-bar"></div>
         </div>
     </div>
 {% endblock %}
 <!-- the following view is not yet used (it should be the context menu) -->
-<div data-ui-field="context-menu-view" class="hidden">
-    <h1 data-ui-field="menu-title">ModuleName</h1>
+<div z-field="context-menu-view" class="hidden">
+    <h1 z-field="menu-title">ModuleName</h1>
     <button layout="row center-left">
         <i class="material-icons">timer</i>
         <span>Automatic turn off timer</span>

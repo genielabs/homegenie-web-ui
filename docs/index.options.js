@@ -9,6 +9,7 @@ let groupIndicator;
 // 'data-ui-options' element attribute
 window.options = {
     drawerLayout: {
+        encapsulation: true,
         autoHideWidth: -1,
         drawerWidth: 280,
         ready: (ctx) => {
@@ -16,6 +17,7 @@ window.options = {
         }
     },
     headerBar: {
+        encapsulation: true,
         ready: (ctx) => {
             const view = zuix.$(ctx.view());
             // open drawer when the profile icon is clicked

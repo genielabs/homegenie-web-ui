@@ -69,9 +69,11 @@ zuix.controller((cp) => {
         // to end in order to measure the level bar width consistently
         setTimeout(cp.update, 500);
     };
-    cp.update = (field, oldValue) => {
+    // this method is called when something in the model is updated
+    cp.update = (field, key, value, path, old) => {
+//        console.log(field, path, value);
         blink();
-        if (field != null && FLD != null) {
+        if (field && field.key && FLD) {
             switch (field.key) {
                 case FLD.Status.Level:
                     actualLevel = parseFloat(field.value);
@@ -110,7 +112,7 @@ zuix.controller((cp) => {
     let updateStatusInterval;
 
     function initWidget() {
-        zuix.using('script', 'https://genielabs.github.io/homegenie-web-ui/js/widgets.js');
+        zuix.using('script', '/js/widgets.js');
         zuix.using('script', '@cdnjs/dayjs/1.8.12/dayjs.min.js', ()=>{
             zuix.using('script', '@cdnjs/dayjs/1.8.12/plugin/relativeTime.js', ()=>{
                 // wait until dayjs is ready
@@ -127,10 +129,6 @@ zuix.controller((cp) => {
             zuix.$.ZxQuery.prototype.animateCss = function(animationName, param1, param2) { return this; };
         }
         zuix.using('component', '@lib/extensions/animate_css');
-        // listen for model updates
-        if (window.hgui) {
-            hgui.observeModule(cp.model(), cp.context);
-        }
         //
         activityLed = cp.field('activity-led');
         headerBar = cp.view().find('header');
@@ -189,10 +187,10 @@ zuix.controller((cp) => {
 
 
     function setType(type) {
-        let typeIcon = 'https://genielabs.github.io/homegenie-web-ui/images/widgets/bulb.svg';
+        let typeIcon = '/images/widgets/bulb.svg';
         switch (type.toLowerCase()) {
             case 'switch':
-                typeIcon = 'https://genielabs.github.io/homegenie-web-ui/images/widgets/socket.svg';
+                typeIcon = '/images/widgets/socket.svg';
             case 'light':
                 controlOn.parent().addClass('switch');
                 levelView.hide();

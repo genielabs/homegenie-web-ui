@@ -21,13 +21,16 @@ zuix.controller((cp) => {
         cp.update();
         showNext();
     };
-    cp.update = (field, oldValue) => {
+    cp.update = (field, key, value, path, old) => {
         setType('sensor');
         blink();
         if (field == null) showNext();
     };
     cp.destroy = () => {
         disposeWidget();
+        if (alternateTimeout != null) {
+            clearTimeout(alternateTimeout);
+        }
     };
 
     // private methods
@@ -39,7 +42,7 @@ zuix.controller((cp) => {
     let updateStatusInterval;
 
     function initWidget() {
-        zuix.using('script', 'https://genielabs.github.io/homegenie-web-ui/js/widgets.js');
+        zuix.using('script', '/js/widgets.js');
         zuix.using('script', '@cdnjs/dayjs/1.8.12/dayjs.min.js', ()=>{
             zuix.using('script', '@cdnjs/dayjs/1.8.12/plugin/relativeTime.js', ()=>{
                 // wait until dayjs is ready
@@ -56,10 +59,6 @@ zuix.controller((cp) => {
             zuix.$.ZxQuery.prototype.animateCss = function(animationName, param1, param2) { return this; };
         }
         zuix.using('component', '@lib/extensions/animate_css');
-        // listen for model updates
-        if (window.hgui) {
-            hgui.observeModule(cp.model(), cp.context);
-        }
         //
         activityLed = cp.field('activity-led');
         headerBar = cp.view().find('header');
@@ -157,16 +156,16 @@ zuix.controller((cp) => {
     }
 
     function updateField(el, field) {
-        let icon = 'https://genielabs.github.io/homegenie-web-ui/images/widgets/empty.svg';
+        let icon = '/images/widgets/empty.svg';
         switch (field.key) {
             case FLD.Sensor.Temperature:
-                icon = 'https://genielabs.github.io/homegenie-web-ui/images/widgets/temperature.svg';
+                icon = '/images/widgets/temperature.svg';
                 break;
             case FLD.Sensor.Luminance:
-                icon = 'https://genielabs.github.io/homegenie-web-ui/images/widgets/sun.svg';
+                icon = '/images/widgets/sun.svg';
                 break;
             case FLD.Sensor.Humidity:
-                icon = 'https://genielabs.github.io/homegenie-web-ui/images/widgets/drop.svg';
+                icon = '/images/widgets/drop.svg';
                 break;
         }
         el.field('icon').attr('src', icon).show();
@@ -175,7 +174,7 @@ zuix.controller((cp) => {
     }
 
     function setType(type) {
-        let typeIcon = 'https://genielabs.github.io/homegenie-web-ui/images/widgets/sensor.svg';
+        let typeIcon = '/images/widgets/sensor.svg';
         // TODO: select different sensor icons based on 'type'
         cp.field('icon').attr('src', typeIcon);
         return cp.context;

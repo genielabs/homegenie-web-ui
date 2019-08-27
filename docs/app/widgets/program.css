@@ -33,7 +33,7 @@
 /* END status_led.css */
 
 
-. {
+:host {
     background: rgba(255,255,255,0.75);
     min-width: 280px;
     max-width: 300px;
@@ -66,14 +66,14 @@ h1 {
     -webkit-text-stroke-color: gray;
 }
 
-h1[data-ui-field=name] {
+h1[z-field=name] {
     width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-div[data-ui-field="status-led"].status-led {
+div[z-field="status-led"].status-led {
     margin-left: 16px;
 }
 

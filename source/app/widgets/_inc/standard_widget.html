@@ -3,17 +3,17 @@
 
     <header layout="row center-left">
         <div self="size-x1">
-            <h1 data-ui-field="name">Device name</h1>
+            <h1 z-field="name">Device name</h1>
         </div>
-        <img data-ui-field="icon" class="icon" src="{{app.urlRoot}}images/widgets/bulb.svg">
+        <img z-field="icon" class="icon" src="{{app.urlRoot}}images/widgets/bulb.svg">
     </header>
 
 {% block content %}{% endblock %}
 
     <div layout="row center-right" class="status-bar">
-        <div data-ui-field="status-message" self="size-x1">Waiting for input...</div>
-        <div data-ui-field="meter-watts" class="text-bold"></div>
-        <div data-ui-field="activity-led" class="activity-led"></div>
+        <div z-field="status-message" self="size-x1">Waiting for input...</div>
+        <div z-field="meter-watts" class="text-bold"></div>
+        <div z-field="activity-led" class="activity-led"></div>
     </div>
 
 </div>

@@ -1,8 +1,6 @@
 'use strict';
 zuix.controller((cp) => {
     cp.create = () => {
-        const module = cp.model();
-        hgui.observeModule(module, cp.context); // listen for model updates
         cp.expose('update', cp.update);
         // register UI event handlers
         cp.view().on('click', () => {
@@ -13,11 +11,11 @@ zuix.controller((cp) => {
             cp.view().addClass('pressed');
         });
     };
-    cp.update = (field, oldValue) => {
-        if (field.key === FLD.Program.Status) {
+    cp.update = (field, key, value, path, old) => {
+        if (field && field.key === FLD.Program.Status && key === 'value') {
             const led = cp.field('status-led')
                 .removeClass('on off idle disabled error');
-            switch (field.value) {
+            switch (value) {
                 case 'Running':
                     led.addClass('on');
                     break;

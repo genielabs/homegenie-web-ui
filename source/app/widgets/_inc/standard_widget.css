@@ -1,5 +1,5 @@
 /* BEGIN standard_widget.css */
-. {
+:host {
     background: rgba(255,255,255,0.75);
     min-width: 280px;
     max-width: 300px;
@@ -55,7 +55,7 @@ button:hover {
     font-weight: bold;
 }
 
-h1[data-ui-field=name] {
+h1[z-field=name] {
     width: 100%;
     white-space: nowrap;
     overflow: hidden;

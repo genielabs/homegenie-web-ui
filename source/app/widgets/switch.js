@@ -69,9 +69,11 @@ zuix.controller((cp) => {
         // to end in order to measure the level bar width consistently
         setTimeout(cp.update, 500);
     };
-    cp.update = (field, oldValue) => {
+    // this method is called when something in the model is updated
+    cp.update = (field, key, value, path, old) => {
+//        console.log(field, path, value);
         blink();
-        if (field != null && FLD != null) {
+        if (field && field.key && FLD) {
             switch (field.key) {
                 case FLD.Status.Level:
                     actualLevel = parseFloat(field.value);

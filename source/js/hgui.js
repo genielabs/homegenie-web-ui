@@ -1,8 +1,12 @@
 (function(window) {
     'use strict';
+    zuix.ZxQuery.prototype.animateCss = function(a, b, c) {
+        if (typeof b === 'function') b();
+        else if (typeof c === 'function') c();
+        return this;
+    };
     function HGUI() {
         let adapters = [];
-        let observers = [];
         let groups = [];
         let modules = [];
         let _configRevision;
@@ -22,8 +26,10 @@
                     if (config != null) {
                         _configRevision = config._rev;
                         groups = config.groups;
-                        modules = config.modules;
-                        modules.map((m) => {
+                        modules = [];
+                        config.modules.map((m) => {
+                            m = zuix.observable(m).proxy;
+                            modules.push(m);
                             if (listener != null) listener.onModuleAdded(m);
                         });
                         groups.map((g) => {
@@ -159,6 +165,7 @@
             addModule: (module) => {
                 const m = _hgui.getModule(module.id, module.adapterId);
                 if (m != null) return m;
+                module = zuix.observer().observe(module).proxy;
                 modules.push(module);
                 if (listener != null) {
                     listener.onModuleAdded(module);
@@ -190,12 +197,6 @@
                 return modules.find((item) => item.id === moduleId && item.adapterId === adapterId);
             },
             getModules: () => modules,
-            observeModule: (module, observer) => {
-                // TODO: do not push if already present
-                observers[module.id] = observers[module.id] || [];
-                observers[module.id].push(observer);
-            },
-            getObservers: () => observers,
             getModuleField: (module, key) => {
                 if (module.fields == null) return null;
                 return module.fields.find((f) => f.key === key);
@@ -209,17 +210,8 @@
                     field = {key: key};
                     module.fields.push(field);
                 }
-                const old = {
-                    key: field.key,
-                    value: field.value,
-                    timestamp: field.timestamp
-                };
                 field.value = value;
                 field.timestamp = timestamp;
-                // Signal to all observers
-                if (observers[module.id]) {
-                    observers[module.id].map((observer) => observer.update(field, old));
-                }
             },
             setListener: (l) => listener = l,
             showLoader: (overlay) => {

@@ -165,7 +165,7 @@
             addModule: (module) => {
                 const m = _hgui.getModule(module.id, module.adapterId);
                 if (m != null) return m;
-                module = zuix.observer().observe(module).proxy;
+                module = zuix.observable(module).proxy;
                 modules.push(module);
                 if (listener != null) {
                     listener.onModuleAdded(module);

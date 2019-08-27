@@ -349,7 +349,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "01cc4642848e788c8f06ed441cae20a3"
+    "revision": "eba45facf6da2245ed91b7e6328a5e85"
   },
   {
     "url": "index.js",
@@ -369,7 +369,7 @@ self.__precacheManifest = [
   },
   {
     "url": "js/hgui.js",
-    "revision": "36675d9b6707e80a63d086deb8582e18"
+    "revision": "9d73d849663147a9819b19c4dfbdf4d6"
   },
   {
     "url": "js/mqttws31.js",

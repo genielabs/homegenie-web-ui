@@ -21,7 +21,7 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox
 self.__precacheManifest = [
   {
     "url": "404.html",
-    "revision": "3065ad87c133096dbba38b6e7895afc7"
+    "revision": "7e33bbf7a5bfc1d93eeccd1eb7f862be"
   },
   {
     "url": "app/adapters/demo.js",
@@ -77,7 +77,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/layout/header.html",
-    "revision": "f593c409c4f6965126ba17d9bf0bfa99"
+    "revision": "0ad31408c42dda0b327e3d6842144866"
   },
   {
     "url": "app/pages/eventslog.css",
@@ -93,7 +93,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home.html",
-    "revision": "745a16081bb296c95262aad7d12e05d3"
+    "revision": "7342a5e508409f4972ba47954d316731"
   },
   {
     "url": "app/pages/home/items_list.css",
@@ -177,7 +177,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/splash.html",
-    "revision": "500c2f0f961f833d9206a5eda2fa0317"
+    "revision": "1f446f48f09128d01128c5815612be3e"
   },
   {
     "url": "app/README.html",
@@ -189,7 +189,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/shared/button_menu.html",
-    "revision": "e75080fb214d354b6d9b9c9c893e5600"
+    "revision": "1d2eb7609fd66a7998df4127b56ddc2c"
   },
   {
     "url": "app/shared/button_menu.js",
@@ -217,7 +217,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/tools/zuix_editor.html",
-    "revision": "13786cde7540823548ca80cf1805eacb"
+    "revision": "e91c3732d0fa83b9a5ae7de612cdac15"
   },
   {
     "url": "app/tools/zuix_editor.js",
@@ -241,7 +241,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/tools/zuix_hackbox.html",
-    "revision": "4fcee871a909807f82e7e41ead61c242"
+    "revision": "607c7d3ef9e63d97b5dbaa2ad0ed64e0"
   },
   {
     "url": "app/tools/zuix_hackbox.js",
@@ -309,11 +309,11 @@ self.__precacheManifest = [
   },
   {
     "url": "cli/mqtt.html",
-    "revision": "dc77b01fd5a2f7ffb2797bc594b5f399"
+    "revision": "56cd2cdf068ecc55920a5039503c972e"
   },
   {
     "url": "cli/ws.html",
-    "revision": "96a52717f0d12fcffb9be85c1ab2694a"
+    "revision": "02ec8ab4469c0b91b401a3047df27bc4"
   },
   {
     "url": "config.js",
@@ -349,7 +349,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "a9ca06adef24c47d1af70edb57ddcf30"
+    "revision": "8426b8633f848021c70c7f97d1d207e3"
   },
   {
     "url": "index.js",
@@ -405,43 +405,15 @@ self.__precacheManifest = [
   },
   {
     "url": "offline.html",
-    "revision": "72257b195d4eb39cc00cbdcf3463f77e"
+    "revision": "9917b40a1e778a5e8049d21262eac0a3"
   },
   {
     "url": "test.html",
-    "revision": "ae8a9c80d9dc348141daff5afd585f02"
+    "revision": "137a1bfe6c966b6776d346e9bd4a75e6"
   },
   {
     "url": "images/genie.png",
     "revision": "d311329f6b7f6588be49094a592492c9"
-  },
-  {
-    "url": "images/icons/desktop/android-chrome-192x192.png",
-    "revision": "93d5e77e9ee1e9c6975f3c0bd1a21574"
-  },
-  {
-    "url": "images/icons/desktop/android-chrome-512x512.png",
-    "revision": "6df83c6c13be17a2ea70d29e340c5ddb"
-  },
-  {
-    "url": "images/icons/desktop/apple-touch-icon.png",
-    "revision": "2b78ed332644d19d9779c069c5842538"
-  },
-  {
-    "url": "images/icons/desktop/favicon-16x16.png",
-    "revision": "6c047cdbd3d5c4c962a3a692a5025d27"
-  },
-  {
-    "url": "images/icons/desktop/favicon-32x32.png",
-    "revision": "7413528d5e59c22af1ccf38187bc950b"
-  },
-  {
-    "url": "images/icons/desktop/mstile-150x150.png",
-    "revision": "540caa78f56655281b2d4b17ad52f2ce"
-  },
-  {
-    "url": "images/icons/desktop/safari-pinned-tab.svg",
-    "revision": "a0ab2c612c6a5019b3e4ae7c38043b98"
   },
   {
     "url": "images/icons/icon-128x128.png",
@@ -628,8 +600,8 @@ self.__precacheManifest = [
     "revision": "d41d8cd98f00b204e9800998ecf8427e"
   },
   {
-    "url": "images/widgets/weather.svg",
-    "revision": "c16be5c6256d7467fc685fe54a7d2173"
+    "url": "images/widgets/ventilation.svg",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();

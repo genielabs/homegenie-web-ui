@@ -77,7 +77,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/layout/header.html",
-    "revision": "0ad31408c42dda0b327e3d6842144866"
+    "revision": "f593c409c4f6965126ba17d9bf0bfa99"
   },
   {
     "url": "app/pages/eventslog.css",
@@ -93,7 +93,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/home.html",
-    "revision": "7342a5e508409f4972ba47954d316731"
+    "revision": "db0a684f12ddda421e5eb355eefc5099"
   },
   {
     "url": "app/pages/home/items_list.css",
@@ -177,7 +177,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/pages/splash.html",
-    "revision": "1f446f48f09128d01128c5815612be3e"
+    "revision": "58f9134e24137f3b2f83794914bda4f4"
   },
   {
     "url": "app/README.html",
@@ -189,7 +189,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/shared/button_menu.html",
-    "revision": "1d2eb7609fd66a7998df4127b56ddc2c"
+    "revision": "5f4a0ed622b0d7643b971b8444db8969"
   },
   {
     "url": "app/shared/button_menu.js",
@@ -217,7 +217,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/tools/zuix_editor.html",
-    "revision": "e91c3732d0fa83b9a5ae7de612cdac15"
+    "revision": "13786cde7540823548ca80cf1805eacb"
   },
   {
     "url": "app/tools/zuix_editor.js",
@@ -241,7 +241,7 @@ self.__precacheManifest = [
   },
   {
     "url": "app/tools/zuix_hackbox.html",
-    "revision": "607c7d3ef9e63d97b5dbaa2ad0ed64e0"
+    "revision": "43e58f710c62aaf1a37ad5034cdd15d0"
   },
   {
     "url": "app/tools/zuix_hackbox.js",
@@ -349,7 +349,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "8426b8633f848021c70c7f97d1d207e3"
+    "revision": "01cc4642848e788c8f06ed441cae20a3"
   },
   {
     "url": "index.js",

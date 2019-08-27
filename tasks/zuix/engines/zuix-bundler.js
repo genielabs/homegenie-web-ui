@@ -122,7 +122,7 @@ function createBundle(sourceFolder, page) {
 
     // zUIx resources
     if (zuixConfig.build.bundle.zuix !== false) {
-        const nodeList = dom.window.document.querySelectorAll('[z-include],[z-load]');
+        const nodeList = dom.window.document.querySelectorAll('[data-ui-include],[data-ui-load],[z-include],[z-load]');
         if (nodeList != null) {
             nodeList.forEach(function(el) {
                 let skipElement = false;
@@ -139,13 +139,13 @@ function createBundle(sourceFolder, page) {
                 }
 
                 let hasJsFile = false;
-                let resourcePath = el.getAttribute('z-include');
+                let resourcePath = el.getAttribute('data-ui-include') || el.getAttribute('z-include');
                 if (resourcePath == null || resourcePath === '') {
                     hasJsFile = true;
-                    resourcePath = el.getAttribute('z-load');
+                    resourcePath = el.getAttribute('data-ui-load') || el.getAttribute('z-load');
                 }
                 // do not process inline views
-                if (dom.window.document.querySelectorAll('[z-view="' + resourcePath + '"]').length > 0) {
+                if (dom.window.document.querySelectorAll('[data-ui-view="' + resourcePath + '"],[z-view="' + resourcePath + '"]').length > 0) {
                     return;
                 }
 
@@ -183,7 +183,7 @@ function createBundle(sourceFolder, page) {
                     };
                     const dm = createBundle(sourceFolder, d);
                     content = dm.window.document.body.innerHTML;
-                    if (el.getAttribute('z-mode') === 'unwrap') {
+                    if (el.getAttribute('data-ui-mode') === 'unwrap' || el.getAttribute('z-mode') === 'unwrap') {
                         // TODO: add HTML comment with file info
                         el.outerHTML = content;
                     } else {
@@ -194,7 +194,7 @@ function createBundle(sourceFolder, page) {
                 content = fetchResource(filePath + '.css');
                 if (content != null) {
                     content = staticSite.swig({file: filePath + '.css', content: content}, localVars)._result.contents;
-                    if (el.getAttribute('z-mode') === 'unwrap') {
+                    if (el.getAttribute('data-ui-mode') === 'unwrap' || el.getAttribute('z-mode') === 'unwrap') {
                         // TODO: add // comment with file info
                         content = util.format('\n<style id="%s">\n%s\n</style>\n', resourcePath, content);
                         dom.window.document.querySelector('head').innerHTML += util.format('\n<!--{[%s]}-->\n%s', resourcePath, content);

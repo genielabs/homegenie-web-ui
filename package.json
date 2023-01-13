@@ -46,7 +46,7 @@
     "swig-marked": "0.0.1",
     "swig-templates": "latest",
     "sync-request": "^6.1.0",
-    "terminal-kit": "^1.27.2",
+    "terminal-kit": "^2.1.8",
     "workbox-build": "^3.6.3",
     "zuix-dist": "^1.0.4"
   }
